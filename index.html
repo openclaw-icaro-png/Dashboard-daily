@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RCN Total — Platform Daily Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0e1117; color: #e0e0e0; padding: 24px; }
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    header h1 { font-size: 20px; font-weight: 600; color: #fff; }
+    header span { font-size: 13px; color: #666; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; }
+    .card h2 { font-size: 12px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .card .value { font-size: 32px; font-weight: 700; color: #fff; }
+    .card .sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
+    .card .trend { font-size: 13px; margin-top: 8px; }
+    .trend.up { color: #3fb950; }
+    .trend.down { color: #f85149; }
+    .trend.flat { color: #8b949e; }
+    .issues { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; }
+    .issues h2 { font-size: 12px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .issue { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; }
+    .issue:last-child { border-bottom: none; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .dot.red { background: #f85149; }
+    .dot.orange { background: #d29922; }
+    .dot.yellow { background: #e3b341; }
+    .dot.green { background: #3fb950; }
+    .issue-text { font-size: 14px; color: #e0e0e0; line-height: 1.4; }
+    .issue-meta { font-size: 12px; color: #8b949e; margin-top: 2px; }
+    .all-clear { color: #3fb950; font-size: 14px; padding: 8px 0; }
+    footer { font-size: 12px; color: #444; margin-top: 24px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:24px">📡</span>
+    <div>
+      <h1>RCN Total — Platform Daily Dashboard</h1>
+      <span id="last-updated">Loading...</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Play Sessions (today)</h2>
+      <div class="value" id="plays-today">—</div>
+      <div class="sub">vs same day last week</div>
+      <div class="trend flat" id="plays-trend">Awaiting data</div>
+    </div>
+    <div class="card">
+      <h2>Watch Time (today)</h2>
+      <div class="value" id="watch-time">—</div>
+      <div class="sub">hours</div>
+      <div class="trend flat" id="watch-trend">Awaiting data</div>
+    </div>
+    <div class="card">
+      <h2>Broken Plays (0-duration)</h2>
+      <div class="value" id="broken-plays">—</div>
+      <div class="sub">% of total play events</div>
+      <div class="trend flat" id="broken-trend">Awaiting data</div>
+    </div>
+    <div class="card">
+      <h2>Platform Status</h2>
+      <div class="value" id="platform-status">—</div>
+      <div class="sub" id="platform-sub">Awaiting data</div>
+    </div>
+  </div>
+
+  <div class="issues">
+    <h2>🚨 Active Issues</h2>
+    <div id="issues-list">
+      <div class="issue">
+        <div class="dot orange"></div>
+        <div>
+          <div class="issue-text">Safari live broken — 45% of plays = 0s watched (-20% sessions WoW)</div>
+          <div class="issue-meta">HLS/autoplay/CORS · Owner: Web/CDN · Open</div>
+        </div>
+      </div>
+      <div class="issue">
+        <div class="dot orange"></div>
+        <div>
+          <div class="issue-text">Android live 0-duration plays up +31% WoW (194 today vs 148 May 27)</div>
+          <div class="issue-meta">Live delivery degradation · Android · Open</div>
+        </div>
+      </div>
+      <div class="issue">
+        <div class="dot yellow"></div>
+        <div>
+          <div class="issue-text">Chrome sessions down -14% WoW</div>
+          <div class="issue-meta">Possible web delivery issue · Watching</div>
+        </div>
+      </div>
+      <div class="issue">
+        <div class="dot yellow"></div>
+        <div>
+          <div class="issue-text">Live content missing content_duration metadata — 881 events / 7d (96% Android)</div>
+          <div class="issue-meta">Ingestion pipeline gap · Watching</div>
+        </div>
+      </div>
+      <div class="issue">
+        <div class="dot orange"></div>
+        <div>
+          <div class="issue-text">Roku unmatched_subscription — 44 events / 7d (last: 21:17 UTC Jun 3)</div>
+          <div class="issue-meta">Renewals potentially silently failing · Roku</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span></footer>
+
+  <script>
+    const now = new Date();
+    document.getElementById('last-updated').textContent = 'Last updated: ' + now.toUTCString();
+    document.getElementById('footer-date').textContent = now.toLocaleDateString('en-CA');
+  </script>
+</body>
+</html>
