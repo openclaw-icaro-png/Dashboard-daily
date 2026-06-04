@@ -160,7 +160,7 @@ var qa={};
 function upBar(){var n=Object.keys(qa).filter(function(k){return qa[k]&&qa[k].a;}).length;document.getElementById('scnt').textContent=n;document.getElementById('svb').style.display=n>0?'flex':'none';}
 function qaBtnClick(id,act,btn){if(!qa[id])qa[id]={};var prev=qa[id].a;document.querySelectorAll('#c-'+id+' .qb').forEach(function(b){b.classList.remove('on');});var cd=document.getElementById('cm-'+id);if(prev===act){delete qa[id].a;if(cd)cd.style.display='none';}else{qa[id].a=act;btn.classList.add('on');if(act==='comment'&&cd)cd.style.display='block';else if(cd)cd.style.display='none';}upBar();}
 function cmtChange(id,val){if(!qa[id])qa[id]={};qa[id].c=val;}
-function saveFeedback(){var btn=document.getElementById('sbtn');var st=document.getElementById('sstatus');btn.disabled=true;btn.textContent='Saving...';st.textContent='';var path='feedback/'+D.date+'.json';var api='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+path;var hdrs={'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};var fb={date:D.date,saved_at:new Date().toISOString(),items:{}};Object.keys(qa).forEach(function(id){if(qa[id]&&qa[id].a)fb.items[id]={action:qa[id].a,comment:qa[id].c||''};});var content=btoa(unescape(encodeURIComponent(JSON.stringify(fb,null,2))));fetch(api,{headers:hdrs}).then(function(r){return r.ok?r.json().then(function(d){return d.sha;}):null;}).catch(function(){return null;}).then(function(sha){var body={message:'QA feedback '+D.date,content:content};if(sha)body.sha=sha;return fetch(api,{method:'PUT',headers:hdrs,body:JSON.stringify(body)});}).then(function(r){if(r.ok){st.style.color='var(--green)';st.textContent='✓ Saved';btn.textContent='������ Save to GitHub';btn.disabled=false;}else{return r.text().then(function(t){throw new Error(t);});}}).catch(function(err){st.style.color='var(--red)';st.textContent='✗ Failed';btn.textContent='������ Save to GitHub';btn.disabled=false;});}
+function saveFeedback(){var btn=document.getElementById('sbtn');var st=document.getElementById('sstatus');btn.disabled=true;btn.textContent='Saving...';st.textContent='';var path='feedback/'+D.date+'.json';var api='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+path;var hdrs={'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};var fb={date:D.date,saved_at:new Date().toISOString(),items:{}};Object.keys(qa).forEach(function(id){if(qa[id]&&qa[id].a)fb.items[id]={action:qa[id].a,comment:qa[id].c||''};});var content=btoa(unescape(encodeURIComponent(JSON.stringify(fb,null,2))));fetch(api,{headers:hdrs}).then(function(r){return r.ok?r.json().then(function(d){return d.sha;}):null;}).catch(function(){return null;}).then(function(sha){var body={message:'QA feedback '+D.date,content:content};if(sha)body.sha=sha;return fetch(api,{method:'PUT',headers:hdrs,body:JSON.stringify(body)});}).then(function(r){if(r.ok){st.style.color='var(--green)';st.textContent='✓ Saved';btn.textContent='&#128190; Save to GitHub';btn.disabled=false;}else{return r.text().then(function(t){throw new Error(t);});}}).catch(function(err){st.style.color='var(--red)';st.textContent='✗ Failed';btn.textContent='&#128190; Save to GitHub';btn.disabled=false;});}
 function fs(s){if(s>=3600)return(s/3600).toFixed(1)+'h';return Math.round(s/60)+'m';}
 function pc(st){var m={Healthy:'healthy',Watch:'watch',Critical:'critical',OK:'ok',DEGRADED:'degraded',STALLED:'stalled'};return m[st]||st.toLowerCase();}
 function zc(p){return p>30?'cr':p>15?'co':'cg';}
@@ -192,12 +192,12 @@ function init(){
     var d=document.createElement('div');d.className='ac '+a.severity;d.id='c-'+a.id;
     d.innerHTML='<div class="ah"><span class="sb2 '+a.severity+'">'+a.severity+'</span><span class="att">'+a.title+'</span></div>'
       +'<div class="adet">'+a.detail+'</div>'
-      +'<div class="ahyp">������ <i>Hypothesis:</i> '+a.hypothesis+'</div>'
+      +'<div class="ahyp">&#128161; <i>Hypothesis:</i> '+a.hypothesis+'</div>'
       +'<div style="margin-top:8px"><span class="op">'+a.owner+'</span></div>'+prH
       +'<div class="qr">'
       +'<button class="qb" data-id="'+a.id+'" data-act="ignore">✅ Ignore</button>'
-      +'<button class="qb" data-id="'+a.id+'" data-act="tomorrow">������ Check tomorrow</button>'
-      +'<button class="qb" data-id="'+a.id+'" data-act="comment">������ Comment</button>'
+      +'<button class="qb" data-id="'+a.id+'" data-act="tomorrow">&#128257; Check tomorrow</button>'
+      +'<button class="qb" data-id="'+a.id+'" data-act="comment">&#128172; Comment</button>'
       +'</div>'
       +'<div class="qcmt" id="cm-'+a.id+'"><textarea placeholder="Add comment..." data-id="'+a.id+'"></textarea></div>';
     al.appendChild(d);
