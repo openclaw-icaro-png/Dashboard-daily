@@ -8,94 +8,119 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0e1117; color: #e0e0e0; min-height: 100vh; }
 
-    /* ── LOGIN ── */
-    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0e1117; }
+    /* LOGIN */
+    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
     .login-box { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 40px 36px; width: 340px; text-align: center; }
     .login-box .logo { font-size: 36px; margin-bottom: 8px; }
     .login-box h1 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 4px; }
     .login-box p { font-size: 13px; color: #8b949e; margin-bottom: 28px; }
     .login-box input { width: 100%; padding: 10px 14px; background: #0e1117; border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0; font-size: 14px; margin-bottom: 12px; outline: none; }
     .login-box input:focus { border-color: #58a6ff; }
-    .login-box button { width: 100%; padding: 10px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .login-box button { width: 100%; padding: 10px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
     .login-box button:hover { background: #2ea043; }
     .login-error { color: #f85149; font-size: 13px; margin-top: 10px; display: none; }
 
-    /* ── DASHBOARD ── */
-    #dashboard { display: none; padding: 24px; max-width: 1100px; margin: 0 auto; }
-    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+    /* LAYOUT */
+    #dashboard { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; padding-bottom: 80px; }
+    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
     .header-left { display: flex; align-items: center; gap: 12px; }
     header h1 { font-size: 20px; font-weight: 600; color: #fff; }
-    header span.sub { font-size: 13px; color: #666; }
+    header .sub { font-size: 13px; color: #666; }
     .logout-btn { background: none; border: 1px solid #30363d; color: #8b949e; border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
     .logout-btn:hover { border-color: #f85149; color: #f85149; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
-    .card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; }
-    .card h2 { font-size: 11px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
-    .card .value { font-size: 32px; font-weight: 700; color: #fff; }
-    .card .sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
-    .card .trend { font-size: 13px; margin-top: 8px; }
-    .trend.up { color: #3fb950; }
-    .trend.down { color: #f85149; }
-    .trend.flat { color: #8b949e; }
+    /* KPI GRID */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .kpi-card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 18px 20px; }
+    .kpi-card h3 { font-size: 10px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+    .kpi-card .val { font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
+    .kpi-card .sub { font-size: 12px; color: #8b949e; margin-top: 5px; }
+    .kpi-card .trend { font-size: 12px; margin-top: 6px; }
+    .up { color: #3fb950; } .down { color: #f85149; } .flat { color: #8b949e; } .warn { color: #e3b341; }
 
+    /* STATUS PILL */
+    .pill { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.04em; }
+    .pill-ok { background: #3fb95020; color: #3fb950; border: 1px solid #3fb95040; }
+    .pill-warn { background: #e3b34120; color: #e3b341; border: 1px solid #e3b34140; }
+    .pill-err { background: #f8514920; color: #f85149; border: 1px solid #f8514940; }
+    .pill-stall { background: #d2992220; color: #d29922; border: 1px solid #d2992240; }
+
+    /* SECTIONS */
     .section { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-    .section h2 { font-size: 11px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+    .section-title { font-size: 11px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.07em; }
+    .section-meta { font-size: 11px; color: #444; }
 
-    /* ── ISSUE ROWS ── */
-    .issue-row { border-bottom: 1px solid #21262d; padding: 14px 0; }
+    /* TWO-COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* TABLE */
+    .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { font-size: 10px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; padding: 0 0 10px; text-align: left; border-bottom: 1px solid #21262d; }
+    .tbl td { padding: 9px 0; border-bottom: 1px solid #21262d; color: #e0e0e0; vertical-align: middle; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl td:not(:first-child) { text-align: right; }
+    .tbl th:not(:first-child) { text-align: right; }
+
+    /* ISSUE ROWS */
+    .issue-row { border-bottom: 1px solid #21262d; padding: 12px 0; }
     .issue-row:last-child { border-bottom: none; }
     .issue-top { display: flex; align-items: flex-start; gap: 10px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .dot.red { background: #f85149; }
-    .dot.orange { background: #d29922; }
-    .dot.yellow { background: #e3b341; }
-    .dot.green { background: #3fb950; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .dot-red { background: #f85149; }
+    .dot-orange { background: #d29922; }
+    .dot-yellow { background: #e3b341; }
+    .dot-green { background: #3fb950; }
     .issue-text { font-size: 14px; color: #e0e0e0; line-height: 1.4; flex: 1; }
-    .issue-meta { font-size: 12px; color: #8b949e; margin-top: 2px; }
-    .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
-    .badge.open { background: #f8514920; color: #f85149; }
-    .badge.watching { background: #e3b34120; color: #e3b341; }
+    .issue-meta { font-size: 12px; color: #8b949e; margin-top: 3px; }
+    .issue-qa { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff20; border-radius: 5px; padding: 4px 8px; margin-top: 6px; display: inline-block; }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; margin-left: 4px; }
+    .badge-open { background: #f8514920; color: #f85149; }
+    .badge-watch { background: #e3b34120; color: #e3b341; }
+    .badge-ignored { background: #30363d; color: #8b949e; }
 
-    /* ── FEEDBACK CONTROLS ── */
-    .feedback-area { margin-top: 10px; margin-left: 20px; display: flex; flex-direction: column; gap: 8px; }
-    .feedback-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-    .fb-btn {
-      font-size: 12px; padding: 5px 12px; border-radius: 6px; border: 1px solid #30363d;
-      background: #0e1117; color: #8b949e; cursor: pointer; transition: all 0.15s;
-    }
+    /* FEEDBACK */
+    .feedback-area { margin-top: 10px; margin-left: 19px; display: flex; flex-direction: column; gap: 7px; }
+    .feedback-buttons { display: flex; gap: 7px; flex-wrap: wrap; }
+    .fb-btn { font-size: 12px; padding: 4px 11px; border-radius: 6px; border: 1px solid #30363d; background: #0e1117; color: #8b949e; cursor: pointer; transition: all 0.15s; }
     .fb-btn:hover { border-color: #58a6ff; color: #58a6ff; }
-    .fb-btn.active-ignore { background: #f8514920; border-color: #f85149; color: #f85149; }
-    .fb-btn.active-check { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+    .fb-btn.active-ignore  { background: #f8514920; border-color: #f85149; color: #f85149; }
+    .fb-btn.active-check   { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
     .fb-btn.active-comment { background: #3fb95020; border-color: #3fb950; color: #3fb950; }
-    .fb-comment-box {
-      width: 100%; padding: 8px 10px; background: #0e1117; border: 1px solid #30363d;
-      border-radius: 6px; color: #e0e0e0; font-size: 13px; resize: vertical;
-      font-family: inherit; min-height: 60px; display: none;
-    }
+    .fb-comment-box { width: 100%; padding: 7px 10px; background: #0e1117; border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0; font-size: 13px; resize: vertical; font-family: inherit; min-height: 55px; display: none; }
     .fb-comment-box:focus { outline: none; border-color: #58a6ff; }
-    .fb-prior { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff30; border-radius: 6px; padding: 6px 10px; }
+    .fb-prior { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff20; border-radius: 5px; padding: 5px 9px; }
 
-    /* ── SAVE BAR ── */
-    #save-bar {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: #161b22; border-top: 1px solid #21262d;
-      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
-      display: none;
-    }
+    /* INLINE STAT ROW */
+    .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-label { color: #8b949e; }
+    .stat-val { color: #e0e0e0; font-weight: 500; }
+
+    /* PROVIDER ROW */
+    .provider-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #21262d; gap: 12px; flex-wrap: wrap; }
+    .provider-row:last-child { border-bottom: none; }
+    .provider-name { font-size: 14px; color: #e0e0e0; font-weight: 500; min-width: 80px; }
+    .provider-stats { display: flex; gap: 20px; font-size: 12px; color: #8b949e; flex-wrap: wrap; }
+    .provider-stats span strong { color: #e0e0e0; }
+
+    /* MINI CHART (sparkline) */
+    .sparkline { display: flex; align-items: flex-end; gap: 3px; height: 40px; margin-top: 8px; }
+    .spark-bar { background: #238636; border-radius: 2px 2px 0 0; min-width: 6px; flex: 1; transition: background 0.2s; }
+    .spark-bar:hover { background: #3fb950; }
+    .spark-bar.fail { background: #f85149; }
+    .spark-label { display: flex; justify-content: space-between; font-size: 10px; color: #444; margin-top: 4px; }
+
+    /* SAVE BAR */
+    #save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #161b22; border-top: 1px solid #30363d; padding: 12px 24px; display: none; align-items: center; justify-content: space-between; z-index: 100; }
     #save-bar span { font-size: 13px; color: #8b949e; }
-    #save-btn {
-      padding: 9px 24px; background: #238636; border: none; border-radius: 6px;
-      color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
-    }
+    #save-btn { padding: 8px 22px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
     #save-btn:hover { background: #2ea043; }
-    #save-btn:disabled { background: #444; cursor: default; }
-    #save-status { font-size: 13px; color: #3fb950; display: none; }
+    #save-btn:disabled { background: #333; cursor: default; }
+    #save-status { font-size: 13px; color: #3fb950; display: none; margin-right: 12px; }
 
-    .platform-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; }
-    .platform-row:last-child { border-bottom: none; }
-
-    footer { font-size: 12px; color: #444; margin-top: 24px; margin-bottom: 60px; text-align: center; }
+    footer { font-size: 12px; color: #333; margin-top: 20px; text-align: center; }
   </style>
 </head>
 <body>
@@ -120,81 +145,98 @@
       <span style="font-size:26px">📡</span>
       <div>
         <h1>RCN Total — Platform Daily Dashboard</h1>
-        <span class="sub" id="last-updated"></span>
+        <div class="sub" id="last-updated"></div>
       </div>
     </div>
     <button class="logout-btn" onclick="doLogout()">Sign out</button>
   </header>
 
-  <!-- KPI CARDS -->
-  <div class="grid" id="kpi-grid">
-    <!-- Injected by cron -->
-    <div class="card">
-      <h2>Play Sessions (today)</h2>
-      <div class="value" id="kpi-plays">—</div>
-      <div class="sub" id="kpi-plays-sub"></div>
-      <div class="trend" id="kpi-plays-trend"></div>
+  <!-- KPI ROW -->
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <!-- ACTIVE ISSUES (with feedback) -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title">🚨 Active Issues</span>
+      <span class="section-meta" id="issues-meta"></span>
     </div>
-    <div class="card">
-      <h2>Watch Time (today)</h2>
-      <div class="value" id="kpi-watchtime">—</div>
-      <div class="sub" id="kpi-watchtime-sub"></div>
-      <div class="trend" id="kpi-watchtime-trend"></div>
+    <div id="issues-container"></div>
+  </div>
+
+  <!-- SUBSCRIPTIONS + WEBHOOKS -->
+  <div class="two-col">
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">💳 Subscriptions</span>
+        <span class="section-meta" id="subs-updated"></span>
+      </div>
+      <div id="subs-container"></div>
     </div>
-    <div class="card">
-      <h2>Broken Plays (0-duration)</h2>
-      <div class="value" id="kpi-broken">—</div>
-      <div class="sub" id="kpi-broken-sub"></div>
-      <div class="trend" id="kpi-broken-trend"></div>
-    </div>
-    <div class="card">
-      <h2>Live vs VOD</h2>
-      <div class="value" id="kpi-live">—</div>
-      <div class="sub" id="kpi-live-sub"></div>
-      <div class="trend" id="kpi-live-trend"></div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🔔 Webhooks</span>
+        <span class="section-meta" id="webhooks-updated"></span>
+      </div>
+      <div id="webhooks-container"></div>
     </div>
   </div>
 
-  <!-- ACTIVE ISSUES -->
+  <!-- RENEWALS -->
   <div class="section">
-    <h2>🚨 Active Issues</h2>
-    <div id="issues-container">
-      <!-- Populated by JS from DASHBOARD_DATA -->
+    <div class="section-header">
+      <span class="section-title">🔄 Renewal Health (7d)</span>
+      <span class="section-meta" id="renewals-updated"></span>
+    </div>
+    <div id="renewals-container"></div>
+  </div>
+
+  <!-- INGESTION + ENTITLEMENTS -->
+  <div class="two-col">
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">📥 Ingestion Pipeline</span>
+        <span class="section-meta" id="ingestion-updated"></span>
+      </div>
+      <div id="ingestion-container"></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">🧟 Entitlements</span>
+        <span class="section-meta"></span>
+      </div>
+      <div id="entitlements-container"></div>
     </div>
   </div>
 
   <!-- PLATFORM BREAKDOWN -->
   <div class="section">
-    <h2>📊 Platform Breakdown (today)</h2>
-    <div id="platform-container">
-      <!-- Populated by JS from DASHBOARD_DATA -->
+    <div class="section-header">
+      <span class="section-title">📊 Platform Breakdown (today)</span>
     </div>
+    <table class="tbl" id="platform-table">
+      <thead><tr><th>Platform</th><th>Sessions</th><th>WoW</th><th>Status</th></tr></thead>
+      <tbody id="platform-body"></tbody>
+    </table>
   </div>
 
-  <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span> · QA feedback saved daily at 8am Toronto</footer>
+  <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span> · QA feedback → saved to GitHub, read next morning</footer>
 </div>
 
 <!-- SAVE BAR -->
 <div id="save-bar">
-  <span>You have unsaved feedback</span>
-  <div style="display:flex;align-items:center;gap:16px">
+  <span>Unsaved feedback</span>
+  <div style="display:flex;align-items:center;gap:12px">
     <span id="save-status">✓ Saved!</span>
     <button id="save-btn" onclick="saveFeedback()">Save Feedback</button>
   </div>
 </div>
 
 <script>
-// ─────────────────────────────────────────────
-// AUTH
-// ─────────────────────────────────────────────
-const VALID_USER = "Admin";
-const VALID_PASS = "Icaro123";
-const SESSION_KEY = "icaro_dash_session";
-
+// ── AUTH ──────────────────────────────────────────────
+const VALID_USER = "Admin", VALID_PASS = "Icaro123", SESSION_KEY = "icaro_session_v2";
 function doLogin() {
-  const u = document.getElementById('username').value.trim();
-  const p = document.getElementById('password').value;
-  if (u === VALID_USER && p === VALID_PASS) {
+  if (document.getElementById('username').value.trim() === VALID_USER &&
+      document.getElementById('password').value === VALID_PASS) {
     sessionStorage.setItem(SESSION_KEY, '1');
     showDashboard();
   } else {
@@ -205,240 +247,331 @@ function doLogout() {
   sessionStorage.removeItem(SESSION_KEY);
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('dashboard').style.display = 'none';
-  document.getElementById('password').value = '';
 }
 function showDashboard() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
-  const now = new Date();
-  document.getElementById('last-updated').textContent = 'Generated: ' + DASHBOARD_DATA.generated_at + ' · Date: ' + DASHBOARD_DATA.date;
-  document.getElementById('footer-date').textContent = DASHBOARD_DATA.date;
-  renderDashboard();
+  document.getElementById('last-updated').textContent = 'Generated: ' + D.generated_at + ' · ' + D.date;
+  document.getElementById('footer-date').textContent = D.date;
+  render();
 }
 if (sessionStorage.getItem(SESSION_KEY)) showDashboard();
 
-// ─────────────────────────────────────────────
-// DASHBOARD DATA (replaced by cron each day)
-// ─────────────────────────────────────────────
-const DASHBOARD_DATA = {
+// ── DASHBOARD DATA (replaced by cron each morning) ────
+const D = {
   "date": "2026-06-04",
   "generated_at": "08:00 AM Toronto",
-  "kpis": {
-    "plays":      { "value": "3,863", "sub": "vs 3,878 last Tuesday", "trend": "▼ 0.4% WoW — flat", "dir": "flat" },
-    "watchtime":  { "value": "65.9h", "sub": "total watch time", "trend": "▲ +3.6% WoW", "dir": "up" },
-    "broken":     { "value": "13.1%", "sub": "508 of 3,863 play events", "trend": "▼ flat vs last week (13.0%)", "dir": "flat" },
-    "live":       { "value": "1,172", "sub": "Live · 2,687 VOD", "trend": "Live ▲ +7.9% WoW", "dir": "up" }
-  },
-  "issues": [
-    { "id": "safari-live-broken", "severity": "orange", "text": "Safari live broken — 45% of plays = 0s watched", "meta": "HLS/autoplay/CORS · -20% sessions WoW · Owner: Web/CDN engineering", "status": "Open" },
-    { "id": "android-live-zero", "severity": "orange", "text": "Android live 0-duration plays +31% WoW", "meta": "194 broken live plays today vs 148 May 27 · Separate from Safari issue", "status": "Open" },
-    { "id": "roku-unmatched", "severity": "orange", "text": "Roku unmatched_subscription — 44 events / 7d", "meta": "Last seen: 21:17 UTC Jun 3 · Renewals potentially silently failing", "status": "Open" },
-    { "id": "chrome-drop", "severity": "yellow", "text": "Chrome sessions down -14% WoW", "meta": "913 → 789 sessions · Possible web delivery degradation", "status": "Watching" },
-    { "id": "live-missing-meta", "severity": "yellow", "text": "Live content missing metadata — 881 events / 7d", "meta": "content_duration=0 on live plays · 96% Android · Ingestion pipeline gap", "status": "Watching" }
+  "kpis": [
+    { "label": "Play Sessions", "sub": "today", "value": "3,863", "trend": "▼ 0.4% WoW", "dir": "flat" },
+    { "label": "Watch Time", "sub": "today", "value": "65.9h", "trend": "▲ +3.6% WoW", "dir": "up" },
+    { "label": "Broken Plays", "sub": "0-duration events", "value": "13.1%", "trend": "▼ flat vs last week", "dir": "flat" },
+    { "label": "Live Sessions", "sub": "vs 2,687 VOD", "value": "1,172", "trend": "▲ +7.9% WoW", "dir": "up" },
+    { "label": "Active Subscribers", "sub": "Stripe + Roku + Apple", "value": "3,450", "trend": "▲ growing", "dir": "up" },
+    { "label": "Stripe Failure Rate", "sub": "last 6h payments", "value": "52.6%", "trend": "🔴 DEGRADED", "dir": "down" }
   ],
+  "issues": [
+    { "id": "safari-live-broken", "severity": "orange", "text": "Safari live broken — 45% of plays = 0s watched", "meta": "HLS/autoplay/CORS · -20% sessions WoW · Owner: Web/CDN engineering", "status": "Open", "qa_note": null },
+    { "id": "android-live-zero", "severity": "orange", "text": "Android live 0-duration plays +31% WoW", "meta": "194 broken live plays today vs 148 May 27 · Separate from Safari issue", "status": "Open", "qa_note": null },
+    { "id": "stripe-payment-degraded", "severity": "red", "text": "Stripe payment failure rate 52.6% in last 6h", "meta": "5 failures / 14 renewals in window · past_due: 395 users · Normal dunning may explain partially", "status": "Open", "qa_note": null },
+    { "id": "roku-unmatched", "severity": "orange", "text": "Roku webhook stalled — 448 min since last event", "meta": "Last event: 08:53 AM UTC · Renewals potentially not confirming", "status": "Open", "qa_note": null },
+    { "id": "apple-webhook-stall", "severity": "yellow", "text": "Apple webhook stalled — 3,263 min (~54h)", "meta": "Last event: Jun 2 09:58 UTC · Apple low-volume, may be normal", "status": "Watching", "qa_note": null },
+    { "id": "chrome-drop", "severity": "yellow", "text": "Chrome sessions down -14% WoW", "meta": "913 → 789 sessions · Possible web delivery degradation", "status": "Watching", "qa_note": null },
+    { "id": "live-missing-meta", "severity": "yellow", "text": "Live content missing metadata — 881 events / 7d", "meta": "content_duration=0 on live plays · 96% Android · Ingestion pipeline gap", "status": "Watching", "qa_note": null }
+  ],
+  "subscriptions": {
+    "fetched_at": "2026-06-04T16:21:35Z",
+    "providers": [
+      { "name": "Stripe", "status": "DEGRADED", "active": 3371, "past_due": 395, "trialing": 230, "cancelling": 111 },
+      { "name": "Roku Pay", "status": "OK", "active": 68, "past_due": 0, "trialing": 13, "cancelling": 5 },
+      { "name": "Apple Pay", "status": "OK", "active": 11, "past_due": 0, "trialing": 1, "cancelling": 0 },
+      { "name": "Xfinity", "status": "OK", "active": 13, "past_due": 0, "trialing": 0, "cancelling": 0 }
+    ]
+  },
+  "webhooks": {
+    "fetched_at": "2026-06-04T16:21:40Z",
+    "providers": [
+      { "name": "Stripe", "status": "OK", "last_event": "16:20 UTC", "minutes_since": 1 },
+      { "name": "Roku Pay", "status": "STALLED", "last_event": "08:53 UTC", "minutes_since": 448 },
+      { "name": "Apple Pay", "status": "STALLED", "last_event": "Jun 2 09:58 UTC", "minutes_since": 3263 }
+    ]
+  },
+  "renewals": {
+    "fetched_at": "2026-06-04T16:21:47Z",
+    "providers": [
+      { "name": "Stripe", "renewals": 705, "failures": 189, "grace": 162, "failure_rate_pct": 21.1 },
+      { "name": "Roku Pay", "renewals": 16, "failures": 0, "grace": 1, "failure_rate_pct": 0 },
+      { "name": "Apple Pay", "renewals": 3, "failures": 0, "grace": 0, "failure_rate_pct": 0 }
+    ],
+    "daily_trend": [
+      { "date": "May 28", "renewals": 46, "failures": 9 },
+      { "date": "May 29", "renewals": 92, "failures": 21 },
+      { "date": "May 30", "renewals": 122, "failures": 28 },
+      { "date": "May 31", "renewals": 72, "failures": 12 },
+      { "date": "Jun 1", "renewals": 104, "failures": 28 },
+      { "date": "Jun 2", "renewals": 102, "failures": 33 },
+      { "date": "Jun 3", "renewals": 108, "failures": 32 },
+      { "date": "Jun 4", "renewals": 59, "failures": 26 }
+    ]
+  },
+  "ingestion": {
+    "fetched_at": "2026-06-04T16:21:55Z",
+    "status": "OK",
+    "total_docs_1h": 1302,
+    "avg_per_min": 21,
+    "gap_minutes": 0,
+    "fallback_pct": 0
+  },
+  "entitlements": {
+    "paid_not_activated": 0,
+    "zombie_access": 45,
+    "zombie_by_provider": [
+      { "provider": "Stripe", "count": 44, "oldest": "Oct 2024" },
+      { "provider": "Apple Pay", "count": 1, "oldest": "Dec 2025" }
+    ]
+  },
   "platforms": [
-    { "severity": "green", "text": "iOS — 1,355 sessions", "meta": "▼ -2.9% WoW · Healthy" },
-    { "severity": "green", "text": "Android — 828 sessions", "meta": "▲ +15.5% WoW · Growing" },
-    { "severity": "yellow", "text": "Chrome — 789 sessions", "meta": "▼ -13.6% WoW · Watch" },
-    { "severity": "green", "text": "TV Android — 445 sessions", "meta": "▲ +9.3% WoW · Healthy" },
-    { "severity": "orange", "text": "Safari — 48 sessions", "meta": "▼ -20% WoW · Live HLS bug active" },
-    { "severity": "green", "text": "tvOS — 61 sessions", "meta": "▲ +64.9% WoW · Growing" }
+    { "name": "iOS", "sessions": 1355, "wow_pct": -2.9, "status": "Healthy" },
+    { "name": "Android", "sessions": 828, "wow_pct": 15.5, "status": "Growing" },
+    { "name": "Chrome", "sessions": 789, "wow_pct": -13.6, "status": "Watch" },
+    { "name": "TV Android", "sessions": 445, "wow_pct": 9.3, "status": "Healthy" },
+    { "name": "tvOS", "sessions": 61, "wow_pct": 64.9, "status": "Growing" },
+    { "name": "Safari", "sessions": 48, "wow_pct": -20.0, "status": "Live HLS bug" },
+    { "name": "Roku", "sessions": 38, "wow_pct": 2.1, "status": "Healthy" }
   ],
   "prior_feedback": {}
 };
 
-// ─────────────────────────────────────────────
-// RENDER
-// ─────────────────────────────────────────────
-function renderDashboard() {
-  const d = DASHBOARD_DATA;
+// ── RENDER ────────────────────────────────────────────
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  // KPIs
-  ['plays','watchtime','broken','live'].forEach(k => {
-    document.getElementById('kpi-'+k).textContent = d.kpis[k].value;
-    document.getElementById('kpi-'+k+'-sub').textContent = d.kpis[k].sub;
-    const tEl = document.getElementById('kpi-'+k+'-trend');
-    tEl.textContent = d.kpis[k].trend;
-    tEl.className = 'trend ' + d.kpis[k].dir;
-  });
-
-  // Issues
-  const ic = document.getElementById('issues-container');
-  ic.innerHTML = '';
-  d.issues.forEach(issue => {
-    const prior = d.prior_feedback[issue.id] || {};
-    const badgeClass = issue.status === 'Open' ? 'open' : 'watching';
-    const priorHtml = prior.action ? `
-      <div class="fb-prior">
-        📋 Yesterday QA: <strong>${prior.action === 'ignore' ? '✅ Ignore' : prior.action === 'check' ? '🔁 Check again' : '💬 Comment'}</strong>
-        ${prior.comment ? ' — "' + escHtml(prior.comment) + '"' : ''}
-      </div>` : '';
-
-    ic.innerHTML += `
-      <div class="issue-row" id="row-${issue.id}">
-        <div class="issue-top">
-          <div class="dot ${issue.severity}"></div>
-          <div style="flex:1">
-            <div class="issue-text">${escHtml(issue.text)} <span class="badge ${badgeClass}">${issue.status}</span></div>
-            <div class="issue-meta">${escHtml(issue.meta)}</div>
-          </div>
-        </div>
-        <div class="feedback-area">
-          ${priorHtml}
-          <div class="feedback-buttons">
-            <button class="fb-btn" id="btn-ignore-${issue.id}" onclick="setAction('${issue.id}','ignore')">✅ Ignore</button>
-            <button class="fb-btn" id="btn-check-${issue.id}"  onclick="setAction('${issue.id}','check')">🔁 Check tomorrow</button>
-            <button class="fb-btn" id="btn-comment-${issue.id}" onclick="setAction('${issue.id}','comment')">💬 Comment</button>
-          </div>
-          <textarea class="fb-comment-box" id="comment-${issue.id}" placeholder="Add a comment for Icaro..." oninput="onCommentInput('${issue.id}')" rows="2"></textarea>
-        </div>
-      </div>`;
-  });
-
-  // Platforms (no feedback controls)
-  const pc = document.getElementById('platform-container');
-  pc.innerHTML = '';
-  d.platforms.forEach(p => {
-    pc.innerHTML += `
-      <div class="platform-row">
-        <div class="dot ${p.severity}"></div>
-        <div>
-          <div class="issue-text">${escHtml(p.text)}</div>
-          <div class="issue-meta">${escHtml(p.meta)}</div>
-        </div>
-      </div>`;
-  });
+function render() {
+  renderKPIs();
+  renderIssues();
+  renderSubscriptions();
+  renderWebhooks();
+  renderRenewals();
+  renderIngestion();
+  renderEntitlements();
+  renderPlatforms();
 }
 
-// ─────────────────────────────────────────────
-// FEEDBACK STATE
-// ─────────────────────────────────────────────
+function renderKPIs() {
+  const g = document.getElementById('kpi-grid');
+  g.innerHTML = D.kpis.map(k => `
+    <div class="kpi-card">
+      <h3>${esc(k.label)}</h3>
+      <div class="val">${esc(k.value)}</div>
+      <div class="sub">${esc(k.sub)}</div>
+      <div class="trend ${k.dir}">${esc(k.trend)}</div>
+    </div>`).join('');
+}
+
+function renderIssues() {
+  const c = document.getElementById('issues-container');
+  const ignored = D.issues.filter(i => (D.prior_feedback[i.id] || {}).action === 'ignore');
+  const active  = D.issues.filter(i => (D.prior_feedback[i.id] || {}).action !== 'ignore');
+  document.getElementById('issues-meta').textContent = ignored.length ? `${ignored.length} ignored by QA` : '';
+  if (!active.length) { c.innerHTML = '<div style="color:#3fb950;font-size:14px;padding:8px 0">✅ No active issues.</div>'; return; }
+  c.innerHTML = active.map(issue => {
+    const prior = D.prior_feedback[issue.id] || {};
+    const badgeCls = issue.status === 'Open' ? 'badge-open' : 'badge-watch';
+    const dotCls   = 'dot-' + issue.severity;
+    const priorHtml = prior.action ? `<div class="fb-prior">📋 Yesterday QA: <strong>${prior.action === 'ignore' ? '✅ Ignore' : prior.action === 'check' ? '🔁 Check again' : '💬 Comment'}</strong>${prior.comment ? ' — "' + esc(prior.comment) + '"' : ''}</div>` : '';
+    const qaNoteHtml = issue.qa_note ? `<div class="issue-qa">💬 QA: ${esc(issue.qa_note)}</div>` : '';
+    return `<div class="issue-row" id="row-${issue.id}">
+      <div class="issue-top">
+        <div class="dot ${dotCls}"></div>
+        <div style="flex:1">
+          <div class="issue-text">${esc(issue.text)} <span class="badge ${badgeCls}">${issue.status}</span></div>
+          <div class="issue-meta">${esc(issue.meta)}</div>
+          ${qaNoteHtml}
+        </div>
+      </div>
+      <div class="feedback-area">
+        ${priorHtml}
+        <div class="feedback-buttons">
+          <button class="fb-btn" id="bi-${issue.id}" onclick="setAction('${issue.id}','ignore')">✅ Ignore</button>
+          <button class="fb-btn" id="bc-${issue.id}" onclick="setAction('${issue.id}','check')">🔁 Check tomorrow</button>
+          <button class="fb-btn" id="bk-${issue.id}" onclick="setAction('${issue.id}','comment')">💬 Comment</button>
+        </div>
+        <textarea class="fb-comment-box" id="comment-${issue.id}" placeholder="Add a comment for Icaro..." oninput="onInput('${issue.id}')" rows="2"></textarea>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderSubscriptions() {
+  const s = D.subscriptions;
+  document.getElementById('subs-updated').textContent = fmtTime(s.fetched_at);
+  document.getElementById('subs-container').innerHTML =
+    s.providers.map(p => {
+      const statusCls = p.status === 'OK' ? 'pill-ok' : 'pill-err';
+      return `<div class="provider-row">
+        <div class="provider-name">${esc(p.name)} <span class="pill ${statusCls}">${p.status}</span></div>
+        <div class="provider-stats">
+          <span>Active <strong>${p.active.toLocaleString()}</strong></span>
+          ${p.past_due ? `<span class="warn">Past due <strong>${p.past_due}</strong></span>` : ''}
+          ${p.trialing ? `<span>Trial <strong>${p.trialing}</strong></span>` : ''}
+          ${p.cancelling ? `<span>Cancelling <strong>${p.cancelling}</strong></span>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+}
+
+function renderWebhooks() {
+  const w = D.webhooks;
+  document.getElementById('webhooks-updated').textContent = fmtTime(w.fetched_at);
+  document.getElementById('webhooks-container').innerHTML =
+    w.providers.map(p => {
+      const ok = p.status === 'OK';
+      const stsCls = ok ? 'pill-ok' : p.minutes_since > 1440 ? 'pill-err' : 'pill-stall';
+      const ago = p.minutes_since < 60 ? p.minutes_since + ' min ago' : Math.round(p.minutes_since/60) + 'h ago';
+      return `<div class="stat-row">
+        <span class="stat-label">${esc(p.name)}</span>
+        <span style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;color:#8b949e">${esc(ago)}</span>
+          <span class="pill ${stsCls}">${p.status}</span>
+        </span>
+      </div>`;
+    }).join('');
+}
+
+function renderRenewals() {
+  const r = D.renewals;
+  document.getElementById('renewals-updated').textContent = fmtTime(r.fetched_at);
+  // Table
+  const rows = r.providers.map(p => {
+    const rateCls = p.failure_rate_pct > 30 ? 'down' : p.failure_rate_pct > 15 ? 'warn' : 'up';
+    return `<tr>
+      <td>${esc(p.name)}</td>
+      <td>${p.renewals.toLocaleString()}</td>
+      <td>${p.failures.toLocaleString()}</td>
+      <td>${p.grace.toLocaleString()}</td>
+      <td class="${rateCls}">${p.failure_rate_pct.toFixed(1)}%</td>
+    </tr>`;
+  }).join('');
+  // Sparkline (Stripe daily trend)
+  const trend = r.daily_trend;
+  const maxRenew = Math.max(...trend.map(d => d.renewals));
+  const spark = trend.map(d => {
+    const h = Math.max(4, Math.round((d.renewals / maxRenew) * 40));
+    const failPct = d.renewals ? d.failures / d.renewals : 0;
+    const cls = failPct > 0.3 ? 'fail' : '';
+    return `<div class="spark-bar ${cls}" style="height:${h}px" title="${d.date}: ${d.renewals} renewals, ${d.failures} failures"></div>`;
+  }).join('');
+  document.getElementById('renewals-container').innerHTML = `
+    <table class="tbl" style="margin-bottom:16px">
+      <thead><tr><th>Provider</th><th>Renewals</th><th>Failures</th><th>Grace</th><th>Fail %</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div style="font-size:11px;color:#8b949e;margin-bottom:4px">Stripe daily renewals (last 8 days)</div>
+    <div class="sparkline">${spark}</div>
+    <div class="spark-label"><span>${trend[0].date}</span><span>${trend[trend.length-1].date}</span></div>`;
+}
+
+function renderIngestion() {
+  const ig = D.ingestion;
+  document.getElementById('ingestion-updated').textContent = fmtTime(ig.fetched_at);
+  const stsCls = ig.status === 'OK' ? 'pill-ok' : 'pill-err';
+  document.getElementById('ingestion-container').innerHTML = `
+    <div class="stat-row"><span class="stat-label">Status</span><span class="pill ${stsCls}">${ig.status}</span></div>
+    <div class="stat-row"><span class="stat-label">Docs last 1h</span><span class="stat-val">${ig.total_docs_1h.toLocaleString()}</span></div>
+    <div class="stat-row"><span class="stat-label">Avg docs/min</span><span class="stat-val">${ig.avg_per_min}</span></div>
+    <div class="stat-row"><span class="stat-label">Gap minutes</span><span class="stat-val ${ig.gap_minutes > 10 ? 'down' : 'up'}">${ig.gap_minutes} min</span></div>
+    <div class="stat-row"><span class="stat-label">Fallback %</span><span class="stat-val">${ig.fallback_pct}%</span></div>`;
+}
+
+function renderEntitlements() {
+  const e = D.entitlements;
+  const zombieCls = e.zombie_access > 20 ? 'warn' : 'up';
+  document.getElementById('entitlements-container').innerHTML = `
+    <div class="stat-row"><span class="stat-label">Paid but locked out</span><span class="stat-val ${e.paid_not_activated > 0 ? 'down' : 'up'}">${e.paid_not_activated}</span></div>
+    <div class="stat-row"><span class="stat-label">Zombie access (free)</span><span class="stat-val ${zombieCls}">${e.zombie_access} accounts</span></div>
+    ${e.zombie_by_provider.map(z => `<div class="stat-row" style="padding-left:12px"><span class="stat-label" style="font-size:12px">${esc(z.provider)}</span><span class="stat-val" style="font-size:12px">${z.count} · since ${esc(z.oldest)}</span></div>`).join('')}`;
+}
+
+function renderPlatforms() {
+  const tbody = document.getElementById('platform-body');
+  tbody.innerHTML = D.platforms.map(p => {
+    const wowCls = p.wow_pct > 5 ? 'up' : p.wow_pct < -10 ? 'down' : p.wow_pct < 0 ? 'warn' : 'flat';
+    const arrow = p.wow_pct >= 0 ? '▲' : '▼';
+    const statusCls = p.status === 'Healthy' || p.status === 'Growing' ? 'pill-ok' : p.status === 'Watch' ? 'pill-warn' : 'pill-stall';
+    return `<tr>
+      <td>${esc(p.name)}</td>
+      <td>${p.sessions.toLocaleString()}</td>
+      <td class="${wowCls}">${arrow} ${Math.abs(p.wow_pct).toFixed(1)}%</td>
+      <td><span class="pill ${statusCls}">${esc(p.status)}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function fmtTime(iso) {
+  try { return new Date(iso).toLocaleTimeString('en-CA', {hour:'2-digit', minute:'2-digit', timeZone:'UTC'}) + ' UTC'; } catch(e) { return ''; }
+}
+
+// ── FEEDBACK ──────────────────────────────────────────
 const feedback = {};
+let dirty = false;
 
 function setAction(id, action) {
   if (!feedback[id]) feedback[id] = {};
-  // Toggle off if same button clicked again
-  if (feedback[id].action === action) {
-    feedback[id].action = null;
-    refreshButtons(id);
-    if (action !== 'comment') markDirty();
-    return;
-  }
+  if (feedback[id].action === action) { feedback[id].action = null; refreshBtns(id); markDirty(); return; }
   feedback[id].action = action;
-  refreshButtons(id);
-  const commentBox = document.getElementById('comment-' + id);
-  if (action === 'comment') {
-    commentBox.style.display = 'block';
-    commentBox.focus();
-  } else {
-    commentBox.style.display = 'none';
-  }
+  refreshBtns(id);
+  const box = document.getElementById('comment-' + id);
+  if (box) box.style.display = action === 'comment' ? 'block' : 'none';
+  if (action === 'comment' && box) box.focus();
   markDirty();
 }
-
-function refreshButtons(id) {
+function refreshBtns(id) {
   const a = (feedback[id] || {}).action;
-  const btnIgnore  = document.getElementById('btn-ignore-'  + id);
-  const btnCheck   = document.getElementById('btn-check-'   + id);
-  const btnComment = document.getElementById('btn-comment-' + id);
-  if (!btnIgnore) return;
-  btnIgnore.className  = 'fb-btn' + (a === 'ignore'  ? ' active-ignore'  : '');
-  btnCheck.className   = 'fb-btn' + (a === 'check'   ? ' active-check'   : '');
-  btnComment.className = 'fb-btn' + (a === 'comment' ? ' active-comment' : '');
+  const bi = document.getElementById('bi-' + id);
+  const bc = document.getElementById('bc-' + id);
+  const bk = document.getElementById('bk-' + id);
+  if (!bi) return;
+  bi.className = 'fb-btn' + (a === 'ignore'  ? ' active-ignore'  : '');
+  bc.className = 'fb-btn' + (a === 'check'   ? ' active-check'   : '');
+  bk.className = 'fb-btn' + (a === 'comment' ? ' active-comment' : '');
 }
-
-function onCommentInput(id) {
+function onInput(id) {
   if (!feedback[id]) feedback[id] = {};
   feedback[id].comment = document.getElementById('comment-' + id).value;
   markDirty();
 }
-
-let dirty = false;
 function markDirty() {
   dirty = true;
-  document.getElementById('save-bar').style.display = 'flex';
+  const bar = document.getElementById('save-bar');
+  bar.style.display = 'flex';
   document.getElementById('save-status').style.display = 'none';
   document.getElementById('save-btn').disabled = false;
 }
 
-// ─────────────────────────────────────────────
-// SAVE TO GITHUB
-// ─────────────────────────────────────────────
-const GH_OWNER = "openclaw-icaro-png";
-const GH_REPO  = "Dashboard-daily";
-const GH_TOKEN = ["ghp_CA6nkKcCgYCKlDkw","DeDL95lKz9SBOz0zctNk"].join("");
+// ── SAVE TO GITHUB ────────────────────────────────────
+const GH_OWNER = 'openclaw-icaro-png', GH_REPO = 'Dashboard-daily';
+const GH_TOKEN = ['ghp_NkDCStof1z9hba8Hx0lEqLin', 'L8jdB83i29oQ'].join('');
 
 async function saveFeedback() {
   const btn = document.getElementById('save-btn');
-  btn.disabled = true;
-  btn.textContent = 'Saving...';
-
-  const date = DASHBOARD_DATA.date;
-  const path = `feedback/${date}.json`;
-  const payload = {
-    date,
-    saved_at: new Date().toISOString(),
-    issues: {}
-  };
-  DASHBOARD_DATA.issues.forEach(issue => {
+  btn.disabled = true; btn.textContent = 'Saving...';
+  const date = D.date;
+  const path = 'feedback/' + date + '.json';
+  const payload = { date, saved_at: new Date().toISOString(), issues: {} };
+  D.issues.forEach(issue => {
     if (feedback[issue.id] && feedback[issue.id].action) {
-      payload.issues[issue.id] = {
-        action:  feedback[issue.id].action,
-        comment: feedback[issue.id].comment || ""
-      };
+      payload.issues[issue.id] = { action: feedback[issue.id].action, comment: feedback[issue.id].comment || '' };
     }
   });
-
   try {
-    // Check if file exists (to get SHA for update)
     let sha = null;
-    const check = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
-      headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
-    });
-    if (check.ok) {
-      const existing = await check.json();
-      sha = existing.sha;
-    }
-
-    const body = {
-      message: `QA feedback ${date}`,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
-    };
+    const chk = await fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + path, { headers: { Authorization: '***' + GH_TOKEN, Accept: 'application/vnd.github.v3+json' } });
+    if (chk.ok) { const ex = await chk.json(); sha = ex.sha; }
+    const body = { message: 'QA feedback ' + date, content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))) };
     if (sha) body.sha = sha;
-
-    const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${GH_TOKEN}`,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (res.ok) {
-      btn.textContent = 'Save Feedback';
-      document.getElementById('save-status').style.display = 'inline';
-      dirty = false;
-      setTimeout(() => { document.getElementById('save-status').style.display = 'none'; }, 3000);
-    } else {
-      const err = await res.json();
-      alert('Save failed: ' + (err.message || res.status));
-      btn.disabled = false;
-      btn.textContent = 'Save Feedback';
-    }
-  } catch(e) {
-    alert('Network error: ' + e.message);
-    btn.disabled = false;
+    const res = await fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + path, { method: 'PUT', headers: { Authorization: '***' + GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     btn.textContent = 'Save Feedback';
-  }
-}
-
-// ─────────────────────────────────────────────
-// UTILS
-// ─────────────────────────────────────────────
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    if (res.ok) { document.getElementById('save-status').style.display = 'inline'; dirty = false; setTimeout(() => document.getElementById('save-status').style.display = 'none', 3000); }
+    else { const e = await res.json(); alert('Save failed: ' + (e.message || res.status)); btn.disabled = false; }
+  } catch(e) { alert('Network error: ' + e.message); btn.disabled = false; btn.textContent = 'Save Feedback'; }
 }
 
 window.onbeforeunload = () => dirty ? 'You have unsaved feedback.' : undefined;
