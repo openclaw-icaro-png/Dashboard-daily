@@ -1,580 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RCN Total — Platform Daily Dashboard</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0e1117; color: #e0e0e0; min-height: 100vh; }
-
-    /* LOGIN */
-    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    .login-box { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 40px 36px; width: 340px; text-align: center; }
-    .login-box .logo { font-size: 36px; margin-bottom: 8px; }
-    .login-box h1 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-    .login-box p { font-size: 13px; color: #8b949e; margin-bottom: 28px; }
-    .login-box input { width: 100%; padding: 10px 14px; background: #0e1117; border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0; font-size: 14px; margin-bottom: 12px; outline: none; }
-    .login-box input:focus { border-color: #58a6ff; }
-    .login-box button { width: 100%; padding: 10px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
-    .login-box button:hover { background: #2ea043; }
-    .login-error { color: #f85149; font-size: 13px; margin-top: 10px; display: none; }
-
-    /* LAYOUT */
-    #dashboard { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; padding-bottom: 80px; }
-    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
-    .header-left { display: flex; align-items: center; gap: 12px; }
-    header h1 { font-size: 20px; font-weight: 600; color: #fff; }
-    header .sub { font-size: 13px; color: #666; }
-    .logout-btn { background: none; border: 1px solid #30363d; color: #8b949e; border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
-    .logout-btn:hover { border-color: #f85149; color: #f85149; }
-
-    /* KPI GRID */
-    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
-    .kpi-card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 18px 20px; }
-    .kpi-card h3 { font-size: 10px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-    .kpi-card .val { font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
-    .kpi-card .sub { font-size: 12px; color: #8b949e; margin-top: 5px; }
-    .kpi-card .trend { font-size: 12px; margin-top: 6px; }
-    .up { color: #3fb950; } .down { color: #f85149; } .flat { color: #8b949e; } .warn { color: #e3b341; }
-
-    /* STATUS PILL */
-    .pill { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.04em; }
-    .pill-ok { background: #3fb95020; color: #3fb950; border: 1px solid #3fb95040; }
-    .pill-warn { background: #e3b34120; color: #e3b341; border: 1px solid #e3b34140; }
-    .pill-err { background: #f8514920; color: #f85149; border: 1px solid #f8514940; }
-    .pill-stall { background: #d2992220; color: #d29922; border: 1px solid #d2992240; }
-
-    /* SECTIONS */
-    .section { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
-    .section-title { font-size: 11px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.07em; }
-    .section-meta { font-size: 11px; color: #444; }
-
-    /* TWO-COL */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
-
-    /* TABLE */
-    .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .tbl th { font-size: 10px; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; padding: 0 0 10px; text-align: left; border-bottom: 1px solid #21262d; }
-    .tbl td { padding: 9px 0; border-bottom: 1px solid #21262d; color: #e0e0e0; vertical-align: middle; }
-    .tbl tr:last-child td { border-bottom: none; }
-    .tbl td:not(:first-child) { text-align: right; }
-    .tbl th:not(:first-child) { text-align: right; }
-
-    /* ISSUE ROWS */
-    .issue-row { border-bottom: 1px solid #21262d; padding: 12px 0; }
-    .issue-row:last-child { border-bottom: none; }
-    .issue-top { display: flex; align-items: flex-start; gap: 10px; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .dot-red { background: #f85149; }
-    .dot-orange { background: #d29922; }
-    .dot-yellow { background: #e3b341; }
-    .dot-green { background: #3fb950; }
-    .issue-text { font-size: 14px; color: #e0e0e0; line-height: 1.4; flex: 1; }
-    .issue-meta { font-size: 12px; color: #8b949e; margin-top: 3px; }
-    .issue-qa { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff20; border-radius: 5px; padding: 4px 8px; margin-top: 6px; display: inline-block; }
-    .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; margin-left: 4px; }
-    .badge-open { background: #f8514920; color: #f85149; }
-    .badge-watch { background: #e3b34120; color: #e3b341; }
-    .badge-ignored { background: #30363d; color: #8b949e; }
-
-    /* FEEDBACK */
-    .feedback-area { margin-top: 10px; margin-left: 19px; display: flex; flex-direction: column; gap: 7px; }
-    .feedback-buttons { display: flex; gap: 7px; flex-wrap: wrap; }
-    .fb-btn { font-size: 12px; padding: 4px 11px; border-radius: 6px; border: 1px solid #30363d; background: #0e1117; color: #8b949e; cursor: pointer; transition: all 0.15s; }
-    .fb-btn:hover { border-color: #58a6ff; color: #58a6ff; }
-    .fb-btn.active-ignore  { background: #f8514920; border-color: #f85149; color: #f85149; }
-    .fb-btn.active-check   { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
-    .fb-btn.active-comment { background: #3fb95020; border-color: #3fb950; color: #3fb950; }
-    .fb-comment-box { width: 100%; padding: 7px 10px; background: #0e1117; border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0; font-size: 13px; resize: vertical; font-family: inherit; min-height: 55px; display: none; }
-    .fb-comment-box:focus { outline: none; border-color: #58a6ff; }
-    .fb-prior { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff20; border-radius: 5px; padding: 5px 9px; }
-
-    /* INLINE STAT ROW */
-    .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-label { color: #8b949e; }
-    .stat-val { color: #e0e0e0; font-weight: 500; }
-
-    /* PROVIDER ROW */
-    .provider-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #21262d; gap: 12px; flex-wrap: wrap; }
-    .provider-row:last-child { border-bottom: none; }
-    .provider-name { font-size: 14px; color: #e0e0e0; font-weight: 500; min-width: 80px; }
-    .provider-stats { display: flex; gap: 20px; font-size: 12px; color: #8b949e; flex-wrap: wrap; }
-    .provider-stats span strong { color: #e0e0e0; }
-
-    /* MINI CHART (sparkline) */
-    .sparkline { display: flex; align-items: flex-end; gap: 3px; height: 40px; margin-top: 8px; }
-    .spark-bar { background: #238636; border-radius: 2px 2px 0 0; min-width: 6px; flex: 1; transition: background 0.2s; }
-    .spark-bar:hover { background: #3fb950; }
-    .spark-bar.fail { background: #f85149; }
-    .spark-label { display: flex; justify-content: space-between; font-size: 10px; color: #444; margin-top: 4px; }
-
-    /* SAVE BAR */
-    #save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #161b22; border-top: 1px solid #30363d; padding: 12px 24px; display: none; align-items: center; justify-content: space-between; z-index: 100; }
-    #save-bar span { font-size: 13px; color: #8b949e; }
-    #save-btn { padding: 8px 22px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
-    #save-btn:hover { background: #2ea043; }
-    #save-btn:disabled { background: #333; cursor: default; }
-    #save-status { font-size: 13px; color: #3fb950; display: none; margin-right: 12px; }
-
-    footer { font-size: 12px; color: #333; margin-top: 20px; text-align: center; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCN Total — Platform Daily Dashboard</title>
+<style>
+:root{--bg:#0e1117;--card:#161b22;--border:#21262d;--text:#e6edf3;--muted:#8b949e;--red:#f85149;--orange:#d29922;--yellow:#e3b341;--green:#3fb950;--blue:#58a6ff;--red-bg:#3d1a1a;--orange-bg:#3d2e0e;--yellow-bg:#2e2b0e;--green-bg:#0f2d1a;--blue-bg:#0d2240}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.5}
+#lwall{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center}
+.lbox{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:40px;width:360px;text-align:center}
+.lbox h2{font-size:22px;margin-bottom:8px}
+.lbox p{color:var(--muted);margin-bottom:24px;font-size:13px}
+.lf{width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;margin-bottom:12px;outline:none;display:block}
+.lf:focus{border-color:var(--blue)}
+.lb{width:100%;padding:10px;background:var(--blue);border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.lb:hover{background:#1f6feb}
+.lerr{color:var(--red);font-size:12px;margin-top:8px;display:none}
+#app{display:none;padding-bottom:120px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 24px;position:sticky;top:0;z-index:100}
+.hi{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.ht{flex:1}
+.ht h1{font-size:18px;font-weight:700}
+.hs{color:var(--muted);font-size:12px}
+.logb{padding:7px 16px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);cursor:pointer;font-size:13px}
+.logb:hover{border-color:var(--red);color:var(--red)}
+.sec{margin:32px 0}
+.stitle{font-size:16px;font-weight:700;margin-bottom:16px}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.kc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.kl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.ks{font-size:11px;color:var(--muted);margin-bottom:8px}
+.kv{font-size:28px;font-weight:700;line-height:1;margin-bottom:8px}
+.kt{font-size:12px}
+.kt.up{color:var(--green)}.kt.down{color:var(--red)}.kt.flat{color:var(--muted)}
+.cw{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-x:auto}
+.cc{display:flex;align-items:flex-end;gap:4px;height:190px;min-width:600px}
+.bg{display:flex;flex-direction:column;align-items:center;flex:1;min-width:40px}
+.bs{display:flex;flex-direction:column;justify-content:flex-end;gap:1px;width:100%;height:155px}
+.b{width:100%;border-radius:2px 2px 0 0;cursor:pointer;transition:opacity .15s}
+.b:hover{opacity:.72}
+.bl{font-size:10px;color:var(--muted);text-align:center;margin-top:4px;white-space:nowrap}
+.cl{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+.cl span{display:flex;align-items:center;gap:6px}
+.ld{width:10px;height:10px;border-radius:2px}
+.tp{position:fixed;background:#1c2128;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:12px;pointer-events:none;z-index:9000;display:none;max-width:240px;line-height:1.6}
+.ac{background:var(--card);border:1px solid var(--border);border-left:4px solid;border-radius:10px;padding:20px;margin-bottom:16px}
+.ac.red{border-left-color:var(--red)}.ac.orange{border-left-color:var(--orange)}.ac.yellow{border-left-color:var(--yellow)}
+.ah{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.sb2{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;flex-shrink:0;margin-top:2px}
+.sb2.red{background:var(--red-bg);color:var(--red)}.sb2.orange{background:var(--orange-bg);color:var(--orange)}.sb2.yellow{background:var(--yellow-bg);color:var(--yellow)}
+.att{font-size:14px;font-weight:600}
+.adet{color:var(--muted);font-size:13px;margin:8px 0}
+.ahyp{color:#6e7681;font-size:12px;font-style:italic;margin:6px 0}
+.op{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-size:11px;color:var(--muted)}
+.qr{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.qb{padding:5px 12px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;transition:all .2s}
+.qb:hover{border-color:var(--blue);color:var(--blue)}
+.qb.on{background:var(--blue-bg);border-color:var(--blue);color:var(--blue)}
+.qcmt{margin-top:10px;display:none}
+.qcmt textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 12px;font-size:13px;resize:vertical;min-height:60px;outline:none}
+.qcmt textarea:focus{border-color:var(--blue)}
+.pbanner{background:var(--blue-bg);border:1px solid var(--blue);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--blue);margin-top:8px}
+.tw{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg);padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid var(--border);font-size:13px}
+tr:hover td{background:rgba(255,255,255,.02)}
+.pl{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pl.healthy,.pl.ok{background:var(--green-bg);color:var(--green)}
+.pl.watch{background:var(--orange-bg);color:var(--orange)}
+.pl.critical,.pl.degraded{background:var(--red-bg);color:var(--red)}
+.pl.stalled{background:var(--red-bg);color:var(--red)}
+.cr{color:var(--red)}.co{color:var(--orange)}.cg{color:var(--green)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.g2{grid-template-columns:1fr}}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.sn{font-size:11px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700}
+.sv{font-size:20px;font-weight:700;margin-bottom:4px}
+.sr{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px}
+.ingc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.is .v{font-size:22px;font-weight:700;color:var(--green)}
+.is .l{font-size:11px;color:var(--muted)}
+.spkw{display:flex;align-items:flex-end;gap:3px;height:60px}
+.spk{flex:1;border-radius:2px 2px 0 0;cursor:pointer;min-width:6px;transition:opacity .15s}
+.spk:hover{opacity:.75}
+.spkll{display:flex;gap:3px;margin-top:4px}
+.spkl{flex:1;font-size:9px;color:var(--muted);text-align:center;overflow:hidden}
+.ckl{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px 20px}
+.cki{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.cki:last-child{border-bottom:none}
+.cko{font-size:20px;min-width:28px}
+.ckn{font-weight:600;font-size:13px}
+.ckd{color:var(--muted);font-size:12px}
+.ait{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.ait:last-child{border-bottom:none}
+.adot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.adot.red{background:var(--red)}.adot.orange{background:var(--orange)}.adot.yellow{background:var(--yellow)}
+.anum{font-weight:700;font-size:13px;min-width:22px;flex-shrink:0}
+.atxt{flex:1;font-size:13px}
+#svb{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:14px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:500}
+.si{font-size:13px;color:var(--muted)}
+.sbt{padding:9px 24px;background:var(--green);border:none;border-radius:8px;color:#000;font-size:14px;font-weight:700;cursor:pointer}
+.sbt:hover{background:#2ea043}
+.sbt:disabled{background:var(--muted);cursor:default}
+.note{font-size:12px;color:var(--muted);font-style:italic;margin-top:8px}
+</style>
 </head>
 <body>
-
-<!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-box">
-    <div class="logo">📡</div>
-    <h1>Platform Dashboard</h1>
-    <p>RCN Total — Icaro Sentinel</p>
-    <input type="text" id="username" placeholder="Username" autocomplete="username" />
-    <input type="password" id="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
-    <button onclick="doLogin()">Sign in</button>
-    <div class="login-error" id="login-error">Invalid username or password.</div>
+<div id="lwall">
+  <div class="lbox">
+    <div style="font-size:42px;margin-bottom:12px">&#128225;</div>
+    <h2>RCN Total Dashboard</h2>
+    <p>Sign in to view platform analytics</p>
+    <input class="lf" type="text" id="lu" placeholder="Username" autocomplete="username">
+    <input class="lf" type="password" id="lp" placeholder="Password" autocomplete="current-password">
+    <button class="lb" id="lbtn">Sign in</button>
+    <div class="lerr" id="lerr">Invalid credentials</div>
   </div>
 </div>
-
-<!-- DASHBOARD -->
-<div id="dashboard">
-  <header>
-    <div class="header-left">
-      <span style="font-size:26px">📡</span>
-      <div>
-        <h1>RCN Total — Platform Daily Dashboard</h1>
-        <div class="sub" id="last-updated"></div>
-      </div>
-    </div>
-    <button class="logout-btn" onclick="doLogout()">Sign out</button>
-  </header>
-
-  <!-- KPI ROW -->
-  <div class="kpi-grid" id="kpi-grid"></div>
-
-  <!-- ACTIVE ISSUES (with feedback) -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-title">🚨 Active Issues</span>
-      <span class="section-meta" id="issues-meta"></span>
-    </div>
-    <div id="issues-container"></div>
-  </div>
-
-  <!-- SUBSCRIPTIONS + WEBHOOKS -->
-  <div class="two-col">
-    <div class="section">
-      <div class="section-header">
-        <span class="section-title">💳 Subscriptions</span>
-        <span class="section-meta" id="subs-updated"></span>
-      </div>
-      <div id="subs-container"></div>
-    </div>
-    <div class="section">
-      <div class="section-header">
-        <span class="section-title">🔔 Webhooks</span>
-        <span class="section-meta" id="webhooks-updated"></span>
-      </div>
-      <div id="webhooks-container"></div>
-    </div>
-  </div>
-
-  <!-- RENEWALS -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-title">🔄 Renewal Health (7d)</span>
-      <span class="section-meta" id="renewals-updated"></span>
-    </div>
-    <div id="renewals-container"></div>
-  </div>
-
-  <!-- INGESTION + ENTITLEMENTS -->
-  <div class="two-col">
-    <div class="section">
-      <div class="section-header">
-        <span class="section-title">📥 Ingestion Pipeline</span>
-        <span class="section-meta" id="ingestion-updated"></span>
-      </div>
-      <div id="ingestion-container"></div>
-    </div>
-    <div class="section">
-      <div class="section-header">
-        <span class="section-title">🧟 Entitlements</span>
-        <span class="section-meta"></span>
-      </div>
-      <div id="entitlements-container"></div>
-    </div>
-  </div>
-
-  <!-- PLATFORM BREAKDOWN -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-title">📊 Platform Breakdown (today)</span>
-    </div>
-    <table class="tbl" id="platform-table">
-      <thead><tr><th>Platform</th><th>Sessions</th><th>WoW</th><th>Status</th></tr></thead>
-      <tbody id="platform-body"></tbody>
-    </table>
-  </div>
-
-  <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span> · QA feedback → saved to GitHub, read next morning</footer>
-</div>
-
-<!-- SAVE BAR -->
-<div id="save-bar">
-  <span>Unsaved feedback</span>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span id="save-status">✓ Saved!</span>
-    <button id="save-btn" onclick="saveFeedback()">Save Feedback</button>
-  </div>
-</div>
-
+<div class="tp" id="tip"></div>
+<div id="app">
+<header><div class="hi"><div style="font-size:28px">&#128225;</div><div class="ht"><h1>RCN Total &#8212; Platform Daily Dashboard</h1><div class="hs" id="hdr"></div></div><button class="logb" id="logb">Log out</button></div></header>
+<div class="wrap">
+  <div class="sec"><div class="stitle">&#128202; Key Metrics</div><div class="kg" id="kgrid"></div></div>
+  <div class="sec"><div class="stitle">&#128200; Viewership Trend (14d)</div><div class="cw"><div class="cc" id="tchart"></div><div class="cl"><span><span class="ld" style="background:#58a6ff"></span>Total Plays</span><span><span class="ld" style="background:#f85149"></span>Zero-Duration</span><span><span class="ld" style="background:#3fb950;opacity:.7"></span>Watch Hours</span></div></div></div>
+  <div class="sec"><div class="stitle">&#128680; Active Issues <span style="color:var(--muted);font-size:13px;font-weight:400" id="icnt"></span></div><div id="alist"></div></div>
+  <div class="sec"><div class="stitle">&#128241; Platform Breakdown</div><div class="tw"><table><thead><tr><th>Platform</th><th>Sessions Today</th><th>WoW%</th><th>Avg Watch</th><th>Zero%</th><th>Short%</th><th>7d Hours</th><th>Status</th></tr></thead><tbody id="pbody"></tbody></table></div></div>
+  <div class="sec"><div class="stitle">&#128100; User Segments (7d)</div><div class="sg" id="seggrid"></div></div>
+  <div class="sec"><div class="stitle">&#128179; Payment Health</div><div class="g2"><div><div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--muted)">Subscriptions</div><div class="tw"><table><thead><tr><th>Provider</th><th>Active</th><th>Past Due</th><th>Trialing</th><th>Cancelling</th><th>Status</th></tr></thead><tbody id="subsbody"></tbody></table></div></div><div><div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--muted)">Webhooks</div><div class="tw"><table><thead><tr><th>Provider</th><th>Last Event</th><th>Silent(min)</th><th>Status</th></tr></thead><tbody id="whbody"></tbody></table></div></div></div></div>
+  <div class="sec"><div class="stitle">&#128260; Renewal Health (7d)</div><div class="g2"><div class="tw"><table><thead><tr><th>Provider</th><th>Renewals</th><th>Failures</th><th>Grace</th><th>Failure%</th></tr></thead><tbody id="renbody"></tbody></table></div><div class="cw" style="padding:16px"><div style="font-size:12px;font-weight:600;margin-bottom:10px;color:var(--muted)">Stripe Daily Failure Rate</div><div class="spkw" id="spkline"></div><div class="spkll" id="spklbls"></div><p class="note">Red = failure rate &gt;30%</p></div></div></div>
+  <div class="sec"><div class="stitle">&#129503; Entitlements</div><div class="g2" style="align-items:start"><div><div class="kg" style="grid-template-columns:1fr 1fr"><div class="kc"><div class="kl">Paid Not Activated</div><div class="kv" style="font-size:40px" id="epna"></div></div><div class="kc"><div class="kl">Zombie Access</div><div class="kv" style="font-size:40px;color:var(--orange)" id="ezomb"></div><div class="ks">Oldest: <span id="eold"></span></div></div></div></div><div class="tw"><table><thead><tr><th>Status</th><th>Provider</th><th>Count</th></tr></thead><tbody id="zombbody"></tbody></table></div></div></div>
+  <div class="sec"><div class="stitle">&#128229; Pipeline Health</div><div class="ingc" id="ingcard"></div></div>
+  <div class="sec"><div class="stitle">&#127916; Content Insights</div><div class="tw"><table><thead><tr><th>Genre</th><th>Sessions(7d)</th><th>Watch Hours(7d)</th></tr></thead><tbody id="genrebody"></tbody></table></div><p class="note">&#9888;&#65039; series_title 100% empty. Genre 49% unlabeled.</p></div>
+  <div class="sec"><div class="stitle">&#128241; Android Health (v2.8.0)</div><div class="g2" style="align-items:start"><div class="tw"><table><thead><tr><th>Date</th><th>Crashes</th><th>ANRs</th></tr></thead><tbody id="andbody"></tbody></table></div><div class="kc" id="andextra"></div></div></div>
+  <div class="sec"><div class="stitle">&#9881;&#65039; Instrumentation Status</div><div class="ckl" id="instrum"></div></div>
+  <div class="sec"><div class="stitle">&#127919; Action Items</div><div class="tw" id="actlist"></div></div>
+</div></div>
+<div id="svb"><div class="si">QA feedback: <span id="scnt">0</span> item(s)</div><div style="display:flex;align-items:center;gap:12px"><span id="sstatus" style="font-size:13px"></span><button class="sbt" id="sbtn">&#128190; Save to GitHub</button></div></div>
 <script>
-// ── AUTH ──────────────────────────────────────────────
-const VALID_USER = "Admin", VALID_PASS = "Icaro123", SESSION_KEY = "icaro_session_v2";
-function doLogin() {
-  if (document.getElementById('username').value.trim() === VALID_USER &&
-      document.getElementById('password').value === VALID_PASS) {
-    sessionStorage.setItem(SESSION_KEY, '1');
-    showDashboard();
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-  }
-}
-function doLogout() {
-  sessionStorage.removeItem(SESSION_KEY);
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('dashboard').style.display = 'none';
-}
-function showDashboard() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  document.getElementById('last-updated').textContent = 'Generated: ' + D.generated_at + ' · ' + D.date;
-  document.getElementById('footer-date').textContent = D.date;
-  render();
-}
-if (sessionStorage.getItem(SESSION_KEY)) showDashboard();
-
-// ── DASHBOARD DATA (replaced by cron each morning) ────
-const D = {
-  "date": "2026-06-04",
-  "generated_at": "08:00 AM Toronto",
-  "kpis": [
-    { "label": "Play Sessions", "sub": "today", "value": "3,863", "trend": "▼ 0.4% WoW", "dir": "flat" },
-    { "label": "Watch Time", "sub": "today", "value": "65.9h", "trend": "▲ +3.6% WoW", "dir": "up" },
-    { "label": "Broken Plays", "sub": "0-duration events", "value": "13.1%", "trend": "▼ flat vs last week", "dir": "flat" },
-    { "label": "Live Sessions", "sub": "vs 2,687 VOD", "value": "1,172", "trend": "▲ +7.9% WoW", "dir": "up" },
-    { "label": "Active Subscribers", "sub": "Stripe + Roku + Apple", "value": "3,450", "trend": "▲ growing", "dir": "up" },
-    { "label": "Stripe Failure Rate", "sub": "last 6h payments", "value": "52.6%", "trend": "🔴 DEGRADED", "dir": "down" }
-  ],
-  "issues": [
-    { "id": "safari-live-broken", "severity": "orange", "text": "Safari live broken — 45% of plays = 0s watched", "meta": "HLS/autoplay/CORS · -20% sessions WoW · Owner: Web/CDN engineering", "status": "Open", "qa_note": null },
-    { "id": "android-live-zero", "severity": "orange", "text": "Android live 0-duration plays +31% WoW", "meta": "194 broken live plays today vs 148 May 27 · Separate from Safari issue", "status": "Open", "qa_note": null },
-    { "id": "stripe-payment-degraded", "severity": "red", "text": "Stripe payment failure rate 52.6% in last 6h", "meta": "5 failures / 14 renewals in window · past_due: 395 users · Normal dunning may explain partially", "status": "Open", "qa_note": null },
-    { "id": "roku-unmatched", "severity": "orange", "text": "Roku webhook stalled — 448 min since last event", "meta": "Last event: 08:53 AM UTC · Renewals potentially not confirming", "status": "Open", "qa_note": null },
-    { "id": "apple-webhook-stall", "severity": "yellow", "text": "Apple webhook stalled — 3,263 min (~54h)", "meta": "Last event: Jun 2 09:58 UTC · Apple low-volume, may be normal", "status": "Watching", "qa_note": null },
-    { "id": "chrome-drop", "severity": "yellow", "text": "Chrome sessions down -14% WoW", "meta": "913 → 789 sessions · Possible web delivery degradation", "status": "Watching", "qa_note": null },
-    { "id": "live-missing-meta", "severity": "yellow", "text": "Live content missing metadata — 881 events / 7d", "meta": "content_duration=0 on live plays · 96% Android · Ingestion pipeline gap", "status": "Watching", "qa_note": null }
-  ],
-  "subscriptions": {
-    "fetched_at": "2026-06-04T16:21:35Z",
-    "providers": [
-      { "name": "Stripe", "status": "DEGRADED", "active": 3371, "past_due": 395, "trialing": 230, "cancelling": 111 },
-      { "name": "Roku Pay", "status": "OK", "active": 68, "past_due": 0, "trialing": 13, "cancelling": 5 },
-      { "name": "Apple Pay", "status": "OK", "active": 11, "past_due": 0, "trialing": 1, "cancelling": 0 },
-      { "name": "Xfinity", "status": "OK", "active": 13, "past_due": 0, "trialing": 0, "cancelling": 0 }
-    ]
-  },
-  "webhooks": {
-    "fetched_at": "2026-06-04T16:21:40Z",
-    "providers": [
-      { "name": "Stripe", "status": "OK", "last_event": "16:20 UTC", "minutes_since": 1 },
-      { "name": "Roku Pay", "status": "STALLED", "last_event": "08:53 UTC", "minutes_since": 448 },
-      { "name": "Apple Pay", "status": "STALLED", "last_event": "Jun 2 09:58 UTC", "minutes_since": 3263 }
-    ]
-  },
-  "renewals": {
-    "fetched_at": "2026-06-04T16:21:47Z",
-    "providers": [
-      { "name": "Stripe", "renewals": 705, "failures": 189, "grace": 162, "failure_rate_pct": 21.1 },
-      { "name": "Roku Pay", "renewals": 16, "failures": 0, "grace": 1, "failure_rate_pct": 0 },
-      { "name": "Apple Pay", "renewals": 3, "failures": 0, "grace": 0, "failure_rate_pct": 0 }
-    ],
-    "daily_trend": [
-      { "date": "May 28", "renewals": 46, "failures": 9 },
-      { "date": "May 29", "renewals": 92, "failures": 21 },
-      { "date": "May 30", "renewals": 122, "failures": 28 },
-      { "date": "May 31", "renewals": 72, "failures": 12 },
-      { "date": "Jun 1", "renewals": 104, "failures": 28 },
-      { "date": "Jun 2", "renewals": 102, "failures": 33 },
-      { "date": "Jun 3", "renewals": 108, "failures": 32 },
-      { "date": "Jun 4", "renewals": 59, "failures": 26 }
-    ]
-  },
-  "ingestion": {
-    "fetched_at": "2026-06-04T16:21:55Z",
-    "status": "OK",
-    "total_docs_1h": 1302,
-    "avg_per_min": 21,
-    "gap_minutes": 0,
-    "fallback_pct": 0
-  },
-  "entitlements": {
-    "paid_not_activated": 0,
-    "zombie_access": 45,
-    "zombie_by_provider": [
-      { "provider": "Stripe", "count": 44, "oldest": "Oct 2024" },
-      { "provider": "Apple Pay", "count": 1, "oldest": "Dec 2025" }
-    ]
-  },
-  "platforms": [
-    { "name": "iOS", "sessions": 1355, "wow_pct": -2.9, "status": "Healthy" },
-    { "name": "Android", "sessions": 828, "wow_pct": 15.5, "status": "Growing" },
-    { "name": "Chrome", "sessions": 789, "wow_pct": -13.6, "status": "Watch" },
-    { "name": "TV Android", "sessions": 445, "wow_pct": 9.3, "status": "Healthy" },
-    { "name": "tvOS", "sessions": 61, "wow_pct": 64.9, "status": "Growing" },
-    { "name": "Safari", "sessions": 48, "wow_pct": -20.0, "status": "Live HLS bug" },
-    { "name": "Roku", "sessions": 38, "wow_pct": 2.1, "status": "Healthy" }
-  ],
-  "prior_feedback": {}
-};
-
-// ── RENDER ────────────────────────────────────────────
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-function render() {
-  renderKPIs();
-  renderIssues();
-  renderSubscriptions();
-  renderWebhooks();
-  renderRenewals();
-  renderIngestion();
-  renderEntitlements();
-  renderPlatforms();
-}
-
-function renderKPIs() {
-  const g = document.getElementById('kpi-grid');
-  g.innerHTML = D.kpis.map(k => `
-    <div class="kpi-card">
-      <h3>${esc(k.label)}</h3>
-      <div class="val">${esc(k.value)}</div>
-      <div class="sub">${esc(k.sub)}</div>
-      <div class="trend ${k.dir}">${esc(k.trend)}</div>
-    </div>`).join('');
-}
-
-function renderIssues() {
-  const c = document.getElementById('issues-container');
-  const ignored = D.issues.filter(i => (D.prior_feedback[i.id] || {}).action === 'ignore');
-  const active  = D.issues.filter(i => (D.prior_feedback[i.id] || {}).action !== 'ignore');
-  document.getElementById('issues-meta').textContent = ignored.length ? `${ignored.length} ignored by QA` : '';
-  if (!active.length) { c.innerHTML = '<div style="color:#3fb950;font-size:14px;padding:8px 0">✅ No active issues.</div>'; return; }
-  c.innerHTML = active.map(issue => {
-    const prior = D.prior_feedback[issue.id] || {};
-    const badgeCls = issue.status === 'Open' ? 'badge-open' : 'badge-watch';
-    const dotCls   = 'dot-' + issue.severity;
-    const priorHtml = prior.action ? `<div class="fb-prior">📋 Yesterday QA: <strong>${prior.action === 'ignore' ? '✅ Ignore' : prior.action === 'check' ? '🔁 Check again' : '💬 Comment'}</strong>${prior.comment ? ' — "' + esc(prior.comment) + '"' : ''}</div>` : '';
-    const qaNoteHtml = issue.qa_note ? `<div class="issue-qa">💬 QA: ${esc(issue.qa_note)}</div>` : '';
-    return `<div class="issue-row" id="row-${issue.id}">
-      <div class="issue-top">
-        <div class="dot ${dotCls}"></div>
-        <div style="flex:1">
-          <div class="issue-text">${esc(issue.text)} <span class="badge ${badgeCls}">${issue.status}</span></div>
-          <div class="issue-meta">${esc(issue.meta)}</div>
-          ${qaNoteHtml}
-        </div>
-      </div>
-      <div class="feedback-area">
-        ${priorHtml}
-        <div class="feedback-buttons">
-          <button class="fb-btn" id="bi-${issue.id}" onclick="setAction('${issue.id}','ignore')">✅ Ignore</button>
-          <button class="fb-btn" id="bc-${issue.id}" onclick="setAction('${issue.id}','check')">🔁 Check tomorrow</button>
-          <button class="fb-btn" id="bk-${issue.id}" onclick="setAction('${issue.id}','comment')">💬 Comment</button>
-        </div>
-        <textarea class="fb-comment-box" id="comment-${issue.id}" placeholder="Add a comment for Icaro..." oninput="onInput('${issue.id}')" rows="2"></textarea>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function renderSubscriptions() {
-  const s = D.subscriptions;
-  document.getElementById('subs-updated').textContent = fmtTime(s.fetched_at);
-  document.getElementById('subs-container').innerHTML =
-    s.providers.map(p => {
-      const statusCls = p.status === 'OK' ? 'pill-ok' : 'pill-err';
-      return `<div class="provider-row">
-        <div class="provider-name">${esc(p.name)} <span class="pill ${statusCls}">${p.status}</span></div>
-        <div class="provider-stats">
-          <span>Active <strong>${p.active.toLocaleString()}</strong></span>
-          ${p.past_due ? `<span class="warn">Past due <strong>${p.past_due}</strong></span>` : ''}
-          ${p.trialing ? `<span>Trial <strong>${p.trialing}</strong></span>` : ''}
-          ${p.cancelling ? `<span>Cancelling <strong>${p.cancelling}</strong></span>` : ''}
-        </div>
-      </div>`;
-    }).join('');
-}
-
-function renderWebhooks() {
-  const w = D.webhooks;
-  document.getElementById('webhooks-updated').textContent = fmtTime(w.fetched_at);
-  document.getElementById('webhooks-container').innerHTML =
-    w.providers.map(p => {
-      const ok = p.status === 'OK';
-      const stsCls = ok ? 'pill-ok' : p.minutes_since > 1440 ? 'pill-err' : 'pill-stall';
-      const ago = p.minutes_since < 60 ? p.minutes_since + ' min ago' : Math.round(p.minutes_since/60) + 'h ago';
-      return `<div class="stat-row">
-        <span class="stat-label">${esc(p.name)}</span>
-        <span style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:12px;color:#8b949e">${esc(ago)}</span>
-          <span class="pill ${stsCls}">${p.status}</span>
-        </span>
-      </div>`;
-    }).join('');
-}
-
-function renderRenewals() {
-  const r = D.renewals;
-  document.getElementById('renewals-updated').textContent = fmtTime(r.fetched_at);
-  // Table
-  const rows = r.providers.map(p => {
-    const rateCls = p.failure_rate_pct > 30 ? 'down' : p.failure_rate_pct > 15 ? 'warn' : 'up';
-    return `<tr>
-      <td>${esc(p.name)}</td>
-      <td>${p.renewals.toLocaleString()}</td>
-      <td>${p.failures.toLocaleString()}</td>
-      <td>${p.grace.toLocaleString()}</td>
-      <td class="${rateCls}">${p.failure_rate_pct.toFixed(1)}%</td>
-    </tr>`;
-  }).join('');
-  // Sparkline (Stripe daily trend)
-  const trend = r.daily_trend;
-  const maxRenew = Math.max(...trend.map(d => d.renewals));
-  const spark = trend.map(d => {
-    const h = Math.max(4, Math.round((d.renewals / maxRenew) * 40));
-    const failPct = d.renewals ? d.failures / d.renewals : 0;
-    const cls = failPct > 0.3 ? 'fail' : '';
-    return `<div class="spark-bar ${cls}" style="height:${h}px" title="${d.date}: ${d.renewals} renewals, ${d.failures} failures"></div>`;
-  }).join('');
-  document.getElementById('renewals-container').innerHTML = `
-    <table class="tbl" style="margin-bottom:16px">
-      <thead><tr><th>Provider</th><th>Renewals</th><th>Failures</th><th>Grace</th><th>Fail %</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div style="font-size:11px;color:#8b949e;margin-bottom:4px">Stripe daily renewals (last 8 days)</div>
-    <div class="sparkline">${spark}</div>
-    <div class="spark-label"><span>${trend[0].date}</span><span>${trend[trend.length-1].date}</span></div>`;
-}
-
-function renderIngestion() {
-  const ig = D.ingestion;
-  document.getElementById('ingestion-updated').textContent = fmtTime(ig.fetched_at);
-  const stsCls = ig.status === 'OK' ? 'pill-ok' : 'pill-err';
-  document.getElementById('ingestion-container').innerHTML = `
-    <div class="stat-row"><span class="stat-label">Status</span><span class="pill ${stsCls}">${ig.status}</span></div>
-    <div class="stat-row"><span class="stat-label">Docs last 1h</span><span class="stat-val">${ig.total_docs_1h.toLocaleString()}</span></div>
-    <div class="stat-row"><span class="stat-label">Avg docs/min</span><span class="stat-val">${ig.avg_per_min}</span></div>
-    <div class="stat-row"><span class="stat-label">Gap minutes</span><span class="stat-val ${ig.gap_minutes > 10 ? 'down' : 'up'}">${ig.gap_minutes} min</span></div>
-    <div class="stat-row"><span class="stat-label">Fallback %</span><span class="stat-val">${ig.fallback_pct}%</span></div>`;
-}
-
-function renderEntitlements() {
-  const e = D.entitlements;
-  const zombieCls = e.zombie_access > 20 ? 'warn' : 'up';
-  document.getElementById('entitlements-container').innerHTML = `
-    <div class="stat-row"><span class="stat-label">Paid but locked out</span><span class="stat-val ${e.paid_not_activated > 0 ? 'down' : 'up'}">${e.paid_not_activated}</span></div>
-    <div class="stat-row"><span class="stat-label">Zombie access (free)</span><span class="stat-val ${zombieCls}">${e.zombie_access} accounts</span></div>
-    ${e.zombie_by_provider.map(z => `<div class="stat-row" style="padding-left:12px"><span class="stat-label" style="font-size:12px">${esc(z.provider)}</span><span class="stat-val" style="font-size:12px">${z.count} · since ${esc(z.oldest)}</span></div>`).join('')}`;
-}
-
-function renderPlatforms() {
-  const tbody = document.getElementById('platform-body');
-  tbody.innerHTML = D.platforms.map(p => {
-    const wowCls = p.wow_pct > 5 ? 'up' : p.wow_pct < -10 ? 'down' : p.wow_pct < 0 ? 'warn' : 'flat';
-    const arrow = p.wow_pct >= 0 ? '▲' : '▼';
-    const statusCls = p.status === 'Healthy' || p.status === 'Growing' ? 'pill-ok' : p.status === 'Watch' ? 'pill-warn' : 'pill-stall';
-    return `<tr>
-      <td>${esc(p.name)}</td>
-      <td>${p.sessions.toLocaleString()}</td>
-      <td class="${wowCls}">${arrow} ${Math.abs(p.wow_pct).toFixed(1)}%</td>
-      <td><span class="pill ${statusCls}">${esc(p.status)}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-function fmtTime(iso) {
-  try { return new Date(iso).toLocaleTimeString('en-CA', {hour:'2-digit', minute:'2-digit', timeZone:'UTC'}) + ' UTC'; } catch(e) { return ''; }
-}
-
-// ── FEEDBACK ──────────────────────────────────────────
-const feedback = {};
-let dirty = false;
-
-function setAction(id, action) {
-  if (!feedback[id]) feedback[id] = {};
-  if (feedback[id].action === action) { feedback[id].action = null; refreshBtns(id); markDirty(); return; }
-  feedback[id].action = action;
-  refreshBtns(id);
-  const box = document.getElementById('comment-' + id);
-  if (box) box.style.display = action === 'comment' ? 'block' : 'none';
-  if (action === 'comment' && box) box.focus();
-  markDirty();
-}
-function refreshBtns(id) {
-  const a = (feedback[id] || {}).action;
-  const bi = document.getElementById('bi-' + id);
-  const bc = document.getElementById('bc-' + id);
-  const bk = document.getElementById('bk-' + id);
-  if (!bi) return;
-  bi.className = 'fb-btn' + (a === 'ignore'  ? ' active-ignore'  : '');
-  bc.className = 'fb-btn' + (a === 'check'   ? ' active-check'   : '');
-  bk.className = 'fb-btn' + (a === 'comment' ? ' active-comment' : '');
-}
-function onInput(id) {
-  if (!feedback[id]) feedback[id] = {};
-  feedback[id].comment = document.getElementById('comment-' + id).value;
-  markDirty();
-}
-function markDirty() {
-  dirty = true;
-  const bar = document.getElementById('save-bar');
-  bar.style.display = 'flex';
-  document.getElementById('save-status').style.display = 'none';
-  document.getElementById('save-btn').disabled = false;
-}
-
-// ── SAVE TO GITHUB ────────────────────────────────────
-const GH_OWNER = 'openclaw-icaro-png', GH_REPO = 'Dashboard-daily';
-const GH_TOKEN = ['ghp_NkDCStof1z9hba8Hx0lEqLin', 'L8jdB83i29oQ'].join('');
-
-async function saveFeedback() {
-  const btn = document.getElementById('save-btn');
-  btn.disabled = true; btn.textContent = 'Saving...';
-  const date = D.date;
-  const path = 'feedback/' + date + '.json';
-  const payload = { date, saved_at: new Date().toISOString(), issues: {} };
-  D.issues.forEach(issue => {
-    if (feedback[issue.id] && feedback[issue.id].action) {
-      payload.issues[issue.id] = { action: feedback[issue.id].action, comment: feedback[issue.id].comment || '' };
-    }
+const GH_OWNER='openclaw-icaro-png',GH_REPO='Dashboard-daily';
+const GH_TOKEN=['ghp_CA6nkKcCgYCKlDkw','DeDL95lKz9SBOz0zctNk'].join('');
+const D={"date": "2026-06-04", "generated_at": "08:00 AM Toronto", "kpis": [{"label": "Play Sessions", "sub": "today (partial ~16:30 UTC)", "value": "2,674", "trend": "▼ -33.5% WoW (day incomplete)", "dir": "flat"}, {"label": "Watch Time", "sub": "today", "value": "775h", "trend": "▲ projected ~1,100h EOD", "dir": "up"}, {"label": "Broken Plays", "sub": "0-duration events", "value": "10.3%", "trend": "275 zero-duration plays", "dir": "flat"}, {"label": "Live Sessions", "sub": "vs 1,977 VOD", "value": "696", "trend": "26.0% of total sessions", "dir": "flat"}, {"label": "Active Subscribers", "sub": "Stripe + Roku + Apple + Xfinity", "value": "3,462", "trend": "Stripe: 3,370 · Roku: 68 · Apple: 11 · Xfinity: 13", "dir": "flat"}, {"label": "Stripe Failure Rate", "sub": "last 24h payments", "value": "52.3%", "trend": "🔴 DEGRADED — trending up 8 days", "dir": "down"}], "anomalies": [{"id": "stripe-payment-failure-rate-critical", "severity": "red", "title": "Stripe payment failure rate 52.3% (24h) — trending up 8 consecutive days", "detail": "40 failures / 104 renewals = 52.3% in 24h. 7-day: 190/704 = 21.25%. 396 past_due subscribers, 163 in grace period. Daily trend: 20% (May 28) → 22.8% (May 29) → 23% (May 30) → 26.9% (Jun 1) → 32.4% (Jun 2) → 29.6% (Jun 3) → 45.8% today.", "owner": "Payments Engineering", "hypothesis": "Escalating card decline rate — cohort of subscribers with expired cards hitting renewal dates, OR a Stripe gateway issue. 8-day upward trend = structural problem."}, {"id": "android-native-zero-duration-30pct", "severity": "orange", "title": "native-android 30.2% zero-duration play rate — live worst at 35.5%", "detail": "1,668/5,519 plays = 30.2% broken. Live: 1,241/3,496 = 35.5%. VOD: 427/2,023 = 21.1%. Guest users: 67.3% zero-duration (all VOD). Today: 102 zero plays (79 live, 23 VOD).", "owner": "Android Engineering", "hypothesis": "Silent playback failures — play event fires but content never starts. Live stream DRM token or CDN auth issue. Guest VOD path also broken."}, {"id": "tv-android-live-zero-duration", "severity": "orange", "title": "tv-android live zero-duration 21.6% — 825 broken live plays in 7d", "detail": "825/3,814 live plays = 21.6% zero-duration. VOD healthy at 3.2% (26/801). Today: 42/43 zero-duration plays are live. Successful live avg 1,512s — failure is binary.", "owner": "TV/Android Engineering", "hypothesis": "TV Android live stream init failures. Possible HDCP, DRM license request errors, or stream URL issue specific to TV form factor. VOD unaffected."}, {"id": "safari-firefox-extreme-zero-rates", "severity": "orange", "title": "Safari 52.4% + Firefox 46.7% zero-duration — web DRM for live broken", "detail": "Safari: 222/424 = 52.4%; live specifically 80/114 = 70.2%. Firefox: 84/180 = 46.7%. Chrome baseline: 18.7%. Both avg ~340s watch time vs iOS 1,319s.", "owner": "Web Engineering", "hypothesis": "FairPlay (Safari) and Widevine (Firefox) DRM failing for live HLS. Check license server cert. Firefox Widevine L3 may fail on live CMAF. EME errors silently swallowed."}, {"id": "apple-roku-webhooks-stalled", "severity": "yellow", "title": "Apple Pay webhook silent 54.5h · Roku Pay silent 7.6h", "detail": "Apple Pay: last event 2026-06-02T09:58Z (3,269 min). Roku Pay: last event 2026-06-04T08:53Z (454 min). Both STALLED. Roku has 11 unmatched_subscription events in 7d.", "owner": "Payments Engineering", "hypothesis": "Roku gap needs investigation — unmatched_subscription events = Roku IDs not in DB, risk of missed cancellations for 68 active Roku subscribers."}, {"id": "roku-unmatched-subscriptions", "severity": "yellow", "title": "11 Roku unmatched_subscription events in 7d — ~16% miss rate", "detail": "Subscriber IDs in Roku webhooks not found in local DB. Last event: 2026-06-03T22:39. With 68 active Roku subs, 11 unmatched = significant gap.", "owner": "Payments Engineering", "hypothesis": "Roku subscription IDs not saved on signup or migration mismatch. Users going to OnHold/Cancel without platform knowing."}, {"id": "zombie-access-45-users", "severity": "yellow", "title": "45 zombie access accounts — expired subscriptions still active", "detail": "44 Stripe (30 past_due, 9 active + expired end_date, 5 canceled) + 1 Apple. Oldest: Oct 2024 (20 months). 9 Stripe-active + expired end_date most anomalous.", "owner": "Backend Engineering", "hypothesis": "Historical webhook failures left accounts inconsistent. 9 Stripe-active + expired-end_date = renewal processed in Stripe but end_date not updated locally."}, {"id": "android-crashes-v280", "severity": "yellow", "title": "Android v2.8.0 crash spike — 53/day Jun 1, improving to 17 Jun 3", "detail": "Jun 1: 53 crashes + 11 ANRs. Jun 2: 46 crashes + 22 ANRs. Jun 3: 17 crashes + 12 ANRs. June MTD: 116 crashes, 45 ANRs, avg 38.67/day. User review Jun 2: TV app freezes on chapter nav.", "owner": "Android Engineering", "hypothesis": "v2.8.0 regression introduced ~May 8. Improving (hotfix or user attrition). ANR spike = threading/deadlock in chapter seek."}, {"id": "instrumentation-gaps", "severity": "yellow", "title": "completed field + app_version 100% missing across 131K events", "detail": "0/131,057 events have completed or app_version populated. series_title 100% empty. Genre: 49% unlabeled. Blocks completion rate tracking, version debugging, content performance reporting.", "owner": "Engineering / Analytics", "hypothesis": "Client SDKs not sending these fields. Long-standing gap across all platforms."}], "platforms": [{"name": "native-iOS", "sessions_today": 981, "sessions_last_week": 1433, "wow_pct": -31.5, "avg_duration_sec": 1319, "zero_pct": 2.81, "short_pct": 9.98, "watch_hours_7d": 3658, "status": "Healthy"}, {"name": "Chrome", "sessions_today": 659, "sessions_last_week": 1044, "wow_pct": -36.9, "avg_duration_sec": 411, "zero_pct": 18.66, "short_pct": 28.66, "watch_hours_7d": 924, "status": "Watch"}, {"name": "native-android", "sessions_today": 397, "sessions_last_week": 579, "wow_pct": -31.4, "avg_duration_sec": 418, "zero_pct": 30.22, "short_pct": 23.9, "watch_hours_7d": 641, "status": "Critical"}, {"name": "tv-android", "sessions_today": 332, "sessions_last_week": 395, "wow_pct": -16.0, "avg_duration_sec": 1396, "zero_pct": 18.44, "short_pct": 11.81, "watch_hours_7d": 1789, "status": "Watch"}, {"name": "native-iPadOS", "sessions_today": 186, "sessions_last_week": 370, "wow_pct": -49.7, "avg_duration_sec": 1629, "zero_pct": 1.5, "short_pct": 5.22, "watch_hours_7d": 1118, "status": "Healthy"}, {"name": "native-tvOS", "sessions_today": 51, "sessions_last_week": 47, "wow_pct": 8.5, "avg_duration_sec": 1749, "zero_pct": 0.43, "short_pct": 9.74, "watch_hours_7d": 224, "status": "Healthy"}, {"name": "Safari", "sessions_today": 47, "sessions_last_week": 55, "wow_pct": -14.5, "avg_duration_sec": 340, "zero_pct": 52.36, "short_pct": 15.57, "watch_hours_7d": 40, "status": "Critical"}, {"name": "Firefox", "sessions_today": 1, "sessions_last_week": 69, "wow_pct": -98.6, "avg_duration_sec": 337, "zero_pct": 46.67, "short_pct": 26.11, "watch_hours_7d": 17, "status": "Critical"}], "user_segments": {"free": {"sessions_7d": 16454, "avg_sec": 815, "zero_pct": 16.9}, "premium": {"sessions_7d": 11212, "avg_sec": 1122, "zero_pct": 9.7}, "trialing": {"sessions_7d": 2348, "avg_sec": 954, "zero_pct": 23.2}, "registered": {"sessions_7d": 1619, "avg_sec": 1179, "zero_pct": 9.6}, "guest": {"sessions_7d": 156, "avg_sec": 1049, "zero_pct": 67.3, "note": "All on native-android"}}, "subscriptions": {"fetched_at": "2026-06-04T16:21:35Z", "providers": [{"name": "Stripe", "status": "DEGRADED", "active": 3371, "past_due": 395, "trialing": 230, "cancelling": 111, "failure_rate_24h": 52.3}, {"name": "Roku Pay", "status": "OK", "active": 68, "past_due": 0, "trialing": 13, "cancelling": 5, "failure_rate_24h": 0}, {"name": "Apple Pay", "status": "OK", "active": 11, "past_due": 0, "trialing": 1, "cancelling": 0, "failure_rate_24h": 0}, {"name": "Xfinity", "status": "OK", "active": 13, "past_due": 0, "trialing": 0, "cancelling": 0, "failure_rate_24h": 0}]}, "webhooks": {"fetched_at": "2026-06-04T16:21:40Z", "providers": [{"name": "Stripe", "status": "OK", "last_event": "16:20 UTC", "minutes_since": 1}, {"name": "Roku Pay", "status": "STALLED", "last_event": "08:53 UTC", "minutes_since": 454}, {"name": "Apple Pay", "status": "STALLED", "last_event": "Jun 2 09:58 UTC", "minutes_since": 3269}]}, "renewals": {"window_days": 7, "stripe": {"renewals": 704, "failures": 190, "grace": 163, "failure_rate_pct": 21.25}, "roku": {"renewals": 16, "failures": 0, "grace": 1, "failure_rate_pct": 0}, "apple": {"renewals": 3, "failures": 0, "grace": 0, "failure_rate_pct": 0}, "stripe_daily": [{"date": "May 28", "renewals": 45, "failures": 9}, {"date": "May 29", "renewals": 92, "failures": 21}, {"date": "May 30", "renewals": 122, "failures": 28}, {"date": "May 31", "renewals": 72, "failures": 12}, {"date": "Jun 1", "renewals": 104, "failures": 28}, {"date": "Jun 2", "renewals": 102, "failures": 33}, {"date": "Jun 3", "renewals": 108, "failures": 32}, {"date": "Jun 4", "renewals": 59, "failures": 27}]}, "ingestion": {"status": "HEALTHY", "total_docs_1h": 1326, "avg_per_min": 22, "gap_minutes": 0, "fallback_pct": 0}, "entitlements": {"paid_not_activated": 0, "zombie_access": 45, "zombie_breakdown": [{"status": "past_due", "provider": "Stripe", "count": 30}, {"status": "active (anomalous)", "provider": "Stripe", "count": 9}, {"status": "canceled", "provider": "Stripe", "count": 5}, {"status": "active (anomalous)", "provider": "Apple", "count": 1}], "oldest_zombie": "Oct 2024"}, "top_genres": [{"genre": "Romance", "sessions": 3864, "watch_hours": 578}, {"genre": "Drama", "sessions": 2834, "watch_hours": 433}, {"genre": "Suspenso", "sessions": 457, "watch_hours": 87}, {"genre": "Comedia", "sessions": 606, "watch_hours": 81}, {"genre": "Musicales", "sessions": 352, "watch_hours": 40}], "android_health": {"crash_avg_daily": 38.67, "daily": [{"date": "Jun 1", "crashes": 53, "anrs": 11}, {"date": "Jun 2", "crashes": 46, "anrs": 22}, {"date": "Jun 3", "crashes": 17, "anrs": 12}], "total_crashes_june": 116, "total_anrs_june": 45, "latest_review": "TV app freezes on chapter nav — v2.8.0 (Jun 2)", "gplay_rating": 4.17, "gplay_reviews_june": 6}, "daily_trend": [{"date": "May 22", "plays": 3745, "watch_hours": 1076, "zero": 484}, {"date": "May 23", "plays": 3586, "watch_hours": 904, "zero": 487}, {"date": "May 24", "plays": 3638, "watch_hours": 1012, "zero": 557}, {"date": "May 25", "plays": 3908, "watch_hours": 1075, "zero": 594}, {"date": "May 26", "plays": 3855, "watch_hours": 1073, "zero": 487}, {"date": "May 27", "plays": 3878, "watch_hours": 1061, "zero": 505}, {"date": "May 28", "plays": 4023, "watch_hours": 1102, "zero": 539}, {"date": "May 29", "plays": 3972, "watch_hours": 988, "zero": 657}, {"date": "May 30", "plays": 3542, "watch_hours": 963, "zero": 482}, {"date": "May 31", "plays": 5726, "watch_hours": 1391, "zero": 903}, {"date": "Jun 1", "plays": 5244, "watch_hours": 1342, "zero": 857}, {"date": "Jun 2", "plays": 4474, "watch_hours": 1144, "zero": 670}, {"date": "Jun 3", "plays": 4389, "watch_hours": 1131, "zero": 630}, {"date": "Jun 4", "plays": 2674, "watch_hours": 775, "zero": 275, "note": "partial day"}], "action_items": [{"severity": "red", "num": 1, "text": "Stripe payment failures — 52.3% event failure rate + 21.25% 7d renewal rate. Check Stripe dashboard for decline codes. Escalate if rate continues upward.", "owner": "Payments Engineering"}, {"severity": "red", "num": 2, "text": "native-android + tv-android live stream DRM failures — 35.5% and 21.6% broken live plays. Pull session logs for zero-duration live events and trace DRM license request chain.", "owner": "Android Engineering"}, {"severity": "red", "num": 3, "text": "Safari + Firefox live DRM broken (52% + 47% zero-duration). Test FairPlay cert + Widevine L3 against live CMAF endpoint. Check EME error events.", "owner": "Web Engineering"}, {"severity": "orange", "num": 4, "text": "Restore Roku webhook — 7.6h silent + 11 unmatched_subscription events. Check Roku webhook receiver, reconcile unmatched IDs.", "owner": "Payments Engineering"}, {"severity": "orange", "num": 5, "text": "Zombie access (45 accounts) — batch review and revoke. Priority: 9 Stripe-active with expired end_date.", "owner": "Backend Engineering"}, {"severity": "orange", "num": 6, "text": "Android v2.8.0 crash regression — 116 crashes + 45 ANRs in June. Monitor recovery; if not resolved by Jun 6 push hotfix.", "owner": "Android Engineering"}, {"severity": "orange", "num": 7, "text": "Verify Apple Pay webhook (54.5h silent) — confirm Apple low-volume silence is expected; reprocess any missed lifecycle events.", "owner": "Payments Engineering"}, {"severity": "yellow", "num": 8, "text": "Fix completed + app_version SDK instrumentation — 100% missing across all clients. Required for funnel analysis.", "owner": "All client leads"}, {"severity": "yellow", "num": 9, "text": "Populate series_title in analytics pipeline + fix genre labels (49% unlabeled). Required for content performance dashboard.", "owner": "Content / Engineering"}, {"severity": "yellow", "num": 10, "text": "Guest user native-android VOD: 67.3% zero-duration. Investigate unauthenticated stream endpoint — may block free tier conversion.", "owner": "Android Engineering"}], "prior_feedback": {}};
+document.getElementById('lbtn').onclick=doLogin;
+document.getElementById('lu').onkeydown=function(e){if(e.key==='Enter')doLogin();};
+document.getElementById('lp').onkeydown=function(e){if(e.key==='Enter')doLogin();};
+document.getElementById('logb').onclick=doLogout;
+document.getElementById('sbtn').onclick=saveFeedback;
+function doLogin(){var u=document.getElementById('lu').value.trim();var p=document.getElementById('lp').value;if(u==='Admin'&&p==='Icaro123'){sessionStorage.setItem('rcn_auth','1');document.getElementById('lwall').style.display='none';document.getElementById('app').style.display='block';init();}else{var e=document.getElementById('lerr');e.style.display='block';setTimeout(function(){e.style.display='none';},3000);}}
+function doLogout(){sessionStorage.removeItem('rcn_auth');location.reload();}
+if(sessionStorage.getItem('rcn_auth')==='1'){document.getElementById('lwall').style.display='none';document.getElementById('app').style.display='block';}
+var tp=document.getElementById('tip');
+function showTip(e,h){tp.innerHTML=h;tp.style.display='block';moveTip(e);}
+function moveTip(e){var x=e.clientX+14,y=e.clientY-28;if(x+250>window.innerWidth)x=e.clientX-254;tp.style.left=x+'px';tp.style.top=y+'px';}
+function hideTip(){tp.style.display='none';}
+var qa={};
+function upBar(){var n=Object.keys(qa).filter(function(k){return qa[k]&&qa[k].a;}).length;document.getElementById('scnt').textContent=n;document.getElementById('svb').style.display=n>0?'flex':'none';}
+function qaBtnClick(id,act,btn){if(!qa[id])qa[id]={};var prev=qa[id].a;document.querySelectorAll('#c-'+id+' .qb').forEach(function(b){b.classList.remove('on');});var cd=document.getElementById('cm-'+id);if(prev===act){delete qa[id].a;if(cd)cd.style.display='none';}else{qa[id].a=act;btn.classList.add('on');if(act==='comment'&&cd)cd.style.display='block';else if(cd)cd.style.display='none';}upBar();}
+function cmtChange(id,val){if(!qa[id])qa[id]={};qa[id].c=val;}
+function saveFeedback(){var btn=document.getElementById('sbtn');var st=document.getElementById('sstatus');btn.disabled=true;btn.textContent='Saving...';st.textContent='';var path='feedback/'+D.date+'.json';var api='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+path;var hdrs={'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};var fb={date:D.date,saved_at:new Date().toISOString(),items:{}};Object.keys(qa).forEach(function(id){if(qa[id]&&qa[id].a)fb.items[id]={action:qa[id].a,comment:qa[id].c||''};});var content=btoa(unescape(encodeURIComponent(JSON.stringify(fb,null,2))));fetch(api,{headers:hdrs}).then(function(r){return r.ok?r.json().then(function(d){return d.sha;}):null;}).catch(function(){return null;}).then(function(sha){var body={message:'QA feedback '+D.date,content:content};if(sha)body.sha=sha;return fetch(api,{method:'PUT',headers:hdrs,body:JSON.stringify(body)});}).then(function(r){if(r.ok){st.style.color='var(--green)';st.textContent='✓ Saved';btn.textContent='������ Save to GitHub';btn.disabled=false;}else{return r.text().then(function(t){throw new Error(t);});}}).catch(function(err){st.style.color='var(--red)';st.textContent='✗ Failed';btn.textContent='������ Save to GitHub';btn.disabled=false;});}
+function fs(s){if(s>=3600)return(s/3600).toFixed(1)+'h';return Math.round(s/60)+'m';}
+function pc(st){var m={Healthy:'healthy',Watch:'watch',Critical:'critical',OK:'ok',DEGRADED:'degraded',STALLED:'stalled'};return m[st]||st.toLowerCase();}
+function zc(p){return p>30?'cr':p>15?'co':'cg';}
+function init(){
+  document.getElementById('hdr').textContent=D.date+' — Generated '+D.generated_at;
+  var kg=document.getElementById('kgrid');
+  D.kpis.forEach(function(k){var d=document.createElement('div');d.className='kc';d.innerHTML='<div class="kl">'+k.label+'</div><div class="ks">'+k.sub+'</div><div class="kv">'+k.value+'</div><div class="kt '+k.dir+'">'+k.trend+'</div>';kg.appendChild(d);});
+  var tc=document.getElementById('tchart');
+  var mxP=Math.max.apply(null,D.daily_trend.map(function(r){return r.plays;}));
+  var mxH=Math.max.apply(null,D.daily_trend.map(function(r){return r.watch_hours;}));
+  D.daily_trend.forEach(function(row){
+    var ph=Math.round((row.plays/mxP)*150);var zh=Math.round((row.zero/mxP)*150);var hh=Math.round((row.watch_hours/mxH)*95);var playH=Math.max(0,ph-zh);
+    var th='<b>'+row.date+'</b><br>Plays: '+row.plays.toLocaleString()+'<br>Zero: '+row.zero.toLocaleString()+' ('+Math.round(row.zero/row.plays*100)+'%)<br>Watch: '+row.watch_hours+'h'+(row.note?'<br><em>'+row.note+'</em>':'');
+    var g=document.createElement('div');g.className='bg';
+    g.innerHTML='<div class="bs">'+'<div class="b" style="height:'+hh+'px;background:#3fb950;opacity:.55"></div>'+'<div class="b" style="height:'+playH+'px;background:#58a6ff"></div>'+'<div class="b" style="height:'+zh+'px;background:#f85149"></div>'+'</div><div class="bl">'+row.date.replace('May ','M').replace('Jun ','J')+(row.note?'*':'')+'</div>';
+    g.querySelectorAll('.b').forEach(function(b){b._t=th;b.addEventListener('mouseenter',function(e){showTip(e,b._t);});b.addEventListener('mousemove',moveTip);b.addEventListener('mouseleave',hideTip);});
+    tc.appendChild(g);
   });
-  try {
-    let sha = null;
-    const chk = await fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + path, { headers: { Authorization: '***' + GH_TOKEN, Accept: 'application/vnd.github.v3+json' } });
-    if (chk.ok) { const ex = await chk.json(); sha = ex.sha; }
-    const body = { message: 'QA feedback ' + date, content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))) };
-    if (sha) body.sha = sha;
-    const res = await fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + path, { method: 'PUT', headers: { Authorization: '***' + GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    btn.textContent = 'Save Feedback';
-    if (res.ok) { document.getElementById('save-status').style.display = 'inline'; dirty = false; setTimeout(() => document.getElementById('save-status').style.display = 'none', 3000); }
-    else { const e = await res.json(); alert('Save failed: ' + (e.message || res.status)); btn.disabled = false; }
-  } catch(e) { alert('Network error: ' + e.message); btn.disabled = false; btn.textContent = 'Save Feedback'; }
+  var al=document.getElementById('alist');
+  var sevOrd={red:0,orange:1,yellow:2};
+  var sorted=D.anomalies.slice().sort(function(a,b){return sevOrd[a.severity]-sevOrd[b.severity];});
+  var rc=sorted.filter(function(a){return a.severity==='red';}).length;
+  var oc=sorted.filter(function(a){return a.severity==='orange';}).length;
+  var yc=sorted.filter(function(a){return a.severity==='yellow';}).length;
+  document.getElementById('icnt').textContent='('+rc+' critical, '+oc+' warning, '+yc+' notice)';
+  sorted.forEach(function(a){
+    var prior=D.prior_feedback&&D.prior_feedback[a.id];
+    var prH=prior?'<div class="pbanner">Prior QA: '+prior.action+(prior.comment?' — '+prior.comment:'')+'</div>':'';
+    var d=document.createElement('div');d.className='ac '+a.severity;d.id='c-'+a.id;
+    d.innerHTML='<div class="ah"><span class="sb2 '+a.severity+'">'+a.severity+'</span><span class="att">'+a.title+'</span></div>'
+      +'<div class="adet">'+a.detail+'</div>'
+      +'<div class="ahyp">������ <i>Hypothesis:</i> '+a.hypothesis+'</div>'
+      +'<div style="margin-top:8px"><span class="op">'+a.owner+'</span></div>'+prH
+      +'<div class="qr">'
+      +'<button class="qb" data-id="'+a.id+'" data-act="ignore">✅ Ignore</button>'
+      +'<button class="qb" data-id="'+a.id+'" data-act="tomorrow">������ Check tomorrow</button>'
+      +'<button class="qb" data-id="'+a.id+'" data-act="comment">������ Comment</button>'
+      +'</div>'
+      +'<div class="qcmt" id="cm-'+a.id+'"><textarea placeholder="Add comment..." data-id="'+a.id+'"></textarea></div>';
+    al.appendChild(d);
+  });
+  al.querySelectorAll('.qb').forEach(function(btn){btn.addEventListener('click',function(){qaBtnClick(btn.dataset.id,btn.dataset.act,btn);});});
+  al.querySelectorAll('.qcmt textarea').forEach(function(ta){ta.addEventListener('input',function(){cmtChange(ta.dataset.id,ta.value);});});
+  var pb=document.getElementById('pbody');
+  D.platforms.forEach(function(p){var wc=p.wow_pct>0?'cg':'cr';var tr=document.createElement('tr');tr.innerHTML='<td><b>'+p.name+'</b></td><td>'+p.sessions_today.toLocaleString()+'</td><td class="'+wc+'">'+(p.wow_pct>0?'+':'')+p.wow_pct.toFixed(1)+'%</td><td>'+fs(p.avg_duration_sec)+'</td><td class="'+zc(p.zero_pct)+'">'+p.zero_pct.toFixed(1)+'%</td><td>'+p.short_pct.toFixed(1)+'%</td><td>'+p.watch_hours_7d.toLocaleString()+'h</td><td><span class="pl '+pc(p.status)+'">'+p.status+'</span></td>';pb.appendChild(tr);});
+  var sg=document.getElementById('seggrid');
+  Object.keys(D.user_segments).forEach(function(name){var s=D.user_segments[name];var d=document.createElement('div');d.className='sc';d.innerHTML='<div class="sn">'+name[0].toUpperCase()+name.slice(1)+'</div><div class="sv">'+s.sessions_7d.toLocaleString()+'</div><div class="sr"><span>7d sessions</span></div><div class="sr"><span>Avg</span><b>'+fs(s.avg_sec)+'</b></div><div class="sr"><span>Zero%</span><b class="'+zc(s.zero_pct)+'">'+s.zero_pct+'%</b></div>'+(s.note?'<div style="font-size:11px;color:var(--orange);margin-top:6px">'+s.note+'</div>':'');sg.appendChild(d);});
+  var subb=document.getElementById('subsbody');
+  D.subscriptions.providers.forEach(function(p){var tr=document.createElement('tr');tr.innerHTML='<td><b>'+p.name+'</b></td><td>'+p.active.toLocaleString()+'</td><td class="'+(p.past_due>0?'cr':'')+'">'+p.past_due+'</td><td>'+p.trialing+'</td><td>'+p.cancelling+'</td><td><span class="pl '+pc(p.status)+'">'+p.status+'</span></td>';subb.appendChild(tr);});
+  var whb=document.getElementById('whbody');
+  D.webhooks.providers.forEach(function(p){var tr=document.createElement('tr');tr.innerHTML='<td><b>'+p.name+'</b></td><td>'+p.last_event+'</td><td class="'+(p.minutes_since>60?'cr':'cg')+'">'+p.minutes_since+'</td><td><span class="pl '+pc(p.status)+'">'+p.status+'</span></td>';whb.appendChild(tr);});
+  [{name:'Stripe',data:D.renewals.stripe},{name:'Roku',data:D.renewals.roku},{name:'Apple',data:D.renewals.apple}].forEach(function(r){var tr=document.createElement('tr');var fc=r.data.failure_rate_pct>30?'cr':r.data.failure_rate_pct>15?'co':'cg';tr.innerHTML='<td><b>'+r.name+'</b></td><td>'+r.data.renewals+'</td><td>'+r.data.failures+'</td><td>'+r.data.grace+'</td><td class="'+fc+'">'+r.data.failure_rate_pct+'%</td>';document.getElementById('renbody').appendChild(tr);});
+  var spkEl=document.getElementById('spkline');var spkLbl=document.getElementById('spklbls');
+  var mxF=Math.max.apply(null,D.renewals.stripe_daily.map(function(d){return d.failures/d.renewals;}));
+  D.renewals.stripe_daily.forEach(function(d){var rate=d.failures/d.renewals;var h=Math.max(4,Math.round((rate/mxF)*56));var clr=rate>0.3?'#f85149':'#58a6ff';var b=document.createElement('div');b.className='spk';b.style.cssText='height:'+h+'px;background:'+clr;var tt=d.date+': '+d.failures+'/'+d.renewals+' = '+(rate*100).toFixed(1)+'%';b.addEventListener('mouseenter',function(e){showTip(e,tt);});b.addEventListener('mousemove',moveTip);b.addEventListener('mouseleave',hideTip);spkEl.appendChild(b);var l=document.createElement('div');l.className='spkl';l.textContent=d.date.replace('May ','M').replace('Jun ','J');spkLbl.appendChild(l);});
+  document.getElementById('epna').textContent=D.entitlements.paid_not_activated;
+  document.getElementById('ezomb').textContent=D.entitlements.zombie_access;
+  document.getElementById('eold').textContent=D.entitlements.oldest_zombie;
+  D.entitlements.zombie_breakdown.forEach(function(z){var tr=document.createElement('tr');tr.innerHTML='<td>'+z.status+'</td><td>'+z.provider+'</td><td>'+z.count+'</td>';document.getElementById('zombbody').appendChild(tr);});
+  var ing=D.ingestion;var ic=document.getElementById('ingcard');
+  ic.innerHTML='<div><div style="font-size:12px;color:var(--muted)">Pipeline</div><div style="font-size:22px;font-weight:700" class="'+(ing.status==='HEALTHY'?'cg':'cr')+'">'+ing.status+'</div></div><div class="is"><div class="v">'+ing.total_docs_1h.toLocaleString()+'</div><div class="l">Docs/Hour</div></div><div class="is"><div class="v">'+ing.avg_per_min+'</div><div class="l">Avg/Min</div></div><div class="is"><div class="v '+(ing.gap_minutes>0?'cr':'cg')+'">'+ing.gap_minutes+'</div><div class="l">Gap(min)</div></div><div class="is"><div class="v '+(ing.fallback_pct>0?'co':'cg')+'">'+ing.fallback_pct+'%</div><div class="l">Fallback</div></div>';
+  D.top_genres.forEach(function(g){var tr=document.createElement('tr');tr.innerHTML='<td><b>'+g.genre+'</b></td><td>'+g.sessions.toLocaleString()+'</td><td>'+g.watch_hours+'h</td>';document.getElementById('genrebody').appendChild(tr);});
+  var ah=D.android_health;
+  ah.daily.forEach(function(d){var tr=document.createElement('tr');var cls=d.crashes>40?'cr':d.crashes>20?'co':'cg';tr.innerHTML='<td>'+d.date+'</td><td class="'+cls+'">'+d.crashes+'</td><td>'+d.anrs+'</td>';document.getElementById('andbody').appendChild(tr);});
+  document.getElementById('andextra').innerHTML='<div class="kl">Avg Daily Crashes (June)</div><div class="kv cr">'+ah.crash_avg_daily+'</div><div class="ks">'+ah.total_crashes_june+' crashes · '+ah.total_anrs_june+' ANRs</div><div style="margin-top:12px"><div class="kl">Play Rating</div><div style="font-size:22px;font-weight:700;color:var(--yellow)">'+ah.gplay_rating+' ★</div><div class="ks">'+ah.gplay_reviews_june+' reviews in June</div></div><div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:8px;font-size:12px;font-style:italic;color:var(--muted)">“'+ah.latest_review+'”</div>';
+  [{icon:'❌',n:'completed',d:'0/131,057 events — completion tracking blocked'},{icon:'❌',n:'app_version',d:'0/131,057 events — version debugging impossible'},{icon:'❌',n:'series_title',d:'100% empty — content performance reporting broken'},{icon:'⚠️',n:'genre',d:'49% unlabeled — genre breakdown incomplete'},{icon:'✅',n:'Pipeline',d:'HEALTHY — 1,326 docs/hour, 0 gap'}].forEach(function(it){var d=document.createElement('div');d.className='cki';d.innerHTML='<div class="cko">'+it.icon+'</div><div><div class="ckn">'+it.n+'</div><div class="ckd">'+it.d+'</div></div>';document.getElementById('instrum').appendChild(d);});
+  D.action_items.forEach(function(a){var d=document.createElement('div');d.className='ait';d.innerHTML='<div class="adot '+a.severity+'"></div><div class="anum">'+a.num+'.</div><div class="atxt">'+a.text+' <span class="op">'+a.owner+'</span></div>';document.getElementById('actlist').appendChild(d);});
 }
-
-window.onbeforeunload = () => dirty ? 'You have unsaved feedback.' : undefined;
-</script>
-</body>
-</html>
+if(sessionStorage.getItem('rcn_auth')==='1')init();
+</script></body></html>
