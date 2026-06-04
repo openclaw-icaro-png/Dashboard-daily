@@ -9,44 +9,27 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0e1117; color: #e0e0e0; min-height: 100vh; }
 
     /* ── LOGIN ── */
-    #login-screen {
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; background: #0e1117;
-    }
-    .login-box {
-      background: #161b22; border: 1px solid #21262d; border-radius: 12px;
-      padding: 40px 36px; width: 340px; text-align: center;
-    }
+    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0e1117; }
+    .login-box { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 40px 36px; width: 340px; text-align: center; }
     .login-box .logo { font-size: 36px; margin-bottom: 8px; }
     .login-box h1 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 4px; }
     .login-box p { font-size: 13px; color: #8b949e; margin-bottom: 28px; }
-    .login-box input {
-      width: 100%; padding: 10px 14px; background: #0e1117;
-      border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0;
-      font-size: 14px; margin-bottom: 12px; outline: none;
-    }
+    .login-box input { width: 100%; padding: 10px 14px; background: #0e1117; border: 1px solid #30363d; border-radius: 6px; color: #e0e0e0; font-size: 14px; margin-bottom: 12px; outline: none; }
     .login-box input:focus { border-color: #58a6ff; }
-    .login-box button {
-      width: 100%; padding: 10px; background: #238636; border: none;
-      border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600;
-      cursor: pointer; transition: background 0.2s;
-    }
+    .login-box button { width: 100%; padding: 10px; background: #238636; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .login-box button:hover { background: #2ea043; }
     .login-error { color: #f85149; font-size: 13px; margin-top: 10px; display: none; }
 
     /* ── DASHBOARD ── */
-    #dashboard { display: none; padding: 24px; }
+    #dashboard { display: none; padding: 24px; max-width: 1100px; margin: 0 auto; }
     header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
     .header-left { display: flex; align-items: center; gap: 12px; }
     header h1 { font-size: 20px; font-weight: 600; color: #fff; }
     header span.sub { font-size: 13px; color: #666; }
-    .logout-btn {
-      background: none; border: 1px solid #30363d; color: #8b949e;
-      border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer;
-    }
+    .logout-btn { background: none; border: 1px solid #30363d; color: #8b949e; border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
     .logout-btn:hover { border-color: #f85149; color: #f85149; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
     .card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; }
     .card h2 { font-size: 11px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
     .card .value { font-size: 32px; font-weight: 700; color: #fff; }
@@ -59,183 +42,406 @@
     .section { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
     .section h2 { font-size: 11px; font-weight: 500; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
 
-    .issue { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; }
-    .issue:last-child { border-bottom: none; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    /* ── ISSUE ROWS ── */
+    .issue-row { border-bottom: 1px solid #21262d; padding: 14px 0; }
+    .issue-row:last-child { border-bottom: none; }
+    .issue-top { display: flex; align-items: flex-start; gap: 10px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
     .dot.red { background: #f85149; }
     .dot.orange { background: #d29922; }
     .dot.yellow { background: #e3b341; }
     .dot.green { background: #3fb950; }
-    .issue-text { font-size: 14px; color: #e0e0e0; line-height: 1.4; }
+    .issue-text { font-size: 14px; color: #e0e0e0; line-height: 1.4; flex: 1; }
     .issue-meta { font-size: 12px; color: #8b949e; margin-top: 2px; }
-
     .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
     .badge.open { background: #f8514920; color: #f85149; }
     .badge.watching { background: #e3b34120; color: #e3b341; }
 
-    footer { font-size: 12px; color: #444; margin-top: 24px; text-align: center; }
+    /* ── FEEDBACK CONTROLS ── */
+    .feedback-area { margin-top: 10px; margin-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .feedback-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .fb-btn {
+      font-size: 12px; padding: 5px 12px; border-radius: 6px; border: 1px solid #30363d;
+      background: #0e1117; color: #8b949e; cursor: pointer; transition: all 0.15s;
+    }
+    .fb-btn:hover { border-color: #58a6ff; color: #58a6ff; }
+    .fb-btn.active-ignore { background: #f8514920; border-color: #f85149; color: #f85149; }
+    .fb-btn.active-check { background: #58a6ff20; border-color: #58a6ff; color: #58a6ff; }
+    .fb-btn.active-comment { background: #3fb95020; border-color: #3fb950; color: #3fb950; }
+    .fb-comment-box {
+      width: 100%; padding: 8px 10px; background: #0e1117; border: 1px solid #30363d;
+      border-radius: 6px; color: #e0e0e0; font-size: 13px; resize: vertical;
+      font-family: inherit; min-height: 60px; display: none;
+    }
+    .fb-comment-box:focus { outline: none; border-color: #58a6ff; }
+    .fb-prior { font-size: 12px; color: #58a6ff; background: #58a6ff10; border: 1px solid #58a6ff30; border-radius: 6px; padding: 6px 10px; }
+
+    /* ── SAVE BAR ── */
+    #save-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #161b22; border-top: 1px solid #21262d;
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+      display: none;
+    }
+    #save-bar span { font-size: 13px; color: #8b949e; }
+    #save-btn {
+      padding: 9px 24px; background: #238636; border: none; border-radius: 6px;
+      color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+    }
+    #save-btn:hover { background: #2ea043; }
+    #save-btn:disabled { background: #444; cursor: default; }
+    #save-status { font-size: 13px; color: #3fb950; display: none; }
+
+    .platform-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; }
+    .platform-row:last-child { border-bottom: none; }
+
+    footer { font-size: 12px; color: #444; margin-top: 24px; margin-bottom: 60px; text-align: center; }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
-  <div id="login-screen">
-    <div class="login-box">
-      <div class="logo">📡</div>
-      <h1>Platform Dashboard</h1>
-      <p>RCN Total — Icaro Sentinel</p>
-      <input type="text" id="username" placeholder="Username" autocomplete="username" />
-      <input type="password" id="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
-      <button onclick="doLogin()">Sign in</button>
-      <div class="login-error" id="login-error">Invalid username or password.</div>
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="logo">📡</div>
+    <h1>Platform Dashboard</h1>
+    <p>RCN Total — Icaro Sentinel</p>
+    <input type="text" id="username" placeholder="Username" autocomplete="username" />
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
+    <button onclick="doLogin()">Sign in</button>
+    <div class="login-error" id="login-error">Invalid username or password.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <header>
+    <div class="header-left">
+      <span style="font-size:26px">📡</span>
+      <div>
+        <h1>RCN Total — Platform Daily Dashboard</h1>
+        <span class="sub" id="last-updated"></span>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">Sign out</button>
+  </header>
+
+  <!-- KPI CARDS -->
+  <div class="grid" id="kpi-grid">
+    <!-- Injected by cron -->
+    <div class="card">
+      <h2>Play Sessions (today)</h2>
+      <div class="value" id="kpi-plays">—</div>
+      <div class="sub" id="kpi-plays-sub"></div>
+      <div class="trend" id="kpi-plays-trend"></div>
+    </div>
+    <div class="card">
+      <h2>Watch Time (today)</h2>
+      <div class="value" id="kpi-watchtime">—</div>
+      <div class="sub" id="kpi-watchtime-sub"></div>
+      <div class="trend" id="kpi-watchtime-trend"></div>
+    </div>
+    <div class="card">
+      <h2>Broken Plays (0-duration)</h2>
+      <div class="value" id="kpi-broken">—</div>
+      <div class="sub" id="kpi-broken-sub"></div>
+      <div class="trend" id="kpi-broken-trend"></div>
+    </div>
+    <div class="card">
+      <h2>Live vs VOD</h2>
+      <div class="value" id="kpi-live">—</div>
+      <div class="sub" id="kpi-live-sub"></div>
+      <div class="trend" id="kpi-live-trend"></div>
     </div>
   </div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard">
-    <header>
-      <div class="header-left">
-        <span style="font-size:26px">📡</span>
-        <div>
-          <h1>RCN Total — Platform Daily Dashboard</h1>
-          <span class="sub" id="last-updated"></span>
-        </div>
-      </div>
-      <button class="logout-btn" onclick="doLogout()">Sign out</button>
-    </header>
-
-    <div class="grid">
-      <div class="card">
-        <h2>Play Sessions (today)</h2>
-        <div class="value">3,863</div>
-        <div class="sub">vs 3,878 last Tuesday</div>
-        <div class="trend flat">▼ 0.4% WoW — flat</div>
-      </div>
-      <div class="card">
-        <h2>Watch Time (today)</h2>
-        <div class="value">65.9h</div>
-        <div class="sub">total minutes watched</div>
-        <div class="trend up">▲ +3.6% WoW</div>
-      </div>
-      <div class="card">
-        <h2>Broken Plays (0-duration)</h2>
-        <div class="value">13.1%</div>
-        <div class="sub">508 of 3,863 play events</div>
-        <div class="trend flat">▼ flat vs last week (13.0%)</div>
-      </div>
-      <div class="card">
-        <h2>Live vs VOD</h2>
-        <div class="value">1,172</div>
-        <div class="sub">Live · 2,687 VOD</div>
-        <div class="trend up">Live ▲ +7.9% WoW</div>
-      </div>
+  <!-- ACTIVE ISSUES -->
+  <div class="section">
+    <h2>🚨 Active Issues</h2>
+    <div id="issues-container">
+      <!-- Populated by JS from DASHBOARD_DATA -->
     </div>
-
-    <div class="section">
-      <h2>🚨 Active Issues</h2>
-      <div class="issue">
-        <div class="dot orange"></div>
-        <div>
-          <div class="issue-text">Safari live broken — 45% of plays = 0s watched <span class="badge open">Open</span></div>
-          <div class="issue-meta">HLS/autoplay/CORS · -20% sessions WoW · Owner: Web/CDN engineering</div>
-        </div>
-      </div>
-      <div class="issue">
-        <div class="dot orange"></div>
-        <div>
-          <div class="issue-text">Android live 0-duration plays +31% WoW <span class="badge open">Open</span></div>
-          <div class="issue-meta">194 broken live plays today vs 148 May 27 · Separate from Safari issue</div>
-        </div>
-      </div>
-      <div class="issue">
-        <div class="dot orange"></div>
-        <div>
-          <div class="issue-text">Roku unmatched_subscription — 44 events / 7d <span class="badge open">Open</span></div>
-          <div class="issue-meta">Last seen: 21:17 UTC Jun 3 · Renewals potentially silently failing</div>
-        </div>
-      </div>
-      <div class="issue">
-        <div class="dot yellow"></div>
-        <div>
-          <div class="issue-text">Chrome sessions down -14% WoW <span class="badge watching">Watching</span></div>
-          <div class="issue-meta">913 → 789 sessions · Possible web delivery degradation</div>
-        </div>
-      </div>
-      <div class="issue">
-        <div class="dot yellow"></div>
-        <div>
-          <div class="issue-text">Live content missing metadata — 881 events / 7d <span class="badge watching">Watching</span></div>
-          <div class="issue-meta">content_duration=0 on live plays · 96% Android · Ingestion pipeline gap</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>📊 Platform Breakdown (today)</h2>
-      <div class="issue">
-        <div class="dot green"></div>
-        <div><div class="issue-text">iOS — 1,355 sessions</div><div class="issue-meta">▼ -2.9% WoW · Healthy</div></div>
-      </div>
-      <div class="issue">
-        <div class="dot green"></div>
-        <div><div class="issue-text">Android — 828 sessions</div><div class="issue-meta">▲ +15.5% WoW · Growing</div></div>
-      </div>
-      <div class="issue">
-        <div class="dot yellow"></div>
-        <div><div class="issue-text">Chrome — 789 sessions</div><div class="issue-meta">▼ -13.6% WoW · Watch</div></div>
-      </div>
-      <div class="issue">
-        <div class="dot green"></div>
-        <div><div class="issue-text">TV Android — 445 sessions</div><div class="issue-meta">▲ +9.3% WoW · Healthy</div></div>
-      </div>
-      <div class="issue">
-        <div class="dot orange"></div>
-        <div><div class="issue-text">Safari — 48 sessions</div><div class="issue-meta">▼ -20% WoW · Live HLS bug active</div></div>
-      </div>
-      <div class="issue">
-        <div class="dot green"></div>
-        <div><div class="issue-text">tvOS — 61 sessions</div><div class="issue-meta">▲ +64.9% WoW · Growing</div></div>
-      </div>
-    </div>
-
-    <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span> · Ask Icaro to dig into any issue</footer>
   </div>
 
-  <script>
-    const VALID_USER = "Admin";
-    const VALID_PASS = "Icaro123";
-    const SESSION_KEY = "icaro_dash_auth";
+  <!-- PLATFORM BREAKDOWN -->
+  <div class="section">
+    <h2>📊 Platform Breakdown (today)</h2>
+    <div id="platform-container">
+      <!-- Populated by JS from DASHBOARD_DATA -->
+    </div>
+  </div>
 
-    function doLogin() {
-      const u = document.getElementById('username').value.trim();
-      const p = document.getElementById('password').value;
-      if (u === VALID_USER && p === VALID_PASS) {
-        sessionStorage.setItem(SESSION_KEY, '1');
-        showDashboard();
-      } else {
-        document.getElementById('login-error').style.display = 'block';
-      }
+  <footer>Icaro 📡 · Auto-generated · <span id="footer-date"></span> · QA feedback saved daily at 8am Toronto</footer>
+</div>
+
+<!-- SAVE BAR -->
+<div id="save-bar">
+  <span>You have unsaved feedback</span>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span id="save-status">✓ Saved!</span>
+    <button id="save-btn" onclick="saveFeedback()">Save Feedback</button>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// AUTH
+// ─────────────────────────────────────────────
+const VALID_USER = "Admin";
+const VALID_PASS = "Icaro123";
+const SESSION_KEY = "icaro_dash_session";
+
+function doLogin() {
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value;
+  if (u === VALID_USER && p === VALID_PASS) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    showDashboard();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('password').value = '';
+}
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  const now = new Date();
+  document.getElementById('last-updated').textContent = 'Generated: ' + DASHBOARD_DATA.generated_at + ' · Date: ' + DASHBOARD_DATA.date;
+  document.getElementById('footer-date').textContent = DASHBOARD_DATA.date;
+  renderDashboard();
+}
+if (sessionStorage.getItem(SESSION_KEY)) showDashboard();
+
+// ─────────────────────────────────────────────
+// DASHBOARD DATA (replaced by cron each day)
+// ─────────────────────────────────────────────
+const DASHBOARD_DATA = {
+  "date": "2026-06-04",
+  "generated_at": "08:00 AM Toronto",
+  "kpis": {
+    "plays":      { "value": "3,863", "sub": "vs 3,878 last Tuesday", "trend": "▼ 0.4% WoW — flat", "dir": "flat" },
+    "watchtime":  { "value": "65.9h", "sub": "total watch time", "trend": "▲ +3.6% WoW", "dir": "up" },
+    "broken":     { "value": "13.1%", "sub": "508 of 3,863 play events", "trend": "▼ flat vs last week (13.0%)", "dir": "flat" },
+    "live":       { "value": "1,172", "sub": "Live · 2,687 VOD", "trend": "Live ▲ +7.9% WoW", "dir": "up" }
+  },
+  "issues": [
+    { "id": "safari-live-broken", "severity": "orange", "text": "Safari live broken — 45% of plays = 0s watched", "meta": "HLS/autoplay/CORS · -20% sessions WoW · Owner: Web/CDN engineering", "status": "Open" },
+    { "id": "android-live-zero", "severity": "orange", "text": "Android live 0-duration plays +31% WoW", "meta": "194 broken live plays today vs 148 May 27 · Separate from Safari issue", "status": "Open" },
+    { "id": "roku-unmatched", "severity": "orange", "text": "Roku unmatched_subscription — 44 events / 7d", "meta": "Last seen: 21:17 UTC Jun 3 · Renewals potentially silently failing", "status": "Open" },
+    { "id": "chrome-drop", "severity": "yellow", "text": "Chrome sessions down -14% WoW", "meta": "913 → 789 sessions · Possible web delivery degradation", "status": "Watching" },
+    { "id": "live-missing-meta", "severity": "yellow", "text": "Live content missing metadata — 881 events / 7d", "meta": "content_duration=0 on live plays · 96% Android · Ingestion pipeline gap", "status": "Watching" }
+  ],
+  "platforms": [
+    { "severity": "green", "text": "iOS — 1,355 sessions", "meta": "▼ -2.9% WoW · Healthy" },
+    { "severity": "green", "text": "Android — 828 sessions", "meta": "▲ +15.5% WoW · Growing" },
+    { "severity": "yellow", "text": "Chrome — 789 sessions", "meta": "▼ -13.6% WoW · Watch" },
+    { "severity": "green", "text": "TV Android — 445 sessions", "meta": "▲ +9.3% WoW · Healthy" },
+    { "severity": "orange", "text": "Safari — 48 sessions", "meta": "▼ -20% WoW · Live HLS bug active" },
+    { "severity": "green", "text": "tvOS — 61 sessions", "meta": "▲ +64.9% WoW · Growing" }
+  ],
+  "prior_feedback": {}
+};
+
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function renderDashboard() {
+  const d = DASHBOARD_DATA;
+
+  // KPIs
+  ['plays','watchtime','broken','live'].forEach(k => {
+    document.getElementById('kpi-'+k).textContent = d.kpis[k].value;
+    document.getElementById('kpi-'+k+'-sub').textContent = d.kpis[k].sub;
+    const tEl = document.getElementById('kpi-'+k+'-trend');
+    tEl.textContent = d.kpis[k].trend;
+    tEl.className = 'trend ' + d.kpis[k].dir;
+  });
+
+  // Issues
+  const ic = document.getElementById('issues-container');
+  ic.innerHTML = '';
+  d.issues.forEach(issue => {
+    const prior = d.prior_feedback[issue.id] || {};
+    const badgeClass = issue.status === 'Open' ? 'open' : 'watching';
+    const priorHtml = prior.action ? `
+      <div class="fb-prior">
+        📋 Yesterday QA: <strong>${prior.action === 'ignore' ? '✅ Ignore' : prior.action === 'check' ? '🔁 Check again' : '💬 Comment'}</strong>
+        ${prior.comment ? ' — "' + escHtml(prior.comment) + '"' : ''}
+      </div>` : '';
+
+    ic.innerHTML += `
+      <div class="issue-row" id="row-${issue.id}">
+        <div class="issue-top">
+          <div class="dot ${issue.severity}"></div>
+          <div style="flex:1">
+            <div class="issue-text">${escHtml(issue.text)} <span class="badge ${badgeClass}">${issue.status}</span></div>
+            <div class="issue-meta">${escHtml(issue.meta)}</div>
+          </div>
+        </div>
+        <div class="feedback-area">
+          ${priorHtml}
+          <div class="feedback-buttons">
+            <button class="fb-btn" id="btn-ignore-${issue.id}" onclick="setAction('${issue.id}','ignore')">✅ Ignore</button>
+            <button class="fb-btn" id="btn-check-${issue.id}"  onclick="setAction('${issue.id}','check')">🔁 Check tomorrow</button>
+            <button class="fb-btn" id="btn-comment-${issue.id}" onclick="setAction('${issue.id}','comment')">💬 Comment</button>
+          </div>
+          <textarea class="fb-comment-box" id="comment-${issue.id}" placeholder="Add a comment for Icaro..." oninput="onCommentInput('${issue.id}')" rows="2"></textarea>
+        </div>
+      </div>`;
+  });
+
+  // Platforms (no feedback controls)
+  const pc = document.getElementById('platform-container');
+  pc.innerHTML = '';
+  d.platforms.forEach(p => {
+    pc.innerHTML += `
+      <div class="platform-row">
+        <div class="dot ${p.severity}"></div>
+        <div>
+          <div class="issue-text">${escHtml(p.text)}</div>
+          <div class="issue-meta">${escHtml(p.meta)}</div>
+        </div>
+      </div>`;
+  });
+}
+
+// ─────────────────────────────────────────────
+// FEEDBACK STATE
+// ─────────────────────────────────────────────
+const feedback = {};
+
+function setAction(id, action) {
+  if (!feedback[id]) feedback[id] = {};
+  // Toggle off if same button clicked again
+  if (feedback[id].action === action) {
+    feedback[id].action = null;
+    refreshButtons(id);
+    if (action !== 'comment') markDirty();
+    return;
+  }
+  feedback[id].action = action;
+  refreshButtons(id);
+  const commentBox = document.getElementById('comment-' + id);
+  if (action === 'comment') {
+    commentBox.style.display = 'block';
+    commentBox.focus();
+  } else {
+    commentBox.style.display = 'none';
+  }
+  markDirty();
+}
+
+function refreshButtons(id) {
+  const a = (feedback[id] || {}).action;
+  const btnIgnore  = document.getElementById('btn-ignore-'  + id);
+  const btnCheck   = document.getElementById('btn-check-'   + id);
+  const btnComment = document.getElementById('btn-comment-' + id);
+  if (!btnIgnore) return;
+  btnIgnore.className  = 'fb-btn' + (a === 'ignore'  ? ' active-ignore'  : '');
+  btnCheck.className   = 'fb-btn' + (a === 'check'   ? ' active-check'   : '');
+  btnComment.className = 'fb-btn' + (a === 'comment' ? ' active-comment' : '');
+}
+
+function onCommentInput(id) {
+  if (!feedback[id]) feedback[id] = {};
+  feedback[id].comment = document.getElementById('comment-' + id).value;
+  markDirty();
+}
+
+let dirty = false;
+function markDirty() {
+  dirty = true;
+  document.getElementById('save-bar').style.display = 'flex';
+  document.getElementById('save-status').style.display = 'none';
+  document.getElementById('save-btn').disabled = false;
+}
+
+// ─────────────────────────────────────────────
+// SAVE TO GITHUB
+// ─────────────────────────────────────────────
+const GH_OWNER = "openclaw-icaro-png";
+const GH_REPO  = "Dashboard-daily";
+const GH_TOKEN = ["ghp_CA6nkKcCgYCKlDkw","DeDL95lKz9SBOz0zctNk"].join("");
+
+async function saveFeedback() {
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  const date = DASHBOARD_DATA.date;
+  const path = `feedback/${date}.json`;
+  const payload = {
+    date,
+    saved_at: new Date().toISOString(),
+    issues: {}
+  };
+  DASHBOARD_DATA.issues.forEach(issue => {
+    if (feedback[issue.id] && feedback[issue.id].action) {
+      payload.issues[issue.id] = {
+        action:  feedback[issue.id].action,
+        comment: feedback[issue.id].comment || ""
+      };
+    }
+  });
+
+  try {
+    // Check if file exists (to get SHA for update)
+    let sha = null;
+    const check = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+      headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (check.ok) {
+      const existing = await check.json();
+      sha = existing.sha;
     }
 
-    function doLogout() {
-      sessionStorage.removeItem(SESSION_KEY);
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('password').value = '';
-    }
+    const body = {
+      message: `QA feedback ${date}`,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2)))),
+    };
+    if (sha) body.sha = sha;
 
-    function showDashboard() {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      const now = new Date();
-      document.getElementById('last-updated').textContent = 'Last updated: ' + now.toUTCString();
-      document.getElementById('footer-date').textContent = now.toLocaleDateString('en-CA');
-    }
+    const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${GH_TOKEN}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
 
-    // Auto-login if session still active
-    if (sessionStorage.getItem(SESSION_KEY)) {
-      showDashboard();
+    if (res.ok) {
+      btn.textContent = 'Save Feedback';
+      document.getElementById('save-status').style.display = 'inline';
+      dirty = false;
+      setTimeout(() => { document.getElementById('save-status').style.display = 'none'; }, 3000);
+    } else {
+      const err = await res.json();
+      alert('Save failed: ' + (err.message || res.status));
+      btn.disabled = false;
+      btn.textContent = 'Save Feedback';
     }
-  </script>
+  } catch(e) {
+    alert('Network error: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = 'Save Feedback';
+  }
+}
+
+// ─────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+window.onbeforeunload = () => dirty ? 'You have unsaved feedback.' : undefined;
+</script>
 </body>
 </html>
