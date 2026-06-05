@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-06-05T17:36:30.000Z",
+  "api_errors": {
+    "summary": {
+      "total_errors": 0,
+      "top_endpoints": []
+    },
+    "spikes": []
+  },
+  "cloudfront": {
+    "spikes": []
+  },
+  "whoami_failures": {
+    "total": 0,
+    "by_platform": {}
+  },
+  "issues": []
+}
