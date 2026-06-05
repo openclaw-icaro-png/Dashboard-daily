@@ -1,0 +1,442 @@
+{
+  "generated_at": "2026-06-05T03:03:00Z",
+  "reference_date": "2026-06-04",
+  "wow_date": "2026-05-28",
+  "summary": {
+    "plays_yesterday": 4337,
+    "plays_wow": 4023,
+    "plays_wow_pct": 7.8,
+    "watch_seconds_yesterday": 4373229,
+    "watch_seconds_wow": 3967936,
+    "watch_seconds_wow_pct": 10.2,
+    "zero_duration_count": 575,
+    "zero_duration_pct": 13.3,
+    "live_sessions": 1216,
+    "vod_sessions": 3122
+  },
+  "by_platform": [
+    {
+      "name": "native-iOS",
+      "plays_yesterday": 1546,
+      "plays_wow": 1433,
+      "wow_pct": 7.9,
+      "watch_seconds": 0,
+      "zero_count": 43,
+      "zero_pct": 2.8,
+      "status": "Healthy"
+    },
+    {
+      "name": "Chrome",
+      "plays_yesterday": 1108,
+      "plays_wow": 1044,
+      "wow_pct": 6.1,
+      "watch_seconds": 0,
+      "zero_count": 307,
+      "zero_pct": 27.7,
+      "status": "Critical"
+    },
+    {
+      "name": "native-android",
+      "plays_yesterday": 732,
+      "plays_wow": 579,
+      "wow_pct": 26.4,
+      "watch_seconds": 0,
+      "zero_count": 333,
+      "zero_pct": 45.5,
+      "status": "Critical"
+    },
+    {
+      "name": "tv-android",
+      "plays_yesterday": 476,
+      "plays_wow": 395,
+      "wow_pct": 20.5,
+      "watch_seconds": 0,
+      "zero_count": 116,
+      "zero_pct": 24.4,
+      "status": "Critical"
+    },
+    {
+      "name": "native-iPadOS",
+      "plays_yesterday": 302,
+      "plays_wow": 370,
+      "wow_pct": -18.4,
+      "watch_seconds": 0,
+      "zero_count": 8,
+      "zero_pct": 2.6,
+      "status": "Watch"
+    },
+    {
+      "name": "native-tvOS",
+      "plays_yesterday": 88,
+      "plays_wow": 47,
+      "wow_pct": 87.2,
+      "watch_seconds": 0,
+      "zero_count": 1,
+      "zero_pct": 1.1,
+      "status": "Healthy"
+    },
+    {
+      "name": "Safari",
+      "plays_yesterday": 60,
+      "plays_wow": 55,
+      "wow_pct": 9.1,
+      "watch_seconds": 0,
+      "zero_count": 31,
+      "zero_pct": 51.7,
+      "status": "Critical"
+    },
+    {
+      "name": "Unknown",
+      "plays_yesterday": 19,
+      "plays_wow": 31,
+      "wow_pct": -38.7,
+      "watch_seconds": 0,
+      "zero_count": 6,
+      "zero_pct": 31.6,
+      "status": "Critical"
+    },
+    {
+      "name": "Firefox",
+      "plays_yesterday": 7,
+      "plays_wow": 69,
+      "wow_pct": -89.9,
+      "watch_seconds": 0,
+      "zero_count": 3,
+      "zero_pct": 42.9,
+      "status": "Critical"
+    }
+  ],
+  "zero_by_platform": {
+    "native-iOS": {
+      "total_7d": 10153,
+      "zero_7d": 274,
+      "zero_pct_7d": 2.7,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 1041,
+        "videos": 9112
+      },
+      "zero_by_ctype": {
+        "live": 28,
+        "videos": 246
+      },
+      "top_countries": []
+    },
+    "Chrome": {
+      "total_7d": 7958,
+      "zero_7d": 1446,
+      "zero_pct_7d": 18.2,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 3050,
+        "videos": 4906
+      },
+      "zero_by_ctype": {
+        "live": 349,
+        "videos": 1096
+      },
+      "top_countries": []
+    },
+    "native-android": {
+      "total_7d": 5741,
+      "zero_7d": 1762,
+      "zero_pct_7d": 30.7,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 3607,
+        "videos": 2134
+      },
+      "zero_by_ctype": {
+        "live": 1300,
+        "videos": 462
+      },
+      "top_countries": []
+    },
+    "tv-android": {
+      "total_7d": 4690,
+      "zero_7d": 862,
+      "zero_pct_7d": 18.4,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 3886,
+        "videos": 804
+      },
+      "zero_by_ctype": {
+        "live": 840,
+        "videos": 22
+      },
+      "top_countries": []
+    },
+    "native-iPadOS": {
+      "total_7d": 2429,
+      "zero_7d": 35,
+      "zero_pct_7d": 1.4,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 56,
+        "videos": 2373
+      },
+      "zero_by_ctype": {
+        "live": 0,
+        "videos": 35
+      },
+      "top_countries": []
+    },
+    "native-tvOS": {
+      "total_7d": 499,
+      "zero_7d": 3,
+      "zero_pct_7d": 0.6,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 112,
+        "videos": 387
+      },
+      "zero_by_ctype": {
+        "live": 2,
+        "videos": 1
+      },
+      "top_countries": []
+    },
+    "Safari": {
+      "total_7d": 402,
+      "zero_7d": 207,
+      "zero_pct_7d": 51.5,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 116,
+        "videos": 286
+      },
+      "zero_by_ctype": {
+        "live": 80,
+        "videos": 127
+      },
+      "top_countries": []
+    },
+    "Unknown": {
+      "total_7d": 146,
+      "zero_7d": 47,
+      "zero_pct_7d": 32.2,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 36,
+        "videos": 110
+      },
+      "zero_by_ctype": {
+        "live": 32,
+        "videos": 15
+      },
+      "top_countries": []
+    },
+    "Firefox": {
+      "total_7d": 130,
+      "zero_7d": 59,
+      "zero_pct_7d": 45.4,
+      "user_mix": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "zero_by_user": {
+        "free": 0,
+        "premium": 0,
+        "trialing": 0,
+        "guest": 0
+      },
+      "content_mix": {
+        "live": 24,
+        "videos": 106
+      },
+      "zero_by_ctype": {
+        "live": 11,
+        "videos": 48
+      },
+      "top_countries": []
+    }
+  },
+  "trend_14d": [
+    {
+      "date": "2026-05-22",
+      "total": 1718,
+      "zero": 231,
+      "zero_pct": 13.4
+    },
+    {
+      "date": "2026-05-23",
+      "total": 3586,
+      "zero": 487,
+      "zero_pct": 13.6
+    },
+    {
+      "date": "2026-05-24",
+      "total": 3638,
+      "zero": 557,
+      "zero_pct": 15.3
+    },
+    {
+      "date": "2026-05-25",
+      "total": 3908,
+      "zero": 594,
+      "zero_pct": 15.2
+    },
+    {
+      "date": "2026-05-26",
+      "total": 3855,
+      "zero": 487,
+      "zero_pct": 12.6
+    },
+    {
+      "date": "2026-05-27",
+      "total": 3878,
+      "zero": 505,
+      "zero_pct": 13.0
+    },
+    {
+      "date": "2026-05-28",
+      "total": 4023,
+      "zero": 539,
+      "zero_pct": 13.4
+    },
+    {
+      "date": "2026-05-29",
+      "total": 3972,
+      "zero": 657,
+      "zero_pct": 16.5
+    },
+    {
+      "date": "2026-05-30",
+      "total": 3542,
+      "zero": 482,
+      "zero_pct": 13.6
+    },
+    {
+      "date": "2026-05-31",
+      "total": 5726,
+      "zero": 903,
+      "zero_pct": 15.8
+    },
+    {
+      "date": "2026-06-01",
+      "total": 5244,
+      "zero": 857,
+      "zero_pct": 16.3
+    },
+    {
+      "date": "2026-06-02",
+      "total": 4342,
+      "zero": 591,
+      "zero_pct": 13.6
+    },
+    {
+      "date": "2026-06-03",
+      "total": 4769,
+      "zero": 711,
+      "zero_pct": 14.9
+    },
+    {
+      "date": "2026-06-04",
+      "total": 4338,
+      "zero": 575,
+      "zero_pct": 13.3
+    }
+  ],
+  "live_missing_metadata": {
+    "count_7d": 871,
+    "by_platform": {
+      "native-android": 837,
+      "native-iOS": 24,
+      "Safari": 7,
+      "Chrome": 1,
+      "Unknown": 1,
+      "native-iPadOS": 1
+    }
+  }
+}
