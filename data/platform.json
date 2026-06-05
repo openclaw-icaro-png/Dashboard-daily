@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-06-05T17:26:45Z",
+  "ingestion": {
+    "status": "OK",
+    "total_docs_1h": 1281,
+    "avg_per_min": 21,
+    "gap_minutes": 0,
+    "fallback_pct": 0
+  },
+  "android": {
+    "app_version": "v2.8.0",
+    "crashes_current_month": [
+      {
+        "date": "2026-06-04",
+        "crashes": 131,
+        "anrs": 5
+      },
+      {
+        "date": "2026-06-03",
+        "crashes": 19,
+        "anrs": 14
+      },
+      {
+        "date": "2026-06-02",
+        "crashes": 46,
+        "anrs": 22
+      },
+      {
+        "date": "2026-06-01",
+        "crashes": 53,
+        "anrs": 11
+      }
+    ],
+    "crash_avg_30d": 62.25,
+    "crash_yesterday": 131,
+    "crash_spike": true
+  },
+  "reviews": [
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 1,
+      "text": "cuando la uso en tv se me travan los capitulos no me deja devorver los capitulos cuando intento me saca luego aveces no pone los caps pone error y si que carganado deberian solucionar todo eso porque uno esta pagando",
+      "replied": true
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-01",
+      "rating": 4,
+      "text": "",
+      "replied": false
+    }
+  ],
+  "issues": [
+    {
+      "id": "android-crash-spike",
+      "severity": "orange",
+      "text": "Android crash spike on 2026-06-04",
+      "meta": "131 crashes vs 30d avg 62.2 (threshold 74.7)"
+    }
+  ]
+}
