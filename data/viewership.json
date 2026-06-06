@@ -1,114 +1,114 @@
 {
-  "generated_at": "2026-06-05T03:03:00Z",
-  "reference_date": "2026-06-04",
-  "wow_date": "2026-05-28",
+  "generated_at": "2026-06-06T08:00:00Z",
+  "reference_date": "2026-06-05",
+  "wow_date": "2026-05-29",
   "summary": {
-    "plays_yesterday": 4337,
-    "plays_wow": 4023,
-    "plays_wow_pct": 7.8,
-    "watch_seconds_yesterday": 4373229,
-    "watch_seconds_wow": 3967936,
-    "watch_seconds_wow_pct": 10.2,
-    "zero_duration_count": 575,
-    "zero_duration_pct": 13.3,
-    "live_sessions": 1216,
-    "vod_sessions": 3122
+    "plays_yesterday": 3985,
+    "plays_wow": 3972,
+    "plays_wow_pct": 0.3,
+    "watch_seconds_yesterday": 4147521,
+    "watch_seconds_wow": 3557543,
+    "watch_seconds_wow_pct": 16.6,
+    "zero_duration_count": 568,
+    "zero_duration_pct": 14.3,
+    "live_sessions": 1181,
+    "vod_sessions": 2804
   },
   "by_platform": [
     {
       "name": "native-iOS",
-      "plays_yesterday": 1546,
-      "plays_wow": 1433,
-      "wow_pct": 7.9,
+      "plays_yesterday": 1378,
+      "plays_wow": 1231,
+      "wow_pct": 11.9,
       "watch_seconds": 0,
-      "zero_count": 43,
-      "zero_pct": 2.8,
+      "zero_count": 46,
+      "zero_pct": 3.3,
       "status": "Healthy"
     },
     {
       "name": "Chrome",
-      "plays_yesterday": 1108,
-      "plays_wow": 1044,
-      "wow_pct": 6.1,
+      "plays_yesterday": 963,
+      "plays_wow": 1361,
+      "wow_pct": -29.2,
       "watch_seconds": 0,
-      "zero_count": 307,
-      "zero_pct": 27.7,
+      "zero_count": 212,
+      "zero_pct": 22.0,
       "status": "Critical"
     },
     {
       "name": "native-android",
-      "plays_yesterday": 732,
-      "plays_wow": 579,
-      "wow_pct": 26.4,
+      "plays_yesterday": 728,
+      "plays_wow": 567,
+      "wow_pct": 28.4,
       "watch_seconds": 0,
-      "zero_count": 333,
-      "zero_pct": 45.5,
+      "zero_count": 322,
+      "zero_pct": 44.2,
       "status": "Critical"
     },
     {
       "name": "tv-android",
-      "plays_yesterday": 476,
-      "plays_wow": 395,
-      "wow_pct": 20.5,
+      "plays_yesterday": 486,
+      "plays_wow": 386,
+      "wow_pct": 25.9,
       "watch_seconds": 0,
-      "zero_count": 116,
-      "zero_pct": 24.4,
+      "zero_count": 123,
+      "zero_pct": 25.3,
       "status": "Critical"
     },
     {
       "name": "native-iPadOS",
-      "plays_yesterday": 302,
-      "plays_wow": 370,
-      "wow_pct": -18.4,
+      "plays_yesterday": 292,
+      "plays_wow": 293,
+      "wow_pct": -0.3,
       "watch_seconds": 0,
-      "zero_count": 8,
-      "zero_pct": 2.6,
-      "status": "Watch"
+      "zero_count": 4,
+      "zero_pct": 1.4,
+      "status": "Healthy"
     },
     {
       "name": "native-tvOS",
-      "plays_yesterday": 88,
-      "plays_wow": 47,
-      "wow_pct": 87.2,
+      "plays_yesterday": 67,
+      "plays_wow": 44,
+      "wow_pct": 52.3,
       "watch_seconds": 0,
       "zero_count": 1,
-      "zero_pct": 1.1,
+      "zero_pct": 1.5,
       "status": "Healthy"
     },
     {
       "name": "Safari",
-      "plays_yesterday": 60,
-      "plays_wow": 55,
-      "wow_pct": 9.1,
+      "plays_yesterday": 46,
+      "plays_wow": 57,
+      "wow_pct": -19.3,
       "watch_seconds": 0,
-      "zero_count": 31,
-      "zero_pct": 51.7,
+      "zero_count": 28,
+      "zero_pct": 60.9,
       "status": "Critical"
     },
     {
       "name": "Unknown",
-      "plays_yesterday": 19,
-      "plays_wow": 31,
-      "wow_pct": -38.7,
+      "plays_yesterday": 22,
+      "plays_wow": 13,
+      "wow_pct": 69.2,
       "watch_seconds": 0,
-      "zero_count": 6,
-      "zero_pct": 31.6,
+      "zero_count": 9,
+      "zero_pct": 40.9,
       "status": "Critical"
     },
     {
       "name": "Firefox",
-      "plays_yesterday": 7,
-      "plays_wow": 69,
-      "wow_pct": -89.9,
+      "plays_yesterday": 3,
+      "plays_wow": 20,
+      "wow_pct": -85.0,
       "watch_seconds": 0,
-      "zero_count": 3,
-      "zero_pct": 42.9,
+      "zero_count": 1,
+      "zero_pct": 33.3,
       "status": "Critical"
     }
   ],
   "zero_by_platform": {
     "native-iOS": {
-      "total_7d": 10153,
+      "total_7d": 10154,
       "zero_7d": 274,
       "zero_pct_7d": 2.7,
       "user_mix": {
@@ -124,8 +124,8 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 1041,
-        "videos": 9112
+        "live": 1065,
+        "videos": 9089
       },
       "zero_by_ctype": {
         "live": 28,
@@ -134,9 +134,9 @@
       "top_countries": []
     },
     "Chrome": {
-      "total_7d": 7958,
-      "zero_7d": 1446,
-      "zero_pct_7d": 18.2,
+      "total_7d": 7669,
+      "zero_7d": 1375,
+      "zero_pct_7d": 17.9,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -150,19 +150,19 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 3050,
-        "videos": 4906
+        "live": 2969,
+        "videos": 4699
       },
       "zero_by_ctype": {
-        "live": 349,
-        "videos": 1096
+        "live": 364,
+        "videos": 1011
       },
       "top_countries": []
     },
     "native-android": {
-      "total_7d": 5741,
-      "zero_7d": 1762,
-      "zero_pct_7d": 30.7,
+      "total_7d": 5874,
+      "zero_7d": 1835,
+      "zero_pct_7d": 31.2,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -176,19 +176,19 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 3607,
-        "videos": 2134
+        "live": 3675,
+        "videos": 2199
       },
       "zero_by_ctype": {
-        "live": 1300,
-        "videos": 462
+        "live": 1351,
+        "videos": 484
       },
       "top_countries": []
     },
     "tv-android": {
-      "total_7d": 4690,
-      "zero_7d": 862,
-      "zero_pct_7d": 18.4,
+      "total_7d": 4693,
+      "zero_7d": 874,
+      "zero_pct_7d": 18.6,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -202,18 +202,18 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 3886,
-        "videos": 804
+        "live": 3924,
+        "videos": 769
       },
       "zero_by_ctype": {
-        "live": 840,
-        "videos": 22
+        "live": 851,
+        "videos": 23
       },
       "top_countries": []
     },
     "native-iPadOS": {
-      "total_7d": 2429,
-      "zero_7d": 35,
+      "total_7d": 2427,
+      "zero_7d": 34,
       "zero_pct_7d": 1.4,
       "user_mix": {
         "free": 0,
@@ -228,17 +228,17 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 56,
+        "live": 54,
         "videos": 2373
       },
       "zero_by_ctype": {
         "live": 0,
-        "videos": 35
+        "videos": 34
       },
       "top_countries": []
     },
     "native-tvOS": {
-      "total_7d": 499,
+      "total_7d": 507,
       "zero_7d": 3,
       "zero_pct_7d": 0.6,
       "user_mix": {
@@ -254,8 +254,8 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 112,
-        "videos": 387
+        "live": 117,
+        "videos": 390
       },
       "zero_by_ctype": {
         "live": 2,
@@ -264,9 +264,9 @@
       "top_countries": []
     },
     "Safari": {
-      "total_7d": 402,
-      "zero_7d": 207,
-      "zero_pct_7d": 51.5,
+      "total_7d": 401,
+      "zero_7d": 216,
+      "zero_pct_7d": 53.9,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -280,19 +280,19 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 116,
-        "videos": 286
+        "live": 113,
+        "videos": 288
       },
       "zero_by_ctype": {
-        "live": 80,
-        "videos": 127
+        "live": 77,
+        "videos": 139
       },
       "top_countries": []
     },
     "Unknown": {
-      "total_7d": 146,
-      "zero_7d": 47,
-      "zero_pct_7d": 32.2,
+      "total_7d": 145,
+      "zero_7d": 44,
+      "zero_pct_7d": 30.3,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -306,19 +306,19 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 36,
-        "videos": 110
+        "live": 31,
+        "videos": 114
       },
       "zero_by_ctype": {
-        "live": 32,
-        "videos": 15
+        "live": 26,
+        "videos": 18
       },
       "top_countries": []
     },
     "Firefox": {
-      "total_7d": 130,
-      "zero_7d": 59,
-      "zero_pct_7d": 45.4,
+      "total_7d": 119,
+      "zero_7d": 55,
+      "zero_pct_7d": 46.2,
       "user_mix": {
         "free": 0,
         "premium": 0,
@@ -332,28 +332,22 @@
         "guest": 0
       },
       "content_mix": {
-        "live": 24,
-        "videos": 106
+        "live": 21,
+        "videos": 98
       },
       "zero_by_ctype": {
-        "live": 11,
-        "videos": 48
+        "live": 9,
+        "videos": 46
       },
       "top_countries": []
     }
   },
   "trend_14d": [
     {
-      "date": "2026-05-22",
-      "total": 1718,
-      "zero": 231,
-      "zero_pct": 13.4
-    },
-    {
       "date": "2026-05-23",
-      "total": 3586,
-      "zero": 487,
-      "zero_pct": 13.6
+      "total": 2390,
+      "zero": 314,
+      "zero_pct": 13.1
     },
     {
       "date": "2026-05-24",
@@ -411,31 +405,37 @@
     },
     {
       "date": "2026-06-02",
-      "total": 4342,
+      "total": 4341,
       "zero": 591,
       "zero_pct": 13.6
     },
     {
       "date": "2026-06-03",
-      "total": 4769,
+      "total": 4768,
       "zero": 711,
       "zero_pct": 14.9
     },
     {
       "date": "2026-06-04",
-      "total": 4338,
+      "total": 4334,
       "zero": 575,
       "zero_pct": 13.3
+    },
+    {
+      "date": "2026-06-05",
+      "total": 3985,
+      "zero": 568,
+      "zero_pct": 14.3
     }
   ],
   "live_missing_metadata": {
     "count_7d": 871,
     "by_platform": {
-      "native-android": 837,
-      "native-iOS": 24,
+      "native-android": 838,
+      "native-iOS": 22,
       "Safari": 7,
+      "Unknown": 2,
       "Chrome": 1,
-      "Unknown": 1,
       "native-iPadOS": 1
     }
   }
