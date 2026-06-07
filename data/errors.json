@@ -1,196 +1,48 @@
 {
-  "generated_at": "2026-06-06T11:00:00Z",
+  "generated_at": "2026-06-07T11:00:00Z",
   "api_errors": {
     "summary": {
-      "total_errors": 8535,
-      "top_endpoints": [
-        {
-          "endpoint": "/api/v3/ott/analytics",
-          "status": "404",
-          "errors": 1783,
-          "pct_of_total": 20.9
-        },
-        {
-          "endpoint": "/api/v3/ott/tv/check_code_status",
-          "status": "422",
-          "errors": 1019,
-          "pct_of_total": 11.9
-        },
-        {
-          "endpoint": "/api/v3/whoami",
-          "status": "401",
-          "errors": 923,
-          "pct_of_total": 10.8
-        },
-        {
-          "endpoint": "/api/v3/ott/histories",
-          "status": "401",
-          "errors": 404,
-          "pct_of_total": 4.7
-        },
-        {
-          "endpoint": "/api/v3/user/profiles",
-          "status": "401",
-          "errors": 375,
-          "pct_of_total": 4.4
-        }
-      ]
+      "total_errors": 0,
+      "top_endpoints": [],
+      "note": "No API errors on 2026-06-07 (today). CloudFront 4xx spike occurred on 2026-06-05."
     },
-    "spikes": [
-      {
-        "endpoint": "/api/v3/ott/histories",
-        "status_code": "400",
-        "error_count": 306,
-        "baseline": 93.6,
-        "pct_above_baseline": 226.8,
-        "top_user_agent": "Dalvik/2.1.0 (Android 9; JKM-LX3) + Chrome/138 Mobile [same device]",
-        "unique_clients": 2,
-        "pattern": "retry-storm"
-      },
-      {
-        "endpoint": "/api/v3/ott/subscription",
-        "status_code": "422",
-        "error_count": 66,
-        "baseline": 22.4,
-        "pct_above_baseline": 195.0,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/ott/validate_coupon",
-        "status_code": "422",
-        "error_count": 17,
-        "baseline": 6.6,
-        "pct_above_baseline": 156.6,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/site/config",
-        "status_code": "400",
-        "error_count": 23,
-        "baseline": 11.3,
-        "pct_above_baseline": 103.8,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/ott/analytics",
-        "status_code": "403",
-        "error_count": 125,
-        "baseline": 64.8,
-        "pct_above_baseline": 93.1,
-        "top_user_agent": "unknown",
-        "unique_clients": 4,
-        "pattern": "retry-storm"
-      },
-      {
-        "endpoint": "/api/v3/ott/site_categories",
-        "status_code": "400",
-        "error_count": 23,
-        "baseline": 13.2,
-        "pct_above_baseline": 74.7,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/ott/profiles/video_series/316/feed",
-        "status_code": "400",
-        "error_count": 15,
-        "baseline": 9.8,
-        "pct_above_baseline": 53.1,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/ott/profiles/video_series/317/feed",
-        "status_code": "400",
-        "error_count": 15,
-        "baseline": 9.8,
-        "pct_above_baseline": 53.1,
-        "top_user_agent": "unknown",
-        "unique_clients": null,
-        "pattern": "unknown"
-      },
-      {
-        "endpoint": "/api/v3/ott/follows",
-        "status_code": "401",
-        "error_count": 153,
-        "baseline": 100.5,
-        "pct_above_baseline": 52.2,
-        "top_user_agent": "unknown",
-        "unique_clients": 9,
-        "pattern": "unknown"
-      }
-    ]
+    "spikes": null
   },
   "cloudfront": {
     "spikes": [
       {
-        "endpoint": "all",
+        "endpoint": "/api/v3/ott/histories",
         "error_type": "4xx",
-        "date": "2026-06-05",
         "count": 333303,
-        "baseline": 29885,
-        "pct_above_baseline": 1015.3,
-        "top_client": "unknown - not drilled (yesterday event)"
-      },
-      {
-        "endpoint": "all",
-        "error_type": "5xx",
-        "date": "2026-06-03",
-        "count": 447,
-        "baseline": 42,
-        "pct_above_baseline": 960.1,
-        "top_client": "unknown - not drilled (3 days ago)"
+        "baseline": 30735,
+        "pct_above_baseline": 984.4,
+        "spike_date": "2026-06-05",
+        "top_client": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 Chrome/120.0.6099.270 Safari/537.36 WebAppManager",
+        "unique_clients": 35,
+        "endpoint_errors_on_spike_day": 315559,
+        "pattern": "retry-storm",
+        "detail": "315,559 401s on /api/v3/ott/histories from 35 unique LG WebOS clients (99.9% from single UA). Expired auth tokens not being refreshed on expiry."
       }
     ]
   },
   "whoami_failures": {
-    "total": 923,
-    "by_platform": {
-      "android_generic_app": 770,
-      "web_chrome_macos": 132,
-      "ios_rcn_total": 21,
-      "roku": 1,
-      "android_huawei": 1
-    }
+    "total": 0,
+    "by_platform": {}
   },
   "issues": [
     {
-      "id": "histories-400-retry-storm",
+      "id": "lg-webos-histories-retry-storm",
       "severity": "orange",
-      "text": "/api/v3/ott/histories 400 errors spiked +226.8% above 7d baseline",
-      "meta": "306 errors, only 2 unique clients, Huawei JKM-LX3 (Android 9) hammering endpoint, retry-storm pattern"
-    },
-    {
-      "id": "cloudfront-4xx-spike-jun5",
-      "severity": "orange",
-      "text": "CloudFront 4xx spike on 2026-06-05: 333,303 errors (~10x baseline)",
-      "meta": "333k 4xx vs 7d baseline ~29.9k, full-day spike yesterday, cause undetermined"
-    },
-    {
-      "id": "cloudfront-5xx-spike-jun3",
-      "severity": "orange",
-      "text": "CloudFront 5xx spike on 2026-06-03: 447 errors (~10x baseline)",
-      "meta": "447 5xx vs 7d baseline ~42, isolated event 3 days ago, possible brief origin outage"
-    },
-    {
-      "id": "subscription-422-spike",
-      "severity": "orange",
-      "text": "/api/v3/ott/subscription 422 errors spiked +195% above 7d baseline",
-      "meta": "66 errors today vs baseline 22.4, possible subscription validation issues"
-    },
-    {
-      "id": "whoami-android-app-401s",
-      "severity": "yellow",
-      "text": "/api/v3/whoami 401 failures: 83% from single Android app UA",
-      "meta": "923 total whoami 401s, 770 from MyApp/1.0 (Linux; Android 10), stale token loop on specific Android app build"
+      "text": "LG WebOS retry storm on /api/v3/ott/histories (Jun 5): 315K 401 errors from 35 clients",
+      "meta": "315,559 errors \u00b7 /api/v3/ott/histories \u00b7 35 unique LG WebOS SmartTV clients \u00b7 99.9% from single UA \u00b7 auth tokens not refreshed on expiry \u00b7 CF 4xx total 333,303 (+984% vs 7d baseline 30,735)"
     }
-  ]
+  ],
+  "_tool_status": {
+    "get_daily_api_error_summary": "ok",
+    "detect_error_spikes": "UNAVAILABLE - server INTERNAL_ERROR (Athena timeout, HTTP/2 stream closed)",
+    "get_cloudfront_error_spikes": "ok",
+    "get_whoami_failures": "ok",
+    "get_top_4xx_endpoints": "ok",
+    "get_endpoint_useragent_breakdown": "ok"
+  }
 }
