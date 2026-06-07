@@ -1,14 +1,58 @@
 {
-  "generated_at": "2026-06-06T10:00:00Z",
-  "ingestion": null,
-  "android": null,
-  "reviews": null,
+  "generated_at": "2026-06-07T10:01:10Z",
+  "ingestion": {
+    "status": "OK",
+    "total_docs_1h": 437,
+    "avg_per_min": 7,
+    "gap_minutes": 1,
+    "fallback_pct": 0
+  },
+  "android": {
+    "app_version": "v2.8.0",
+    "crashes_current_month": [
+      {"date": "2026-06-05", "crashes": 81, "anrs": 6},
+      {"date": "2026-06-04", "crashes": 131, "anrs": 5},
+      {"date": "2026-06-03", "crashes": 19, "anrs": 14},
+      {"date": "2026-06-02", "crashes": 46, "anrs": 22},
+      {"date": "2026-06-01", "crashes": 53, "anrs": 11}
+    ],
+    "crash_avg_30d": 66.0,
+    "crash_yesterday": 81,
+    "crash_spike": true
+  },
+  "reviews": [
+    {"date": "2026-06-04", "rating": 3, "text": "muchos anuncios pero buena calidad", "replied": false},
+    {"date": "2026-06-03", "rating": 2, "text": "", "replied": false},
+    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-03", "rating": 1, "text": "", "replied": false},
+    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-02", "rating": 1, "text": "cuando la uso en tv se me travan los capitulos no me deja devorver los capitulos cuando intento me saca luego aveces no pone los caps pone error y si que carganado deberian solucionar todo eso porque uno esta pagando", "replied": true},
+    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
+    {"date": "2026-06-01", "rating": 4, "text": "", "replied": false}
+  ],
   "issues": [
     {
-      "id": "mcp-server-unavailable",
-      "severity": "red",
-      "text": "MCP server unavailable (HTTP 503)",
-      "meta": "All 3 platform tools failed: get_ingestion_health, get_googleplay_crashes, get_googleplay_reviews. MCP at dev-console.vosdmg.com returning 503 Service Temporarily Unavailable."
+      "id": "android-crash-spike",
+      "severity": "orange",
+      "text": "Android crash spike detected (Jun 5)",
+      "meta": "81 crashes on 2026-06-05 vs 30d avg 66.0 (threshold 79.2)"
+    },
+    {
+      "id": "android-crash-jun4",
+      "severity": "orange",
+      "text": "Android crash spike on Jun 4",
+      "meta": "131 crashes on 2026-06-04 vs 30d avg 66.0 (threshold 79.2)"
+    },
+    {
+      "id": "play-low-rating-unreplied",
+      "severity": "yellow",
+      "text": "2 unanswered 1\u2605/2\u2605 Play Store reviews",
+      "meta": "Dates: 2026-06-03, 2026-06-03 | Ratings: 2, 1"
     }
   ]
 }
