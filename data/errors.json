@@ -4,7 +4,7 @@
     "summary": {
       "total_errors": 0,
       "top_endpoints": [],
-      "note": "No API errors on 2026-06-07 (today). CloudFront 4xx spike occurred on 2026-06-05."
+      "note": "No API errors on 2026-06-07 (today). CF 4xx spike occurred on 2026-06-05."
     },
     "spikes": null
   },
@@ -21,7 +21,7 @@
         "unique_clients": 35,
         "endpoint_errors_on_spike_day": 315559,
         "pattern": "retry-storm",
-        "detail": "315,559 401s on /api/v3/ott/histories from 35 unique LG WebOS clients (99.9% from single UA). Expired auth tokens not being refreshed on expiry."
+        "detail": "315,559 401s on /api/v3/ott/histories from 35 unique LG WebOS clients (99.9% from single UA). Expired auth tokens not being refreshed."
       }
     ]
   },
@@ -34,7 +34,7 @@
       "id": "lg-webos-histories-retry-storm",
       "severity": "orange",
       "text": "LG WebOS retry storm on /api/v3/ott/histories (Jun 5): 315K 401 errors from 35 clients",
-      "meta": "315,559 errors \u00b7 /api/v3/ott/histories \u00b7 35 unique LG WebOS SmartTV clients \u00b7 99.9% from single UA \u00b7 auth tokens not refreshed on expiry \u00b7 CF 4xx total 333,303 (+984% vs 7d baseline 30,735)"
+      "meta": "315,559 errors | /api/v3/ott/histories | 35 unique LG WebOS SmartTV clients | 99.9% from single UA | auth tokens not refreshed on expiry | CF 4xx total 333,303 (+984% vs 7d baseline 30,735)"
     }
   ],
   "_tool_status": {
