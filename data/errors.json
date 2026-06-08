@@ -1,27 +1,34 @@
 {
-  "generated_at": "2026-06-07T11:00:00Z",
+  "generated_at": "2026-06-08T11:00:00Z",
   "api_errors": {
-    "summary": {
-      "total_errors": 0,
-      "top_endpoints": [],
-      "note": "No API errors on 2026-06-07 (today). CF 4xx spike occurred on 2026-06-05."
-    },
-    "spikes": null
+    "summary": null,
+    "spikes": []
   },
   "cloudfront": {
     "spikes": [
       {
         "endpoint": "/api/v3/ott/histories",
         "error_type": "4xx",
+        "date": "2026-06-05",
         "count": 333303,
-        "baseline": 30735,
-        "pct_above_baseline": 984.4,
-        "spike_date": "2026-06-05",
-        "top_client": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 Chrome/120.0.6099.270 Safari/537.36 WebAppManager",
+        "top_endpoint_count": 315559,
+        "top_endpoint_pct_of_day": 94.7,
+        "baseline_avg": 26048,
+        "spike_ratio": 12.8,
+        "top_user_agent": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 Chrome/120 WebAppManager (LG Smart TV)",
         "unique_clients": 35,
-        "endpoint_errors_on_spike_day": 315559,
-        "pattern": "retry-storm",
-        "detail": "315,559 401s on /api/v3/ott/histories from 35 unique LG WebOS clients (99.9% from single UA). Expired auth tokens not being refreshed."
+        "pattern": "retry-storm"
+      },
+      {
+        "endpoint": "multiple (bot scan)",
+        "error_type": "5xx",
+        "date": "2026-06-03",
+        "count": 447,
+        "baseline_avg": 63,
+        "spike_ratio": 7.1,
+        "top_user_agent": "various (probe bots, 1 client each)",
+        "unique_clients": "many-unique",
+        "pattern": "bot-probe-scan"
       }
     ]
   },
@@ -31,18 +38,16 @@
   },
   "issues": [
     {
-      "id": "lg-webos-histories-retry-storm",
+      "id": "lg-histories-retry-storm",
       "severity": "orange",
-      "text": "LG WebOS retry storm on /api/v3/ott/histories (Jun 5): 315K 401 errors from 35 clients",
-      "meta": "315,559 errors | /api/v3/ott/histories | 35 unique LG WebOS SmartTV clients | 99.9% from single UA | auth tokens not refreshed on expiry | CF 4xx total 333,303 (+984% vs 7d baseline 30,735)"
+      "text": "LG Smart TV retry storm on /api/v3/ott/histories - Jun 5 spike (12.8x baseline)",
+      "meta": "315,559 x 401 errors from 35 unique LG Smart TV clients (WebOS Chrome/120). 94.7% of all Jun 5 CloudFront 4xx. Expired/invalid auth tokens causing aggressive retry loop. Resolved by Jun 6."
+    },
+    {
+      "id": "cloudfront-5xx-bot-probe-jun3",
+      "severity": "yellow",
+      "text": "Elevated CloudFront 5xx on Jun 3 - bot/scanner probes (7x baseline, 447 errors)",
+      "meta": "502s across ~390 distinct scanner endpoints (/.env, /config.js, /users.env etc.). 1 unique client per endpoint. Standard opportunistic scan, not a service incident. Top legitimate 5xx: /api/v4/ott/personalized_recommendations 500 (16 errors, 9 clients)"
     }
-  ],
-  "_tool_status": {
-    "get_daily_api_error_summary": "ok",
-    "detect_error_spikes": "UNAVAILABLE - server INTERNAL_ERROR (Athena timeout, HTTP/2 stream closed)",
-    "get_cloudfront_error_spikes": "ok",
-    "get_whoami_failures": "ok",
-    "get_top_4xx_endpoints": "ok",
-    "get_endpoint_useragent_breakdown": "ok"
-  }
+  ]
 }
