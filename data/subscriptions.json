@@ -1,13 +1,21 @@
 {
-  "generated_at": "2026-06-07T09:01:10.000Z",
+  "generated_at": "2026-06-08T09:01:10.000Z",
   "providers": [
     {
       "name": "Stripe",
       "status": "DEGRADED",
-      "active": 3369,
-      "past_due": 382,
-      "trialing": 216,
-      "cancelling": 116
+      "active": 3385,
+      "past_due": 381,
+      "trialing": 187,
+      "cancelling": 113
+    },
+    {
+      "name": "Roku",
+      "status": "OK",
+      "active": 71,
+      "past_due": 1,
+      "trialing": 20,
+      "cancelling": 6
     },
     {
       "name": "Apple",
@@ -16,14 +24,6 @@
       "past_due": 0,
       "trialing": 1,
       "cancelling": 0
-    },
-    {
-      "name": "Roku",
-      "status": "OK",
-      "active": 68,
-      "past_due": 2,
-      "trialing": 18,
-      "cancelling": 6
     },
     {
       "name": "Xfinity",
@@ -38,44 +38,44 @@
     {
       "name": "Stripe",
       "status": "OK",
-      "last_event": "08:58 UTC",
-      "minutes_since": 3
+      "last_event": "08:55 UTC",
+      "minutes_since": 5
     },
     {
       "name": "Apple",
       "status": "STALLED",
-      "last_event": "11:07 UTC (Jun 6)",
-      "minutes_since": 1314
+      "last_event": "Jun 06 11:07 UTC",
+      "minutes_since": 2754
     },
     {
       "name": "Roku",
       "status": "OK",
-      "last_event": "08:40 UTC",
-      "minutes_since": 21
+      "last_event": "08:46 UTC",
+      "minutes_since": 15
     }
   ],
   "renewals": {
     "providers": [
       {
         "name": "Stripe",
-        "renewals": 700,
-        "failures": 189,
-        "grace": 163,
-        "failure_rate_pct": 21.26
+        "renewals": 726,
+        "failures": 195,
+        "grace": 170,
+        "failure_rate_pct": 21.17
       },
       {
         "name": "Roku",
-        "renewals": 21,
-        "failures": 2,
+        "renewals": 22,
+        "failures": 1,
         "grace": 3,
-        "failure_rate_pct": 8.70
+        "failure_rate_pct": 4.35
       },
       {
         "name": "Apple",
         "renewals": 2,
         "failures": 0,
         "grace": 0,
-        "failure_rate_pct": 0.00
+        "failure_rate_pct": 0.0
       },
       {
         "name": "Xfinity",
@@ -86,49 +86,43 @@
       }
     ],
     "daily_trend": [
-      {"date": "May 31", "renewals": 47, "failures": 6},
-      {"date": "Jun 1",  "renewals": 105, "failures": 20},
-      {"date": "Jun 2",  "renewals": 104, "failures": 23},
-      {"date": "Jun 3",  "renewals": 108, "failures": 24},
-      {"date": "Jun 4",  "renewals": 116, "failures": 35},
-      {"date": "Jun 5",  "renewals": 100, "failures": 37},
-      {"date": "Jun 6",  "renewals": 103, "failures": 34},
-      {"date": "Jun 7",  "renewals": 40, "failures": 12}
+      {"date": "Jun 01", "renewals": 64, "failures": 15},
+      {"date": "Jun 02", "renewals": 104, "failures": 23},
+      {"date": "Jun 03", "renewals": 107, "failures": 22},
+      {"date": "Jun 04", "renewals": 116, "failures": 30},
+      {"date": "Jun 05", "renewals": 99, "failures": 31},
+      {"date": "Jun 06", "renewals": 102, "failures": 32},
+      {"date": "Jun 07", "renewals": 98, "failures": 30},
+      {"date": "Jun 08", "renewals": 60, "failures": 13}
     ]
   },
   "entitlements": {
     "paid_not_activated": 0,
-    "zombie_access": 47,
+    "zombie_access": 46,
     "zombie_by_provider": [
       {"provider": "Stripe", "count": 44, "oldest": "Oct 2024"},
-      {"provider": "Apple",  "count": 1,  "oldest": "Dec 2025"},
-      {"provider": "Roku",   "count": 2,  "oldest": "Jun 2026"}
+      {"provider": "Apple", "count": 1, "oldest": "Dec 2025"},
+      {"provider": "Roku", "count": 1, "oldest": "Jun 2026"}
     ]
   },
   "issues": [
     {
       "id": "stripe-degraded",
       "severity": "orange",
-      "text": "Stripe payment processing DEGRADED",
-      "meta": "62.7% payment event failure rate in last 24h; 28 failures vs 92 renewals; 382 past_due subscribers"
+      "text": "Stripe DEGRADED — 57.8% payment event failure rate (24h window)",
+      "meta": "31 failures in last 24h; 381 past_due subscribers; 195 renewal failures in 7d (21.17% rate)"
     },
     {
       "id": "roku-unmatched-subscriptions",
       "severity": "orange",
       "text": "Roku unmatched_subscription events detected",
-      "meta": "17 unmatched_subscription events in last 7 days; last seen 2026-06-07T01:50 UTC — Roku customers may not be provisioned correctly"
+      "meta": "18 unmatched_subscription events in 7d; 3 in last 6h (latest: 2026-06-08T04:51:50Z)"
     },
     {
-      "id": "zombie-access-high",
+      "id": "zombie-access-elevated",
       "severity": "red",
-      "text": "47 zombie accounts with active access after expiry",
-      "meta": "Stripe: 44 (oldest Oct 2024), Roku: 2 (expired Jun 6), Apple: 1 (Dec 2025) — these users have free access to paid content"
-    },
-    {
-      "id": "stripe-failure-rate-trend",
-      "severity": "yellow",
-      "text": "Stripe renewal failure rate trending up week-over-week",
-      "meta": "21.26% failure rate (7-day); daily failures rose from 6 (May 31) → 37 (Jun 5); 163 subscribers in grace period"
+      "text": "46 zombie access accounts (is_active=1, end_date expired)",
+      "meta": "Stripe: 44 (oldest Oct 2024), Apple: 1, Roku: 1; 30 are past_due, 9 show active status"
     }
   ]
 }
