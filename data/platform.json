@@ -101,7 +101,7 @@
     {
       "date": "2026-06-04",
       "rating": 3,
-      "text": "muchos anuncios pero buena calidad 👌",
+      "text": "muchos anuncios pero buena calidad",
       "replied": false
     },
     {
@@ -182,31 +182,31 @@
       "id": "android-crash-spike",
       "severity": "orange",
       "text": "Android crash spike detected",
-      "meta": "Jun-08: 106 crashes vs 30d avg 73.5 (threshold 88.2) — +44% above average"
+      "meta": "Jun-08: 106 crashes vs 30d avg 73.5 (threshold 88.2) - +44% above average"
     },
     {
       "id": "low-rating-unreplied-jun05",
       "severity": "yellow",
-      "text": "2★ Play Store review unreplied (Jun 5)",
-      "meta": "Device: a21s (es) — no text, no developer reply"
+      "text": "2-star Play Store review unreplied (Jun 5)",
+      "meta": "Device: a21s (es) - no text, no developer reply"
     },
     {
       "id": "low-rating-unreplied-jun04",
       "severity": "yellow",
-      "text": "1★ Play Store review unreplied (Jun 4)",
-      "meta": "Device: a02q (es) — no text, no developer reply"
+      "text": "1-star Play Store review unreplied (Jun 4)",
+      "meta": "Device: a02q (es) - no text, no developer reply"
     },
     {
       "id": "low-rating-unreplied-jun03-2star",
       "severity": "yellow",
-      "text": "2★ Play Store review unreplied (Jun 3)",
-      "meta": "Device: HNELIX (es) — no text, no developer reply"
+      "text": "2-star Play Store review unreplied (Jun 3)",
+      "meta": "Device: HNELIX (es) - no text, no developer reply"
     },
     {
       "id": "low-rating-unreplied-jun03-1star",
       "severity": "yellow",
-      "text": "1★ Play Store review unreplied (Jun 3)",
-      "meta": "Device: dupont (es) — no text, no developer reply"
+      "text": "1-star Play Store review unreplied (Jun 3)",
+      "meta": "Device: dupont (es) - no text, no developer reply"
     }
   ]
 }
