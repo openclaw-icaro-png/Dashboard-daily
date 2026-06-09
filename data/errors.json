@@ -1,36 +1,39 @@
 {
-  "generated_at": "2026-06-08T11:00:00Z",
+  "generated_at": "2026-06-09T11:04:00Z",
   "api_errors": {
-    "summary": null,
+    "summary": {
+      "total_errors": 0,
+      "top_endpoints": []
+    },
     "spikes": []
   },
   "cloudfront": {
     "spikes": [
       {
-        "endpoint": "/api/v3/ott/histories",
+        "endpoint": "all",
         "error_type": "4xx",
-        "date": "2026-06-05",
         "count": 333303,
-        "top_endpoint_count": 315559,
-        "top_endpoint_pct_of_day": 94.7,
-        "baseline_avg": 26048,
-        "spike_ratio": 12.8,
-        "top_user_agent": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 Chrome/120 WebAppManager (LG Smart TV)",
-        "unique_clients": 35,
-        "pattern": "retry-storm"
+        "baseline": 29597,
+        "pct_above_baseline": 1025.5,
+        "note": "2026-06-05 spike — 4xx volume was 10x daily average (Jun 2–4, Jun 6 avg ~29.6k)"
       },
       {
-        "endpoint": "multiple (bot scan)",
+        "endpoint": "all",
         "error_type": "5xx",
-        "date": "2026-06-03",
         "count": 447,
-        "baseline_avg": 63,
-        "spike_ratio": 7.1,
-        "top_user_agent": "various (probe bots, 1 client each)",
-        "unique_clients": "many-unique",
-        "pattern": "bot-probe-scan"
+        "baseline": 37,
+        "pct_above_baseline": 1108.1,
+        "note": "2026-06-03 spike — 5xx volume was 12x daily average (Jun 2, 4–6 avg ~37)"
       }
-    ]
+    ],
+    "7d_summary": {
+      "2026-06-02": { "ok": 2571716, "4xx": 35048, "5xx": 89 },
+      "2026-06-03": { "ok": 2715331, "4xx": 44290, "5xx": 447 },
+      "2026-06-04": { "ok": 2699385, "4xx": 26048, "5xx": 27 },
+      "2026-06-05": { "ok": 2496719, "4xx": 333303, "5xx": 21 },
+      "2026-06-06": { "ok": 1001706, "4xx": 13161, "5xx": 10 },
+      "2026-06-09": { "ok": null, "4xx": null, "5xx": null }
+    }
   },
   "whoami_failures": {
     "total": 0,
@@ -38,16 +41,22 @@
   },
   "issues": [
     {
-      "id": "lg-histories-retry-storm",
+      "id": "cloudfront-4xx-spike-2026-06-05",
       "severity": "orange",
-      "text": "LG Smart TV retry storm on /api/v3/ott/histories - Jun 5 spike (12.8x baseline)",
-      "meta": "315,559 x 401 errors from 35 unique LG Smart TV clients (WebOS Chrome/120). 94.7% of all Jun 5 CloudFront 4xx. Expired/invalid auth tokens causing aggressive retry loop. Resolved by Jun 6."
+      "text": "CloudFront 4xx spike on Jun 5: 333,303 errors (~10x baseline)",
+      "meta": "Historical · 2026-06-05 · baseline avg ~29.6k/day · 4xx error class · no endpoint breakdown available from this tool"
     },
     {
-      "id": "cloudfront-5xx-bot-probe-jun3",
+      "id": "cloudfront-5xx-spike-2026-06-03",
+      "severity": "orange",
+      "text": "CloudFront 5xx spike on Jun 3: 447 errors (~12x baseline)",
+      "meta": "Historical · 2026-06-03 · baseline avg ~37/day · 5xx error class · no endpoint breakdown available from this tool"
+    },
+    {
+      "id": "cloudfront-traffic-drop-2026-06-06",
       "severity": "yellow",
-      "text": "Elevated CloudFront 5xx on Jun 3 - bot/scanner probes (7x baseline, 447 errors)",
-      "meta": "502s across ~390 distinct scanner endpoints (/.env, /config.js, /users.env etc.). 1 unique client per endpoint. Standard opportunistic scan, not a service incident. Top legitimate 5xx: /api/v4/ott/personalized_recommendations 500 (16 errors, 9 clients)"
+      "text": "CloudFront total traffic dropped sharply on Jun 6 (1M ok vs ~2.5M avg)",
+      "meta": "Historical · 2026-06-06 · ok requests dropped ~60% vs prior days · possible reduced audience or routing change"
     }
   ]
 }
