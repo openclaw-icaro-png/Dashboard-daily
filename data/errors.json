@@ -1,39 +1,20 @@
 {
-  "generated_at": "2026-06-09T11:04:00Z",
+  "generated_at": "2026-06-10T11:05:30.000Z",
   "api_errors": {
-    "summary": {
-      "total_errors": 0,
-      "top_endpoints": []
-    },
+    "summary": null,
     "spikes": []
   },
   "cloudfront": {
     "spikes": [
       {
-        "endpoint": "all",
+        "endpoint": "(all endpoints)",
         "error_type": "4xx",
         "count": 333303,
-        "baseline": 29597,
-        "pct_above_baseline": 1025.5,
-        "note": "2026-06-05 spike — 4xx volume was 10x daily average (Jun 2–4, Jun 6 avg ~29.6k)"
-      },
-      {
-        "endpoint": "all",
-        "error_type": "5xx",
-        "count": 447,
-        "baseline": 37,
-        "pct_above_baseline": 1108.1,
-        "note": "2026-06-03 spike — 5xx volume was 12x daily average (Jun 2, 4–6 avg ~37)"
+        "baseline": 35169,
+        "top_client": "unknown",
+        "note": "Historical spike on 2026-06-05; resolved by 2026-06-06 (13,161 4xx). No spike detected today."
       }
-    ],
-    "7d_summary": {
-      "2026-06-02": { "ok": 2571716, "4xx": 35048, "5xx": 89 },
-      "2026-06-03": { "ok": 2715331, "4xx": 44290, "5xx": 447 },
-      "2026-06-04": { "ok": 2699385, "4xx": 26048, "5xx": 27 },
-      "2026-06-05": { "ok": 2496719, "4xx": 333303, "5xx": 21 },
-      "2026-06-06": { "ok": 1001706, "4xx": 13161, "5xx": 10 },
-      "2026-06-09": { "ok": null, "4xx": null, "5xx": null }
-    }
+    ]
   },
   "whoami_failures": {
     "total": 0,
@@ -41,22 +22,16 @@
   },
   "issues": [
     {
-      "id": "cloudfront-4xx-spike-2026-06-05",
+      "id": "cloudfront-4xx-spike-jun05",
       "severity": "orange",
-      "text": "CloudFront 4xx spike on Jun 5: 333,303 errors (~10x baseline)",
-      "meta": "Historical · 2026-06-05 · baseline avg ~29.6k/day · 4xx error class · no endpoint breakdown available from this tool"
+      "text": "CloudFront 4xx spike on 2026-06-05: 333,303 errors (~9.5x the 7d avg baseline of ~35K)",
+      "meta": "All endpoints · 2026-06-05 only · resolved 2026-06-06 · baseline avg from Jun 03-04 ~35K 4xx/day"
     },
     {
-      "id": "cloudfront-5xx-spike-2026-06-03",
-      "severity": "orange",
-      "text": "CloudFront 5xx spike on Jun 3: 447 errors (~12x baseline)",
-      "meta": "Historical · 2026-06-03 · baseline avg ~37/day · 5xx error class · no endpoint breakdown available from this tool"
-    },
-    {
-      "id": "cloudfront-traffic-drop-2026-06-06",
+      "id": "api-error-summary-unavailable",
       "severity": "yellow",
-      "text": "CloudFront total traffic dropped sharply on Jun 6 (1M ok vs ~2.5M avg)",
-      "meta": "Historical · 2026-06-06 · ok requests dropped ~60% vs prior days · possible reduced audience or routing change"
+      "text": "Athena query get_daily_api_error_summary still RUNNING at report time",
+      "meta": "Tool returned RUNNING after 2 attempts (45s wait between) · api_errors.summary set to null"
     }
   ]
 }
