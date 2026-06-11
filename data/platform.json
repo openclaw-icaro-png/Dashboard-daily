@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-10T10:00:00Z",
+  "generated_at": "2026-06-11T10:01:02Z",
   "ingestion": {
     "status": "OK",
-    "total_docs_1h": 382,
+    "total_docs_1h": 367,
     "avg_per_min": 6,
-    "gap_minutes": 1,
+    "gap_minutes": 0,
     "fallback_pct": 0
   },
   "android": {
@@ -62,6 +62,12 @@
   },
   "reviews": [
     {
+      "date": "2026-06-07",
+      "rating": 1,
+      "text": "",
+      "replied": false
+    },
+    {
       "date": "2026-06-05",
       "rating": 2,
       "text": "",
@@ -84,20 +90,14 @@
       "rating": 1,
       "text": "",
       "replied": false
-    },
-    {
-      "date": "2026-06-02",
-      "rating": 1,
-      "text": "cuando la uso en tv se me travan los capitulos no me deja devorver los capitulos cuando intento me saca luego aveces no pone los caps pone error y si que carganado deberian solucionar todo eso porque uno esta pagando",
-      "replied": true
     }
   ],
   "issues": [
     {
-      "id": "low-star-reviews-unreplied",
+      "id": "play-low-star-unreplied",
       "severity": "yellow",
-      "text": "4 unreplied 1★/2★ Play Store reviews",
-      "meta": "2× 1★ and 2× 2★ reviews this month without developer reply"
+      "text": "5 unanswered 1\u2605/2\u2605 Play Store reviews this month",
+      "meta": "Dates: 2026-06-03, 2026-06-04, 2026-06-05, 2026-06-07"
     }
   ]
 }
