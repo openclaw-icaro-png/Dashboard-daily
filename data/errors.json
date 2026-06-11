@@ -1,18 +1,25 @@
 {
-  "generated_at": "2026-06-10T11:05:30.000Z",
+  "generated_at": "2026-06-11T11:00:00Z",
   "api_errors": {
-    "summary": null,
+    "summary": {
+      "total_errors": 0,
+      "top_endpoints": []
+    },
     "spikes": []
   },
   "cloudfront": {
     "spikes": [
       {
-        "endpoint": "(all endpoints)",
+        "endpoint": "/api/v3/ott/histories",
         "error_type": "4xx",
         "count": 333303,
-        "baseline": 35169,
-        "top_client": "unknown",
-        "note": "Historical spike on 2026-06-05; resolved by 2026-06-06 (13,161 4xx). No spike detected today."
+        "baseline": 19605,
+        "date": "2026-06-05",
+        "top_client": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.270 Safari/537.36 WebAppManager",
+        "unique_clients": 35,
+        "top_client_errors": 315241,
+        "top_client_pct": 94.7,
+        "pattern": "retry-storm"
       }
     ]
   },
@@ -24,14 +31,8 @@
     {
       "id": "cloudfront-4xx-spike-jun05",
       "severity": "orange",
-      "text": "CloudFront 4xx spike on 2026-06-05: 333,303 errors (~9.5x the 7d avg baseline of ~35K)",
-      "meta": "All endpoints · 2026-06-05 only · resolved 2026-06-06 · baseline avg from Jun 03-04 ~35K 4xx/day"
-    },
-    {
-      "id": "api-error-summary-unavailable",
-      "severity": "yellow",
-      "text": "Athena query get_daily_api_error_summary still RUNNING at report time",
-      "meta": "Tool returned RUNNING after 2 attempts (45s wait between) · api_errors.summary set to null"
+      "text": "CloudFront 4xx spike on 2026-06-05: 333,303 errors (~17x above baseline of ~19,605)",
+      "meta": "Top endpoint: /api/v3/ott/histories · 315,241 errors (401) from LG WebOS/Chrome120 · 35 unique clients → retry storm · Resolved by Jun 6 (13,161 4xx)"
     }
   ]
 }
