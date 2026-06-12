@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T11:00:00Z",
+  "generated_at": "2026-06-12T11:05:00.000Z",
   "api_errors": {
     "summary": {
       "total_errors": 0,
@@ -8,31 +8,20 @@
     "spikes": []
   },
   "cloudfront": {
-    "spikes": [
-      {
-        "endpoint": "/api/v3/ott/histories",
-        "error_type": "4xx",
-        "count": 333303,
-        "baseline": 19605,
-        "date": "2026-06-05",
-        "top_client": "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.270 Safari/537.36 WebAppManager",
-        "unique_clients": 35,
-        "top_client_errors": 315241,
-        "top_client_pct": 94.7,
-        "pattern": "retry-storm"
-      }
+    "spikes": [],
+    "note": "7-day window (2026-06-05 to 2026-06-12): Jun 12 data not yet aggregated (early UTC). Historical: 2026-06-05 had 333,303 4xx (vs 13,161 on Jun 6 — 25x spike on Jun 5, no current-day anomaly). No CloudFront spikes on Jun 12.",
+    "raw_window": [
+      {"date": "2026-06-06", "error_class": "ok", "count": 1001706},
+      {"date": "2026-06-06", "error_class": "5xx", "count": 10},
+      {"date": "2026-06-06", "error_class": "4xx", "count": 13161},
+      {"date": "2026-06-05", "error_class": "5xx", "count": 21},
+      {"date": "2026-06-05", "error_class": "4xx", "count": 333303},
+      {"date": "2026-06-05", "error_class": "ok", "count": 2496719}
     ]
   },
   "whoami_failures": {
     "total": 0,
     "by_platform": {}
   },
-  "issues": [
-    {
-      "id": "cloudfront-4xx-spike-jun05",
-      "severity": "orange",
-      "text": "CloudFront 4xx spike on 2026-06-05: 333,303 errors (~17x above baseline of ~19,605)",
-      "meta": "Top endpoint: /api/v3/ott/histories · 315,241 errors (401) from LG WebOS/Chrome120 · 35 unique clients → retry storm · Resolved by Jun 6 (13,161 4xx)"
-    }
-  ]
+  "issues": []
 }
