@@ -1,75 +1,75 @@
 {
-  "generated_at": "2026-06-12T08:00:00Z",
-  "reference_date": "2026-06-11",
-  "wow_date": "2026-06-04",
+  "generated_at": "2026-06-13T08:00:00.000Z",
+  "reference_date": "2026-06-12",
+  "wow_date": "2026-06-05",
   "summary": {
-    "plays_yesterday": 5768,
-    "plays_wow": 4333,
-    "plays_wow_pct": 33.1,
-    "watch_seconds_yesterday": 4390098,
-    "watch_seconds_wow": 4363566,
-    "watch_seconds_wow_pct": 0.6,
-    "zero_duration_count": 1150,
-    "zero_duration_pct": 19.9,
-    "live_sessions": 2682,
-    "vod_sessions": 3086
+    "plays_yesterday": 4498,
+    "plays_wow": 3972,
+    "plays_wow_pct": 13.24,
+    "watch_seconds_yesterday": 4275496,
+    "watch_seconds_wow": 4126120,
+    "watch_seconds_wow_pct": 3.62,
+    "zero_duration_count": 790,
+    "zero_duration_pct": 17.56,
+    "live_sessions": 1598,
+    "vod_sessions": 2900
   },
   "by_platform": [
     {
       "name": "native-iOS",
-      "plays_yesterday": 1617,
-      "plays_wow": 1543,
-      "wow_pct": 4.8,
+      "plays_yesterday": 1447,
+      "plays_wow": 1371,
+      "wow_pct": 5.54,
       "watch_seconds": 0,
-      "zero_count": 62,
-      "zero_pct": 3.8,
+      "zero_count": 64,
+      "zero_pct": 4.42,
       "status": "Healthy"
     },
     {
-      "name": "Chrome",
-      "plays_yesterday": 1461,
-      "plays_wow": 1108,
-      "wow_pct": 31.9,
+      "name": "native-android",
+      "plays_yesterday": 1036,
+      "plays_wow": 728,
+      "wow_pct": 42.31,
       "watch_seconds": 0,
-      "zero_count": 301,
-      "zero_pct": 20.6,
+      "zero_count": 523,
+      "zero_pct": 50.48,
       "status": "Critical"
     },
     {
-      "name": "native-android",
-      "plays_yesterday": 1335,
-      "plays_wow": 732,
-      "wow_pct": 82.4,
+      "name": "Chrome",
+      "plays_yesterday": 978,
+      "plays_wow": 962,
+      "wow_pct": 1.66,
       "watch_seconds": 0,
-      "zero_count": 698,
-      "zero_pct": 52.3,
+      "zero_count": 255,
+      "zero_pct": 26.07,
       "status": "Critical"
     },
     {
       "name": "tv-android",
-      "plays_yesterday": 825,
-      "plays_wow": 476,
-      "wow_pct": 73.3,
+      "plays_yesterday": 589,
+      "plays_wow": 486,
+      "wow_pct": 21.19,
       "watch_seconds": 0,
-      "zero_count": 253,
-      "zero_pct": 30.7,
+      "zero_count": 160,
+      "zero_pct": 27.17,
       "status": "Critical"
     },
     {
       "name": "native-iPadOS",
-      "plays_yesterday": 331,
-      "plays_wow": 301,
-      "wow_pct": 10.0,
+      "plays_yesterday": 291,
+      "plays_wow": 289,
+      "wow_pct": 0.69,
       "watch_seconds": 0,
-      "zero_count": 5,
-      "zero_pct": 1.5,
+      "zero_count": 2,
+      "zero_pct": 0.69,
       "status": "Healthy"
     },
     {
       "name": "native-tvOS",
-      "plays_yesterday": 83,
-      "plays_wow": 87,
-      "wow_pct": -4.6,
+      "plays_yesterday": 78,
+      "plays_wow": 65,
+      "wow_pct": 20.0,
       "watch_seconds": 0,
       "zero_count": 0,
       "zero_pct": 0.0,
@@ -77,365 +77,150 @@
     },
     {
       "name": "Safari",
-      "plays_yesterday": 70,
-      "plays_wow": 60,
-      "wow_pct": 16.7,
+      "plays_yesterday": 52,
+      "plays_wow": 46,
+      "wow_pct": 13.04,
       "watch_seconds": 0,
-      "zero_count": 46,
-      "zero_pct": 65.7,
+      "zero_count": 41,
+      "zero_pct": 78.85,
       "status": "Critical"
     },
     {
       "name": "Unknown",
-      "plays_yesterday": 33,
-      "plays_wow": 19,
-      "wow_pct": 73.7,
+      "plays_yesterday": 18,
+      "plays_wow": 22,
+      "wow_pct": -18.18,
       "watch_seconds": 0,
-      "zero_count": 11,
-      "zero_pct": 33.3,
+      "zero_count": 5,
+      "zero_pct": 27.78,
       "status": "Critical"
     },
     {
       "name": "Firefox",
-      "plays_yesterday": 13,
-      "plays_wow": 7,
-      "wow_pct": 85.7,
+      "plays_yesterday": 9,
+      "plays_wow": 3,
+      "wow_pct": 200.0,
       "watch_seconds": 0,
-      "zero_count": 5,
-      "zero_pct": 38.5,
+      "zero_count": 3,
+      "zero_pct": 33.33,
       "status": "Critical"
     }
   ],
   "zero_by_platform": {
     "native-iOS": {
-      "total_7d": 9846,
-      "zero_7d": 299,
-      "zero_pct_7d": 3.0,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 985,
-        "videos": 8861
-      },
-      "zero_by_ctype": {
-        "live": 23,
-        "videos": 276
-      },
+      "total_7d": 10027,
+      "zero_7d": 319,
+      "zero_pct_7d": 3.18,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 1004, "videos": 9023},
+      "zero_by_ctype": {"live": 29, "videos": 290},
       "top_countries": []
     },
     "Chrome": {
-      "total_7d": 8082,
-      "zero_7d": 1397,
-      "zero_pct_7d": 17.3,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 3265,
-        "videos": 4816
-      },
-      "zero_by_ctype": {
-        "live": 402,
-        "videos": 995
-      },
+      "total_7d": 8242,
+      "zero_7d": 1437,
+      "zero_pct_7d": 17.44,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 3196, "videos": 5045},
+      "zero_by_ctype": {"live": 399, "videos": 1038},
       "top_countries": []
     },
     "native-android": {
-      "total_7d": 6614,
-      "zero_7d": 2258,
-      "zero_pct_7d": 34.1,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 4221,
-        "videos": 2393
-      },
-      "zero_by_ctype": {
-        "live": 1715,
-        "videos": 543
-      },
+      "total_7d": 6829,
+      "zero_7d": 2401,
+      "zero_pct_7d": 35.16,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 4493, "videos": 2336},
+      "zero_by_ctype": {"live": 1885, "videos": 516},
       "top_countries": []
     },
     "tv-android": {
-      "total_7d": 4026,
-      "zero_7d": 793,
-      "zero_pct_7d": 19.7,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 3139,
-        "videos": 887
-      },
-      "zero_by_ctype": {
-        "live": 758,
-        "videos": 35
-      },
+      "total_7d": 4142,
+      "zero_7d": 823,
+      "zero_pct_7d": 19.87,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 3230, "videos": 912},
+      "zero_by_ctype": {"live": 786, "videos": 37},
       "top_countries": []
     },
     "native-iPadOS": {
-      "total_7d": 2080,
+      "total_7d": 2108,
       "zero_7d": 35,
-      "zero_pct_7d": 1.7,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 65,
-        "videos": 2015
-      },
-      "zero_by_ctype": {
-        "live": 2,
-        "videos": 33
-      },
+      "zero_pct_7d": 1.66,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 65, "videos": 2043},
+      "zero_by_ctype": {"live": 2, "videos": 33},
       "top_countries": []
     },
     "native-tvOS": {
-      "total_7d": 550,
+      "total_7d": 537,
       "zero_7d": 1,
-      "zero_pct_7d": 0.2,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 81,
-        "videos": 469
-      },
-      "zero_by_ctype": {
-        "live": 1,
-        "videos": 0
-      },
+      "zero_pct_7d": 0.19,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 78, "videos": 459},
+      "zero_by_ctype": {"live": 1, "videos": 0},
       "top_countries": []
     },
     "Safari": {
-      "total_7d": 370,
-      "zero_7d": 200,
-      "zero_pct_7d": 54.1,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 101,
-        "videos": 269
-      },
-      "zero_by_ctype": {
-        "live": 68,
-        "videos": 132
-      },
+      "total_7d": 372,
+      "zero_7d": 210,
+      "zero_pct_7d": 56.45,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 110, "videos": 262},
+      "zero_by_ctype": {"live": 75, "videos": 135},
       "top_countries": []
     },
     "Unknown": {
-      "total_7d": 181,
-      "zero_7d": 62,
-      "zero_pct_7d": 34.3,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 51,
-        "videos": 130
-      },
-      "zero_by_ctype": {
-        "live": 48,
-        "videos": 14
-      },
+      "total_7d": 179,
+      "zero_7d": 60,
+      "zero_pct_7d": 33.52,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 53, "videos": 126},
+      "zero_by_ctype": {"live": 51, "videos": 9},
       "top_countries": []
     },
     "Firefox": {
-      "total_7d": 75,
-      "zero_7d": 38,
-      "zero_pct_7d": 50.7,
-      "user_mix": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "zero_by_user": {
-        "free": 0,
-        "premium": 0,
-        "trialing": 0,
-        "guest": 0
-      },
-      "content_mix": {
-        "live": 15,
-        "videos": 60
-      },
-      "zero_by_ctype": {
-        "live": 10,
-        "videos": 28
-      },
+      "total_7d": 82,
+      "zero_7d": 40,
+      "zero_pct_7d": 48.78,
+      "user_mix": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "zero_by_user": {"free": 0, "premium": 0, "trialing": 0, "guest": 0},
+      "content_mix": {"live": 16, "videos": 66},
+      "zero_by_ctype": {"live": 10, "videos": 30},
       "top_countries": []
     }
   },
   "trend_14d": [
-    {
-      "date": "2026-05-29",
-      "total": 2697,
-      "zero": 479,
-      "zero_pct": 17.8
-    },
-    {
-      "date": "2026-05-30",
-      "total": 3542,
-      "zero": 482,
-      "zero_pct": 13.6
-    },
-    {
-      "date": "2026-05-31",
-      "total": 5726,
-      "zero": 903,
-      "zero_pct": 15.8
-    },
-    {
-      "date": "2026-06-01",
-      "total": 5242,
-      "zero": 857,
-      "zero_pct": 16.3
-    },
-    {
-      "date": "2026-06-02",
-      "total": 4340,
-      "zero": 591,
-      "zero_pct": 13.6
-    },
-    {
-      "date": "2026-06-03",
-      "total": 4765,
-      "zero": 711,
-      "zero_pct": 14.9
-    },
-    {
-      "date": "2026-06-04",
-      "total": 4333,
-      "zero": 575,
-      "zero_pct": 13.3
-    },
-    {
-      "date": "2026-06-05",
-      "total": 3972,
-      "zero": 568,
-      "zero_pct": 14.3
-    },
-    {
-      "date": "2026-06-06",
-      "total": 3693,
-      "zero": 468,
-      "zero_pct": 12.7
-    },
-    {
-      "date": "2026-06-07",
-      "total": 4571,
-      "zero": 684,
-      "zero_pct": 15.0
-    },
-    {
-      "date": "2026-06-08",
-      "total": 5410,
-      "zero": 932,
-      "zero_pct": 17.2
-    },
-    {
-      "date": "2026-06-09",
-      "total": 4114,
-      "zero": 597,
-      "zero_pct": 14.5
-    },
-    {
-      "date": "2026-06-10",
-      "total": 4194,
-      "zero": 619,
-      "zero_pct": 14.8
-    },
-    {
-      "date": "2026-06-11",
-      "total": 5768,
-      "zero": 1150,
-      "zero_pct": 19.9
-    }
+    {"date": "2026-05-30", "total": 2277, "zero": 327, "zero_pct": 14.36},
+    {"date": "2026-05-31", "total": 5726, "zero": 903, "zero_pct": 15.77},
+    {"date": "2026-06-01", "total": 5242, "zero": 857, "zero_pct": 16.35},
+    {"date": "2026-06-02", "total": 4340, "zero": 591, "zero_pct": 13.62},
+    {"date": "2026-06-03", "total": 4765, "zero": 711, "zero_pct": 14.92},
+    {"date": "2026-06-04", "total": 4333, "zero": 575, "zero_pct": 13.27},
+    {"date": "2026-06-05", "total": 3972, "zero": 568, "zero_pct": 14.3},
+    {"date": "2026-06-06", "total": 3693, "zero": 468, "zero_pct": 12.67},
+    {"date": "2026-06-07", "total": 4571, "zero": 684, "zero_pct": 14.97},
+    {"date": "2026-06-08", "total": 5410, "zero": 932, "zero_pct": 17.23},
+    {"date": "2026-06-09", "total": 4114, "zero": 597, "zero_pct": 14.51},
+    {"date": "2026-06-10", "total": 4193, "zero": 619, "zero_pct": 14.76},
+    {"date": "2026-06-11", "total": 5757, "zero": 1150, "zero_pct": 19.97},
+    {"date": "2026-06-12", "total": 4498, "zero": 790, "zero_pct": 17.56}
   ],
   "live_missing_metadata": {
-    "count_7d": 929,
+    "count_7d": 933,
     "by_platform": {
-      "native-android": 903,
-      "native-iOS": 23,
+      "native-android": 906,
+      "native-iOS": 25,
       "Chrome": 1,
-      "Safari": 1,
-      "Unknown": 1
+      "Safari": 1
     }
   }
 }
