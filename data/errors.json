@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T11:05:00.000Z",
+  "generated_at": "2026-06-13T11:05:00.000Z",
   "api_errors": {
     "summary": {
       "total_errors": 0,
@@ -8,20 +8,46 @@
     "spikes": []
   },
   "cloudfront": {
-    "spikes": [],
-    "note": "7-day window (2026-06-05 to 2026-06-12): Jun 12 data not yet aggregated (early UTC). Historical: 2026-06-05 had 333,303 4xx (vs 13,161 on Jun 6 — 25x spike on Jun 5, no current-day anomaly). No CloudFront spikes on Jun 12.",
-    "raw_window": [
-      {"date": "2026-06-06", "error_class": "ok", "count": 1001706},
-      {"date": "2026-06-06", "error_class": "5xx", "count": 10},
-      {"date": "2026-06-06", "error_class": "4xx", "count": 13161},
-      {"date": "2026-06-05", "error_class": "5xx", "count": 21},
-      {"date": "2026-06-05", "error_class": "4xx", "count": 333303},
-      {"date": "2026-06-05", "error_class": "ok", "count": 2496719}
-    ]
+    "spikes": [
+      {
+        "endpoint": "all (aggregate)",
+        "error_type": "5xx",
+        "count": 7284,
+        "baseline": 98,
+        "pct_above_baseline": 7334.7,
+        "date": "2026-06-07",
+        "note": "Historical spike within 7-day window — Jun 7 5xx count was 7,284 vs baseline ~98/day (avg of remaining 6 days). Platform-wide origin error event."
+      }
+    ],
+    "daily_5xx": {
+      "2026-06-06": 61,
+      "2026-06-07": 7284,
+      "2026-06-08": 58,
+      "2026-06-09": 168,
+      "2026-06-10": 101,
+      "2026-06-11": 101,
+      "2026-06-12": 93
+    },
+    "daily_4xx": {
+      "2026-06-06": 29002,
+      "2026-06-07": 26502,
+      "2026-06-08": 27317,
+      "2026-06-09": 17717,
+      "2026-06-10": 15529,
+      "2026-06-11": 27460,
+      "2026-06-12": 12878
+    }
   },
   "whoami_failures": {
     "total": 0,
     "by_platform": {}
   },
-  "issues": []
+  "issues": [
+    {
+      "id": "cloudfront-5xx-spike-jun7",
+      "severity": "red",
+      "text": "CloudFront 5xx spike on Jun 7: 7,284 errors (~74x baseline)",
+      "meta": "Jun 7 recorded 7,284 5xx responses vs baseline ~98/day (avg Jun 6, 8–12) · 7,334% above baseline · platform-wide origin error event · resolved by Jun 8 (58 errors)"
+    }
+  ]
 }
