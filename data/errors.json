@@ -1,42 +1,30 @@
 {
-  "generated_at": "2026-06-13T11:05:00.000Z",
+  "generated_at": "2026-06-14T11:07:00.000Z",
   "api_errors": {
-    "summary": {
-      "total_errors": 0,
-      "top_endpoints": []
-    },
-    "spikes": []
+    "summary": null,
+    "_note": "get_daily_api_error_summary UNAVAILABLE — query remained QUEUED after retry"
   },
   "cloudfront": {
     "spikes": [
       {
-        "endpoint": "all (aggregate)",
+        "endpoint": "CloudFront distribution (global)",
         "error_type": "5xx",
-        "count": 7284,
-        "baseline": 98,
-        "pct_above_baseline": 7334.7,
         "date": "2026-06-07",
-        "note": "Historical spike within 7-day window — Jun 7 5xx count was 7,284 vs baseline ~98/day (avg of remaining 6 days). Platform-wide origin error event."
+        "count": 7284,
+        "baseline": 100,
+        "pct_above_baseline": 7184.0,
+        "top_client": "unknown — no endpoint breakdown available",
+        "_note": "Historical spike on 2026-06-07; subsequent days (Jun 8–12) returned to normal ~93–168 5xx/day. No active spike today."
       }
     ],
-    "daily_5xx": {
-      "2026-06-06": 61,
-      "2026-06-07": 7284,
-      "2026-06-08": 58,
-      "2026-06-09": 168,
-      "2026-06-10": 101,
-      "2026-06-11": 101,
-      "2026-06-12": 93
-    },
-    "daily_4xx": {
-      "2026-06-06": 29002,
-      "2026-06-07": 26502,
-      "2026-06-08": 27317,
-      "2026-06-09": 17717,
-      "2026-06-10": 15529,
-      "2026-06-11": 27460,
-      "2026-06-12": 12878
-    }
+    "7d_summary": [
+      { "date": "2026-06-07", "ok": 2763944, "4xx": 26502, "5xx": 7284 },
+      { "date": "2026-06-08", "ok": 3237853, "4xx": 27317, "5xx": 58 },
+      { "date": "2026-06-09", "ok": 2797094, "4xx": 17717, "5xx": 168 },
+      { "date": "2026-06-10", "ok": 2792567, "4xx": 15529, "5xx": 101 },
+      { "date": "2026-06-11", "ok": 2769508, "4xx": 27460, "5xx": 101 },
+      { "date": "2026-06-12", "ok": 1707887, "4xx": 12878, "5xx": 93 }
+    ]
   },
   "whoami_failures": {
     "total": 0,
@@ -44,10 +32,16 @@
   },
   "issues": [
     {
-      "id": "cloudfront-5xx-spike-jun7",
-      "severity": "red",
-      "text": "CloudFront 5xx spike on Jun 7: 7,284 errors (~74x baseline)",
-      "meta": "Jun 7 recorded 7,284 5xx responses vs baseline ~98/day (avg Jun 6, 8–12) · 7,334% above baseline · platform-wide origin error event · resolved by Jun 8 (58 errors)"
+      "id": "cf-5xx-spike-jun07",
+      "severity": "yellow",
+      "text": "CloudFront 5xx spike on 2026-06-07 (historical)",
+      "meta": "7,284 5xx errors on Jun 7 — ~72x above the ~100/day baseline seen Jun 8–12. Platform returned to normal immediately after. No active spike today."
+    },
+    {
+      "id": "api-error-summary-unavailable",
+      "severity": "yellow",
+      "text": "API error summary data unavailable for 2026-06-14",
+      "meta": "get_daily_api_error_summary stayed QUEUED after 45s retry. No top-endpoint breakdown available for today. detect_error_spikes confirmed 0 active spikes."
     }
   ]
 }
