@@ -1,69 +1,267 @@
 {
-  "generated_at": "2026-06-14T10:01:30.000Z",
+  "generated_at": "2026-06-15T10:00:53Z",
   "ingestion": {
     "status": "OK",
-    "total_docs_1h": 423,
-    "avg_per_min": 7,
+    "total_docs_1h": 379,
+    "avg_per_min": 6,
     "gap_minutes": 0,
     "fallback_pct": 0
   },
   "android": {
     "app_version": "v2.8.0",
     "crashes_current_month": [
-      {"date": "2026-06-13", "crashes": 88, "anrs": 7},
-      {"date": "2026-06-12", "crashes": 91, "anrs": 2},
-      {"date": "2026-06-11", "crashes": 127, "anrs": 12},
-      {"date": "2026-06-10", "crashes": 79, "anrs": 8},
-      {"date": "2026-06-09", "crashes": 94, "anrs": 20},
-      {"date": "2026-06-08", "crashes": 119, "anrs": 15},
-      {"date": "2026-06-07", "crashes": 97, "anrs": 12},
-      {"date": "2026-06-06", "crashes": 48, "anrs": 1},
-      {"date": "2026-06-05", "crashes": 88, "anrs": 7},
-      {"date": "2026-06-04", "crashes": 131, "anrs": 5},
-      {"date": "2026-06-03", "crashes": 19, "anrs": 14},
-      {"date": "2026-06-02", "crashes": 46, "anrs": 22},
-      {"date": "2026-06-01", "crashes": 53, "anrs": 11}
+      {
+        "date": "2026-06-13",
+        "crashes": 88,
+        "anrs": 7
+      },
+      {
+        "date": "2026-06-12",
+        "crashes": 91,
+        "anrs": 2
+      },
+      {
+        "date": "2026-06-11",
+        "crashes": 127,
+        "anrs": 12
+      },
+      {
+        "date": "2026-06-10",
+        "crashes": 79,
+        "anrs": 8
+      },
+      {
+        "date": "2026-06-09",
+        "crashes": 94,
+        "anrs": 20
+      },
+      {
+        "date": "2026-06-08",
+        "crashes": 119,
+        "anrs": 15
+      },
+      {
+        "date": "2026-06-07",
+        "crashes": 97,
+        "anrs": 12
+      },
+      {
+        "date": "2026-06-06",
+        "crashes": 48,
+        "anrs": 1
+      },
+      {
+        "date": "2026-06-05",
+        "crashes": 88,
+        "anrs": 7
+      },
+      {
+        "date": "2026-06-04",
+        "crashes": 131,
+        "anrs": 5
+      },
+      {
+        "date": "2026-06-03",
+        "crashes": 19,
+        "anrs": 14
+      },
+      {
+        "date": "2026-06-02",
+        "crashes": 46,
+        "anrs": 22
+      },
+      {
+        "date": "2026-06-01",
+        "crashes": 53,
+        "anrs": 11
+      }
     ],
-    "crash_avg_30d": 83.08,
+    "crash_avg_30d": 83.1,
     "crash_yesterday": 88,
     "crash_spike": false
   },
   "reviews": [
-    {"date": "2026-06-10", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-10", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-09", "rating": 3, "text": "", "replied": false},
-    {"date": "2026-06-08", "rating": 4, "text": "", "replied": false},
-    {"date": "2026-06-08", "rating": 4, "text": "", "replied": false},
-    {"date": "2026-06-07", "rating": 1, "text": "", "replied": false},
-    {"date": "2026-06-07", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-07", "rating": 5, "text": "bien", "replied": false},
-    {"date": "2026-06-07", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-06", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-06", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-05", "rating": 2, "text": "", "replied": false},
-    {"date": "2026-06-04", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-04", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-04", "rating": 1, "text": "", "replied": false},
-    {"date": "2026-06-04", "rating": 3, "text": "", "replied": false},
-    {"date": "2026-06-04", "rating": 3, "text": "muchos anuncios pero buena calidad 👌", "replied": false},
-    {"date": "2026-06-03", "rating": 2, "text": "", "replied": false},
-    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-03", "rating": 1, "text": "", "replied": false},
-    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-03", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-02", "rating": 5, "text": "", "replied": false},
-    {"date": "2026-06-02", "rating": 1, "text": "cuando la uso en tv se me travan los capitulos no me deja devorver los capitulos cuando intento me saca luego aveces no pone los caps pone error y si que carganado deberian solucionar todo eso porque uno esta pagando", "replied": true},
-    {"date": "2026-06-01", "rating": 4, "text": "", "replied": false}
+    {
+      "date": "2026-06-12",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-11",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-10",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-10",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-09",
+      "rating": 3,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-08",
+      "rating": 4,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-08",
+      "rating": 4,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-07",
+      "rating": 1,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-07",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-07",
+      "rating": 5,
+      "text": "bien",
+      "replied": true
+    },
+    {
+      "date": "2026-06-07",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-06",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-06",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-05",
+      "rating": 2,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-04",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-04",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-04",
+      "rating": 1,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-04",
+      "rating": 3,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-04",
+      "rating": 3,
+      "text": "muchos anuncios pero buena calidad 👌",
+      "replied": true
+    },
+    {
+      "date": "2026-06-03",
+      "rating": 2,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-03",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-03",
+      "rating": 1,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-03",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-03",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 5,
+      "text": "",
+      "replied": false
+    },
+    {
+      "date": "2026-06-02",
+      "rating": 1,
+      "text": "cuando la uso en tv se me travan los capitulos no me deja devorver los capitulos cuando intento me saca luego aveces no pone los caps pone error y si que carganado deberian solucionar todo eso porque uno esta pagando",
+      "replied": true
+    },
+    {
+      "date": "2026-06-01",
+      "rating": 4,
+      "text": "",
+      "replied": false
+    }
   ],
   "issues": [
     {
-      "id": "low-rating-reviews-unreplied",
+      "id": "low-rated-unresponded-reviews",
       "severity": "yellow",
-      "text": "5 unanswered 1★/2★ Play Store reviews this month",
-      "meta": "2026-06-07 1★, 2026-06-05 2★, 2026-06-04 1★, 2026-06-03 2★, 2026-06-03 1★ — all without developer reply"
+      "text": "5 low-rated reviews (1★/2★) without developer reply",
+      "meta": "Dates: 2026-06-07 (1★), 2026-06-05 (2★), 2026-06-04 (1★), 2026-06-03 (2★), 2026-06-03 (1★)"
     }
   ]
 }
