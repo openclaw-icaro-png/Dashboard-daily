@@ -1,47 +1,31 @@
 {
-  "generated_at": "2026-06-14T11:07:00.000Z",
+  "generated_at": "2026-06-15T11:00:00Z",
   "api_errors": {
-    "summary": null,
-    "_note": "get_daily_api_error_summary UNAVAILABLE — query remained QUEUED after retry"
+    "summary": {
+      "total_errors": 0,
+      "top_endpoints": []
+    },
+    "spikes": null
   },
   "cloudfront": {
-    "spikes": [
-      {
-        "endpoint": "CloudFront distribution (global)",
-        "error_type": "5xx",
-        "date": "2026-06-07",
-        "count": 7284,
-        "baseline": 100,
-        "pct_above_baseline": 7184.0,
-        "top_client": "unknown — no endpoint breakdown available",
-        "_note": "Historical spike on 2026-06-07; subsequent days (Jun 8–12) returned to normal ~93–168 5xx/day. No active spike today."
-      }
+    "spikes": [],
+    "raw_7d": [
+      {"date": "2026-06-08", "error_class": "4xx", "count": 12878, "ok": 1707887, "5xx": 93},
+      {"date": "2026-06-09", "error_class": "4xx", "count": 17717, "ok": 2797094, "5xx": 168},
+      {"date": "2026-06-10", "error_class": "4xx", "count": 15529, "ok": 2792567, "5xx": 101},
+      {"date": "2026-06-11", "error_class": "4xx", "count": 27460, "ok": 2769508, "5xx": 101},
+      {"date": "2026-06-12", "error_class": "4xx", "count": 12878, "ok": 1707887, "5xx": 93}
     ],
-    "7d_summary": [
-      { "date": "2026-06-07", "ok": 2763944, "4xx": 26502, "5xx": 7284 },
-      { "date": "2026-06-08", "ok": 3237853, "4xx": 27317, "5xx": 58 },
-      { "date": "2026-06-09", "ok": 2797094, "4xx": 17717, "5xx": 168 },
-      { "date": "2026-06-10", "ok": 2792567, "4xx": 15529, "5xx": 101 },
-      { "date": "2026-06-11", "ok": 2769508, "4xx": 27460, "5xx": 101 },
-      { "date": "2026-06-12", "ok": 1707887, "4xx": 12878, "5xx": 93 }
-    ]
+    "notes": "No spike thresholds breached. 5xx avg ~104/day (stable). 4xx fluctuations within normal range. Jun 13-14 data absent."
   },
   "whoami_failures": {
     "total": 0,
     "by_platform": {}
   },
-  "issues": [
-    {
-      "id": "cf-5xx-spike-jun07",
-      "severity": "yellow",
-      "text": "CloudFront 5xx spike on 2026-06-07 (historical)",
-      "meta": "7,284 5xx errors on Jun 7 — ~72x above the ~100/day baseline seen Jun 8–12. Platform returned to normal immediately after. No active spike today."
-    },
-    {
-      "id": "api-error-summary-unavailable",
-      "severity": "yellow",
-      "text": "API error summary data unavailable for 2026-06-14",
-      "meta": "get_daily_api_error_summary stayed QUEUED after 45s retry. No top-endpoint breakdown available for today. detect_error_spikes confirmed 0 active spikes."
-    }
-  ]
+  "issues": [],
+  "_meta": {
+    "detect_error_spikes": "UNAVAILABLE — Athena query timed out after retry (HTTP/2 stream error)",
+    "tools_run": ["get_daily_api_error_summary", "get_cloudfront_error_spikes", "get_whoami_failures"],
+    "tools_unavailable": ["detect_error_spikes"]
+  }
 }
