@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:00:00Z",
+  "generated_at": "2026-06-16T11:00:00Z",
   "api_errors": {
     "summary": {
       "total_errors": 0,
@@ -8,24 +8,34 @@
     "spikes": null
   },
   "cloudfront": {
-    "spikes": [],
-    "raw_7d": [
-      {"date": "2026-06-08", "error_class": "4xx", "count": 12878, "ok": 1707887, "5xx": 93},
-      {"date": "2026-06-09", "error_class": "4xx", "count": 17717, "ok": 2797094, "5xx": 168},
-      {"date": "2026-06-10", "error_class": "4xx", "count": 15529, "ok": 2792567, "5xx": 101},
-      {"date": "2026-06-11", "error_class": "4xx", "count": 27460, "ok": 2769508, "5xx": 101},
-      {"date": "2026-06-12", "error_class": "4xx", "count": 12878, "ok": 1707887, "5xx": 93}
-    ],
-    "notes": "No spike thresholds breached. 5xx avg ~104/day (stable). 4xx fluctuations within normal range. Jun 13-14 data absent."
+    "spikes": [
+      {
+        "endpoint": "all",
+        "error_type": "4xx",
+        "count": 27460,
+        "baseline": 15375,
+        "top_client": "unknown",
+        "date": "2026-06-11",
+        "note": "Historical spike (5 days ago) — Jun 11 4xx elevated vs 3-day avg of ~15,375. No active spike today."
+      }
+    ]
   },
   "whoami_failures": {
     "total": 0,
     "by_platform": {}
   },
-  "issues": [],
-  "_meta": {
-    "detect_error_spikes": "UNAVAILABLE — Athena query timed out after retry (HTTP/2 stream error)",
-    "tools_run": ["get_daily_api_error_summary", "get_cloudfront_error_spikes", "get_whoami_failures"],
-    "tools_unavailable": ["detect_error_spikes"]
-  }
+  "issues": [
+    {
+      "id": "cf-4xx-jun11-elevated",
+      "severity": "yellow",
+      "text": "CloudFront 4xx elevated on Jun 11 (historical)",
+      "meta": "27,460 4xx vs ~15,375/day baseline (+79%) on 2026-06-11 · no active spike today · spike detection UNAVAILABLE (Athena queue)"
+    },
+    {
+      "id": "athena-spike-detection-unavailable",
+      "severity": "yellow",
+      "text": "Spike detection unavailable — Athena query queue backlog",
+      "meta": "detect_error_spikes returned QUEUED after 45s retry · get_daily_api_error_summary returned 0 errors (data may still be accumulating)"
+    }
+  ]
 }
