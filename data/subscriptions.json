@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-15T09:01:10.000Z",
+  "generated_at": "2026-06-16T09:00:00Z",
   "providers": [
     {
       "name": "Stripe",
       "status": "DEGRADED",
-      "active": 3417,
-      "past_due": 370,
-      "trialing": 243,
-      "cancelling": 102
+      "active": 3395,
+      "past_due": 375,
+      "trialing": 279,
+      "cancelling": 101
     },
     {
       "name": "Apple Pay",
@@ -20,10 +20,10 @@
     {
       "name": "Roku Pay",
       "status": "OK",
-      "active": 90,
-      "past_due": 1,
-      "trialing": 10,
-      "cancelling": 9
+      "active": 95,
+      "past_due": 0,
+      "trialing": 4,
+      "cancelling": 7
     },
     {
       "name": "Xfinity",
@@ -38,44 +38,44 @@
     {
       "name": "Stripe",
       "status": "OK",
-      "last_event": "08:57 UTC",
-      "minutes_since": 3
+      "last_event": "08:49 UTC",
+      "minutes_since": 12
     },
     {
       "name": "Apple Pay",
       "status": "STALLED",
-      "last_event": "Jun 12 20:25 UTC",
-      "minutes_since": 3635
+      "last_event": "2026-06-12 20:25 UTC",
+      "minutes_since": 5075
     },
     {
       "name": "Roku Pay",
       "status": "OK",
-      "last_event": "08:54 UTC",
-      "minutes_since": 6
+      "last_event": "08:58 UTC",
+      "minutes_since": 2
     }
   ],
   "renewals": {
     "providers": [
       {
         "name": "Stripe",
-        "renewals": 710,
-        "failures": 165,
-        "grace": 153,
-        "failure_rate_pct": 18.86
+        "renewals": 700,
+        "failures": 171,
+        "grace": 158,
+        "failure_rate_pct": 19.63
       },
       {
         "name": "Apple Pay",
         "renewals": 1,
-        "failures": 3,
-        "grace": 2,
-        "failure_rate_pct": 75.0
+        "failures": 2,
+        "grace": 1,
+        "failure_rate_pct": 66.67
       },
       {
         "name": "Roku Pay",
-        "renewals": 20,
-        "failures": 1,
+        "renewals": 24,
+        "failures": 0,
         "grace": 2,
-        "failure_rate_pct": 4.76
+        "failure_rate_pct": 0.0
       },
       {
         "name": "Xfinity",
@@ -83,64 +83,110 @@
         "failures": 0,
         "grace": 0,
         "failure_rate_pct": null
+      },
+      {
+        "name": "Amazon Pay",
+        "renewals": 0,
+        "failures": 0,
+        "grace": 0,
+        "failure_rate_pct": null
       }
     ],
     "daily_trend": [
-      { "date": "Jun 08", "renewals": 56, "failures": 9 },
-      { "date": "Jun 09", "renewals": 97, "failures": 20 },
-      { "date": "Jun 10", "renewals": 108, "failures": 20 },
-      { "date": "Jun 11", "renewals": 109, "failures": 24 },
-      { "date": "Jun 12", "renewals": 133, "failures": 34 },
-      { "date": "Jun 13", "renewals": 97, "failures": 21 },
-      { "date": "Jun 14", "renewals": 92, "failures": 28 },
-      { "date": "Jun 15", "renewals": 39, "failures": 12 }
+      {
+        "date": "Jun 09",
+        "renewals": 56,
+        "failures": 12
+      },
+      {
+        "date": "Jun 10",
+        "renewals": 106,
+        "failures": 19
+      },
+      {
+        "date": "Jun 11",
+        "renewals": 107,
+        "failures": 24
+      },
+      {
+        "date": "Jun 12",
+        "renewals": 129,
+        "failures": 32
+      },
+      {
+        "date": "Jun 13",
+        "renewals": 96,
+        "failures": 21
+      },
+      {
+        "date": "Jun 14",
+        "renewals": 87,
+        "failures": 26
+      },
+      {
+        "date": "Jun 15",
+        "renewals": 80,
+        "failures": 26
+      },
+      {
+        "date": "Jun 16",
+        "renewals": 39,
+        "failures": 11
+      }
     ]
   },
   "entitlements": {
     "paid_not_activated": 0,
     "zombie_access": 49,
     "zombie_by_provider": [
-      { "provider": "Stripe", "count": 44, "oldest": "Oct 2024" },
-      { "provider": "Apple Pay", "count": 4, "oldest": "Dec 2025" },
-      { "provider": "Roku Pay", "count": 1, "oldest": "Jun 2026" }
+      {
+        "provider": "Stripe",
+        "count": 44,
+        "oldest": "Oct 2024"
+      },
+      {
+        "provider": "Apple Pay",
+        "count": 5,
+        "oldest": "Dec 2025"
+      }
     ]
   },
   "issues": [
     {
-      "id": "stripe-degraded-payment-failures",
+      "id": "stripe-degraded",
       "severity": "orange",
-      "text": "Stripe DEGRADED — 56.8% payment event failure rate (24h window)",
-      "meta": "28 failures out of ~49 total payment events in last 24h; 165 renewal failures over 7 days (18.86%)"
+      "text": "Stripe payment events DEGRADED (45.9% failure rate in 24h window)",
+      "meta": "85 renewals, 25 payment failures in last 24h; 375 subscribers past_due"
     },
     {
-      "id": "zombie-access-critical",
+      "id": "roku-unmatched-subscription",
+      "severity": "orange",
+      "text": "Roku: 1 unmatched_subscription webhook event detected",
+      "meta": "Last seen: 2026-06-12T20:25:50Z \u2014 subscriber could not be matched to a local record"
+    },
+    {
+      "id": "apple-webhook-stalled",
+      "severity": "orange",
+      "text": "Apple-Pay webhooks STALLED \u2014 last event 3+ days ago",
+      "meta": "Last event: 2026-06-12T20:25:58Z (5075 min ago); apple-pay has 5 zombie users with active=1"
+    },
+    {
+      "id": "zombie-access-high",
       "severity": "red",
-      "text": "49 zombie access accounts — active entitlements with expired end_date",
-      "meta": "Stripe: 44 (oldest Oct 2024), Apple Pay: 4 (newest Jun 12 2026), Roku: 1 (Jun 13 2026)"
+      "text": "49 zombie subscribers: active=1 but subscription expired",
+      "meta": "Stripe: 44 (oldest 2024-10-04), Apple: 5 (oldest 2025-12-03) \u2014 users receiving free access post-expiry"
     },
     {
-      "id": "apple-pay-webhook-stalled",
-      "severity": "orange",
-      "text": "Apple Pay webhooks STALLED — no events in 3,635 minutes (~2.5 days)",
-      "meta": "Last event: 2026-06-12T20:25:58Z. Renewal failure rate 75% (3 failures / 1 renewal over 7 days)."
-    },
-    {
-      "id": "roku-unmatched-subscriptions",
-      "severity": "orange",
-      "text": "Roku Pay: 9 unmatched_subscription events (last seen Jun 12)",
-      "meta": "6x subscription_save_failed + 6x ActiveRecord::RecordInvalid errors in webhook processor"
-    },
-    {
-      "id": "stripe-past-due-high",
+      "id": "stripe-failure-rate-elevated",
       "severity": "yellow",
-      "text": "Stripe past_due count elevated at 370 subscribers",
-      "meta": "153 currently in grace period; 30 zombies have past_due status"
+      "text": "Stripe 7-day renewal failure rate at 19.63% (171/700 failed)",
+      "meta": "158 in grace period; Jun 12 peak: 32 failures on 129 renewals (24.8%)"
     },
     {
-      "id": "apple-pay-failure-rate",
+      "id": "roku-webhook-errors",
       "severity": "yellow",
-      "text": "Apple Pay 7-day renewal failure rate: 75% (3 failures, 1 success)",
-      "meta": "Small sample (4 total events) but combined with stalled webhooks is concerning"
+      "text": "Roku webhooks: 3 subscription_save_failed + 3 ActiveRecord::RecordInvalid errors (6h window)",
+      "meta": "Possible data integrity issue preventing subscription records from saving"
     }
   ]
 }
